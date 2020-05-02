@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="sequenzmemory-ui1.ts"></script>
+    <link rel="stylesheet" href="sequenzmemory.css">
+    <title>Sequenzmemory</title>
+</head>
+<body>
+    <h1>Sequenzmemory</h1>
+<div>
+    <div id="wahl">
+        <p>Wähle ein Wort:</p> 
+            <select name="Select" id="selectedWrd">
+			<option value="option1">Japan</option>
+			<option value="option2">Grönland</option>
+			<option value="option3">Grossbritanien</option>
+            <option value="option4">Tschechische Republik</option>
+            <option value="option1">Zypern</option>
+			<option value="option2">Sri Lanka</option>
+			<option value="option3">Paraguay</option>
+            <option value="option4">Montenegro</option>
+            <option value="option3">Luxemburg</option>
+            <option value="option4">Deutschland</option>
+		</select>
+    </div>
+    <div id="deinWort">
+        <p>Schreibe dein eigenes Wort:</p>
+        <input type="text" id="yourWord">
+    </div>
+    <div id="spielzeit">
+        <p>Wähle die Spielzeit: <input id="gametime" type="number"> Sekunden</p>
+    </div>
+    <div id="zaehler">
+        <p>Wie lange willst du das gemischte Wort sehen? <input id="timer" type="number"></p>
+    </div>
+    <div id="btnplacement">
+        <button id="btn">
+            PLAY
+        </button>
+    </div>
+    <aside><p>Spiel Anweisung</p></aside>
+</div>
+<div>
+    <p id="zeit">verbleibende Zeit</p>
+    <div id="duration"></div>
+    <div id="sequence"></div>
+    <p class="note"></p>
+    <div class="hidden"></div>
+    <div id="behaelter"></div>
+    <p id="hilfe">Hilfe: <br> Drücke die Leertaste um alle Buchstaben anzeigen zu lassen</p>
+</div>
+</body>
+</html>
