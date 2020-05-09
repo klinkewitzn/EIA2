@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="haushaltshilfe.css">
+    <script src="haushaltshilfe.js"></script>
+    <title>Haushaltshilfe</title>
+</head>
+
+<body>
+    <h1>Haushaltshilfe</h1>
+    <p>Find sb. to help you with your groceries, your chores and managing your bank account.</p>
+    <div id="choose">
+        <h2>Things I want to get help with:</h2>
+        <p><i>Choose:</i> </p>
+
+        <div id="groceries">
+            <h3>Groceries</h3>
+            <fieldset>
+                <legend>Article</legend>
+                <select name="Article" id="article">
+                    <option value="Haferflocken" price="25" unit="kg" >Haferflocken</option>
+                    <option value="Brot" price="30" unit >Brot</option>
+                    <option value="Milch" price="21">Milch</option>
+                    <option value="Wasser" price="25">Wasser</option>
+                    <option value="Mehl" price="30">Mehl</option>
+                    <option value="Nudeln" price="21">Nudeln</option>
+                    <option value="Obst" price="25">Obst</option>
+                    <option value="Gemüse" price="30">Gemüse</option>
+                    <option value="Senf" price="21">Senf</option>
+                    <option value="Tofu" price="30">Tofu</option>
+                    <option value="Kichererbsen" price="21">Kichererbsen</option>
+                    <option value="Eier" price="21">Eier</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <legend>Amount</legend>
+                <span id="slider">
+                    <span>
+                        1
+                        <input type="range" name="Amount" id="amount" min="1" max="20" step="1" value="1">
+                        20
+
+                    </span>
+            </fieldset>
+            <fieldset>
+                <legend>Unit</legend>
+                <select name="Unit" id="unit">
+                    <option value="kg" price="25">kg</option>
+                    <option value="L" price="30">L</option>
+                    <option value="pieces" price="21">piece(s)</option>
+                    <option value="bottles" price="25">bottle(s)</option>
+                    <option value="bags" price="30">bag(s)</option>
+                    <option value="packets" price="21">packet(s)</option>
+                    <option value="gramm" price="21">gramms</option>
+                    <option value="cans" price="21">can(s)</option>
+                </select>
+
+                </select>
+            </fieldset>
+            <fieldset>
+                <legend>Shop</legend>
+                <select name="Shop" id="shop">
+                    <option value="Aldi" price="25">Aldi</option>
+                    <option value="Rewe" price="30">Rewe</option>
+                    <option value="Edeka" price="21">Edeka</option>
+                    <option value="Netto" price="25">Netto</option>
+                    <option value="Kaufland" price="30">Kaufland</option>
+                    <option value="Bioladen" price="21">Bioladen</option>
+                </select>
+            </fieldset>
+            <button id="addGrocery">add</button>
+        </div>
+        <div id="chores">
+            <h3>Household</h3>
+            <fieldset id="household">
+                <legend>Chores</legend>
+                <input class="checkbox" type="checkbox" name="chore" id="sweeping" value="Sweeping" price="0.50">
+                <label for="sweeping">Sweeping</label>
+                <input class="checkbox" type="checkbox" name="chore" id="laundry" value="Laundry" price="0.20">
+                <label for="laundry">Laundry</label>
+                <input class="checkbox" type="checkbox" name="chore" id="vacuuming" value="Vacuuming" price="0.15">
+                <label for="vacuuming">Vacuuming</label>
+                <input class="checkbox" type="checkbox" name="chore" id="dusting" value="Dusting" price="0.30">
+                <label for="dusting">Dusting</label>
+            </fieldset>
+           
+        </div>
+        <div id="bankAccount">
+            <h3>Bank Account</h3>
+            <fieldset>
+                <legend>Bank Account</legend>
+                Withdraw:
+                <input id="banking" type="number" name="bankAccount" placeholder="how much?" required />
+                </span>
+            </fieldset>
+            
+        </div>
+        <div>
+            <h2>Choose Payment Option</h2>
+            <fieldset>
+                <legend>Paying Options</legend>
+                <input type="radio" name="Radiogroup" value="visa" id="visa" />
+                <label for="visa">Visa</label>
+                <input type="radio" name="Radiogroup" value="mastercard" id="mastercard" />
+                <label for="mastercard">Mastercard</label>
+                <input type="radio" name="Radiogroup" value="paypal" id="paypal" />
+                <label for="paypal">PayPal</label>
+            </fieldset>
+        </div>
+    </div>
+
+
+
+
+    <div id="overview">
+        <h2>My order:</h2>
+        <p><i>Overview</i> </p>
+        <h3>Groceries</h3>
+        <div id="displayGroceries">
+
+        </div>
+        <table id="table1">
+            <tr>
+                <th>article</th>
+                <th>amount</th>
+                <th>unit</th>
+                <th>price</th>
+                <th>shop</th>
+                <th>delete</th>
+            </tr>
+        </table>
+        <br>
+        <h3>Household</h3>
+        <table id="table2">
+            <tr>
+                <th>chore</th>
+                <th>price</th>
+            </tr>
+        </table>
+        <br>
+        <h3>Bank Account</h3>
+        <table id="table3">
+            <tr>
+                <th>money withdrawn</th>
+                <th>fees:</th>
+                <th><b> total:</b></th>
+            </tr>
+        </table>
+        <br>
+        <button id="submit">submit order</button>
+    </div>
+</body>
+
+</html>

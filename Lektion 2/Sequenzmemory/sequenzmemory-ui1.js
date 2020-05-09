@@ -10,7 +10,7 @@ var Sequenzmemorie;
         let letter;
         let behaelter = document.querySelector("#behaelter");
         button.addEventListener("click", shuffleLetters);
-        document.addEventListener("keydown", hint);
+        document.addEventListener("keydown", keypress);
         function shuffleLetters(_event) {
             let inputMixed = [];
             if (selectedWrd.value != "") {
@@ -27,8 +27,8 @@ var Sequenzmemorie;
             }
         }
         //Funktion 'Enter' Ende
-        function hint(_event) {
-            if (_event.keyCode == 83) {
+        function keypress(_event) {
+            if (_event.keyCode == 32) {
                 //dann zeige alle Buchstaben mit klasse .letters
             }
             else {
@@ -39,75 +39,17 @@ var Sequenzmemorie;
 })(Sequenzmemorie || (Sequenzmemorie = {}));
 /*
 
-
-let selectedWrd: HTMLSelectElement = <HTMLSelectElement>document.querySelector("#selectWord.value");
-let writtenWrd: HTMLInputElement = <HTMLInputElement>document.querySelector("#yourWord.value");
-let gametime: HTMLInputElement = <HTMLInputElement>document.querySelector("#gametime.value");
-let timer: HTMLInputElement = <HTMLInputElement>document.querySelector("#timer.value");
-let button: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button");
-let letter: HTMLDivElement;
-//let letter
-
-window.addEventListener("load", function (): void {
-    button.addEventListener("click", shuffleLetters());
-    document.addEventListener("keydown", keypress());
-
-});
-
-
-function shuffleLetters(_event: MouseEvent): void {
-    if (selectedWrd || writtenWrd != "") {
-
-    }
-}
-
-function keypress(_event: MouseEvent): void {
-    if (keycode 32: boolean == false;) {
-        letter.classList.add("hide");
-    }
-    else {
-        letter.classList.add("hide");
-    };
-}
-
-
-
-function enter() {
-    let inputMixed = [];
-    if (selectedWrd.value != "") {
-        let shuffled = selectedWrd.value.split("").sort(function () { return 0.5 - Math.random(); }).join("");
-        inputMixed.push(shuffled);
-        playground.innerHTML = "<p class='letters'>" + inputMixed + "</p>";
-        console.log(playground);
-    }
-    else if (selectedWrd.value == "") {
-        let shuffled = writtenWrd.value.split("").sort(function () { return 0.5 - Math.random(); }).join("");
-        inputMixed.push(shuffled);
-        playground.innerHTML = "<p class='letters'>" + inputMixed + "</p>";
-        console.log(playground);
-    }
-}
-//Funktion 'Enter' Ende
-function hint(_event) {
-    if (_event.keyCode == 83) {
-        //dann zeige alle Buchstaben mit klasse .letters
-    }
-    else {
-        // dann gebe den Buchstaben die Klasse .hide
-    }
-}
-});
-}) (Sequenzmemorie || (Sequenzmemorie = {}));
-//# sourceMappingURL=script.js.map
-
-*/
-var L02_Sequenzmemory;
-(function (L02_Sequenzmemory) {
+namespace L02_Sequenzmemory {
     window.addEventListener("load", init);
-    let selectedWrd = document.querySelector("#selectWord.value");
-    let writtenWrd = document.querySelector("#yourWord.value");
-    let gametime = document.querySelector("#gametime.value");
-    let timer = document.querySelector("#timer.value");
+
+    let selectedWrd: HTMLSelectElement = document.querySelector("#selectWord.value");
+    let writtenWrd: HTMLInputElement = document.querySelector("#yourWord.value");
+    let gametime: HTMLInputElement = document.querySelector("#gametime.value");
+    let timer: HTMLInputElement = document.querySelector("#timer.value");
+
+
+
+
     /*function init(_event: Event): void {
         console.log("Init");
         let fieldsets: NodeListOf<HTMLFieldSetElement> = document.querySelectorAll("fieldset");
@@ -150,5 +92,4 @@ var L02_Sequenzmemory;
             ouput.value = target.value;
         }
     } */
-})(L02_Sequenzmemory || (L02_Sequenzmemory = {}));
 //# sourceMappingURL=sequenzmemory-ui1.js.map
