@@ -28,13 +28,14 @@ namespace A03_Haushaltshilfe {
 
         let inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll("input.checkbox");
         console.log(inputs);
-        const num = inputs.length;
+        const num: number = inputs.length;
 
-        for (let i = 0; i < num; i++) {
+        for (let i: number = 0; i < num; i++) {
             if (inputs[i].checked === true) {
                 console.log(inputs[i].value + " ");
                 //let item: HTMLInputElement = <HTMLInputElement>document.querySelector("[value='" + inputs[i] + "']");
                 //let price: number = Number(item.getAttribute("price"));
+                
                 displayChores.innerHTML += "<br>" + inputs[i].value + " " /*+ price */ ;
                
             }
