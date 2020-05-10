@@ -28,7 +28,7 @@ var A03_Haushaltshilfe;
         for (let i = 0; i < num; i++) {
             if (inputs[i].checked === true) {
                 console.log(inputs[i].value + " ");
-                displayChores.innerHTML = inputs[i].value + " ";
+                displayChores.innerHTML += inputs[i].value + " " + "<br>";
             }
         }
     }
