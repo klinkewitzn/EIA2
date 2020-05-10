@@ -28,7 +28,9 @@ var A03_Haushaltshilfe;
         for (let i = 0; i < num; i++) {
             if (inputs[i].checked === true) {
                 console.log(inputs[i].value + " ");
-                displayChores.innerHTML += inputs[i].value + " " + "<br>";
+                //let item: HTMLInputElement = <HTMLInputElement>document.querySelector("[value='" + inputs[i] + "']");
+                //let price: number = Number(item.getAttribute("price"));
+                displayChores.innerHTML += inputs[i].value + " " /*+ price */ + "<br>";
             }
         }
     }
