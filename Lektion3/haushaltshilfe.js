@@ -27,6 +27,8 @@ var A03_Haushaltshilfe;
             str += checkbox.value + "";
         }
         console.log(str);
+        let inputs = document.querySelectorAll("input.checkbox");
+        console.log(inputs);
     }
     //var checks = document.querySelectorAll("input[type=checkbox]");
     //console.log(checks.values);

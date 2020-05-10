@@ -27,6 +27,8 @@ namespace A03_Haushaltshilfe {
             str += checkbox.value + "";
         }
         console.log(str);   
+        let inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll("input.checkbox");
+        console.log(inputs);
     }
 
     //var checks = document.querySelectorAll("input[type=checkbox]");
