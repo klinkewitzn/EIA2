@@ -8,7 +8,7 @@ namespace A03_Haushaltshilfe {
         let banking: HTMLElement = <HTMLFieldSetElement>document.querySelector("input#banking");
         let submit: HTMLElement = <HTMLFieldSetElement>document.querySelector("button#submit");
         addGrocery.addEventListener("click", handleChangeGrocery);
-        chores.addEventListener("change", handleChangeChores);
+        chores.addEventListener("input", handleChangeChores);
         banking.addEventListener("input", handleChangeBanking);
         submit.addEventListener("click", submitOrder);
     }
