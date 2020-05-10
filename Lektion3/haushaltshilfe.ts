@@ -20,13 +20,8 @@ namespace A03_Haushaltshilfe {
     }
     function handleChangeChores(_event: Event): void {
         console.log("handleChangeChores");
-        let checkbox: HTMLInputElement = document.getElementsByClassName("checkbox");
-        let str: string = "";
-
-        if (checkbox.checked === true) {
-            str += checkbox.value + "";
-        }
-        console.log(str);
+        let displayChores: HTMLElement = <HTMLElement>document.querySelector("div#displayChores");
+        
         let inputs: NodeListOf<HTMLInputElement> = document.querySelectorAll("input.checkbox");
         console.log(inputs);
         const num = inputs.length;
@@ -34,8 +29,10 @@ namespace A03_Haushaltshilfe {
         for (let i = 0; i < num; i++) {
             if (inputs[i].checked === true) {
                console.log(inputs[i].value + " ");
+               displayChores.innerHTML = inputs[i].value + " ";
             }
         }
+        
 
     }
 }

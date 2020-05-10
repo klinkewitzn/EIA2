@@ -21,18 +21,14 @@ var A03_Haushaltshilfe;
     }
     function handleChangeChores(_event) {
         console.log("handleChangeChores");
-        let checkbox = document.getElementsByClassName("checkbox");
-        let str = "";
-        if (checkbox.checked === true) {
-            str += checkbox.value + "";
-        }
-        console.log(str);
+        let displayChores = document.querySelector("div#displayChores");
         let inputs = document.querySelectorAll("input.checkbox");
         console.log(inputs);
         const num = inputs.length;
         for (let i = 0; i < num; i++) {
             if (inputs[i].checked === true) {
                 console.log(inputs[i].value + " ");
+                displayChores.innerHTML = inputs[i].value + " ";
             }
         }
     }
