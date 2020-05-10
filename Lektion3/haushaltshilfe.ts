@@ -20,13 +20,13 @@ namespace A03_Haushaltshilfe {
     }
     function handleChangeChores(_event: Event): void {
         console.log("handleChangeChores");
-        /*let checkbox: HTMLInputElement = document.getElementsByClassName("checkbox");
+        let checkbox: HTMLInputElement = document.getElementsByClassName("checkbox");
         let str: string = "";
 
         if (checkbox.checked === true) {
             str += checkbox.value + "";
         }
-        console.log(str);   */
+        console.log(str);   
     }
 
     //var checks = document.querySelectorAll("input[type=checkbox]");
