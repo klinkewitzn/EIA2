@@ -35,6 +35,19 @@ namespace A03_Haushaltshilfe {
                
             }
         }
+        //Versuch eines löschen spans in displayChores
+        var span: HTMLElement = document.createElement("span");
+        var txt: string = document.createTextNode("\u00D7");
+        span.className = "closing";
+        span.appendChild(txt);
+        displayChores.appendChild(span);
+
+        for (let x: number = 0; x < closing.length; x++) {
+            closing[x].onclick = function (): void {
+                var div: string = this.parentElement;
+                div.style.display = "none";
+            };
+        }
 
     }
 }

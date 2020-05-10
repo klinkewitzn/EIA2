@@ -33,6 +33,18 @@ var A03_Haushaltshilfe;
                 displayChores.innerHTML += inputs[i].value + " " /*+ price */ + "<br>";
             }
         }
+        //Versuch eines löschen spans in displayChores
+        var span = document.createElement("span");
+        var txt = document.createTextNode("\u00D7");
+        span.className = "closing";
+        span.appendChild(txt);
+        displayChores.appendChild(span);
+        for (let x = 0; x < closing.length; x++) {
+            closing[x].onclick = function () {
+                var div = this.parentElement;
+                div.style.display = "none";
+            };
+        }
     }
 })(A03_Haushaltshilfe || (A03_Haushaltshilfe = {}));
 function handleChangeGrocery(_event) {
