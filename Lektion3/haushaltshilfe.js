@@ -15,6 +15,10 @@ var A03_Haushaltshilfe;
     }
     function handleChangeBanking(_event) {
         console.log("handleChangeBanking");
+        let target = _event.target;
+        console.log(target.value);
+        let displayBanking = document.querySelector("div#displayBanking");
+        displayBanking.innerHTML = "withdraw  " + target.value + " €";
     }
     function submitOrder() {
         alert("Ihre Bestellung wurde abgeschickt.");
@@ -30,7 +34,7 @@ var A03_Haushaltshilfe;
                 console.log(inputs[i].value + " ");
                 //let item: HTMLInputElement = <HTMLInputElement>document.querySelector("[value='" + inputs[i] + "']");
                 //let price: number = Number(item.getAttribute("price"));
-                displayChores.innerHTML += inputs[i].value + " " /*+ price */ + "<br>";
+                displayChores.innerHTML += "<br>" + inputs[i].value + " " /*+ price */;
             }
         }
         //Versuch eines löschen spans in displayChores
@@ -39,12 +43,6 @@ var A03_Haushaltshilfe;
         span.className = "closing";
         span.appendChild(txt);
         displayChores.appendChild(span);
-        for (let x = 0; x < closing.length; x++) {
-            closing[x].onclick = function () {
-                var div = this.parentElement;
-                div.style.display = "none";
-            };
-        }
     }
 })(A03_Haushaltshilfe || (A03_Haushaltshilfe = {}));
 function handleChangeGrocery(_event) {

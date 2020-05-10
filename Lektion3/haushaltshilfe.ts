@@ -14,6 +14,10 @@ namespace A03_Haushaltshilfe {
     }
     function handleChangeBanking(_event: Event): void {
         console.log("handleChangeBanking");
+        let target: HTMLInputElement = <HTMLInputElement>_event.target;
+        console.log(target.value);
+        let displayBanking: HTMLElement = <HTMLElement>document.querySelector("div#displayBanking");
+        displayBanking.innerHTML = "withdraw  " +  target.value + " €";
     }
     function submitOrder(): void {
         alert("Ihre Bestellung wurde abgeschickt.");
@@ -31,7 +35,7 @@ namespace A03_Haushaltshilfe {
                 console.log(inputs[i].value + " ");
                 //let item: HTMLInputElement = <HTMLInputElement>document.querySelector("[value='" + inputs[i] + "']");
                 //let price: number = Number(item.getAttribute("price"));
-                displayChores.innerHTML += inputs[i].value + " " /*+ price */  + "<br>";
+                displayChores.innerHTML += "<br>" + inputs[i].value + " " /*+ price */ ;
                
             }
         }
@@ -42,12 +46,7 @@ namespace A03_Haushaltshilfe {
         span.appendChild(txt);
         displayChores.appendChild(span);
 
-        for (let x: number = 0; x < closing.length; x++) {
-            closing[x].onclick = function (): void {
-                var div: string = this.parentElement;
-                div.style.display = "none";
-            };
-        }
+        
 
     }
 }
