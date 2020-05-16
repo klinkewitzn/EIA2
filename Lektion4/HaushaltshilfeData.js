@@ -1,14 +1,7 @@
-namespace A04_Haushaltshilfe {
-    export interface Item {
-        name: string;
-        price: number;
-    }
-
-    export interface Data {
-        [category: string]: Item[];
-    }
-
-    export let data: Data = {
+"use strict";
+var A04_Haushaltshilfe;
+(function (A04_Haushaltshilfe) {
+    A04_Haushaltshilfe.data = {
         article: [
             { name: "Brot", price: 2.00 },
             { name: "Eier", price: 2.50 },
@@ -22,7 +15,7 @@ namespace A04_Haushaltshilfe {
             { name: "Bananensaft", price: 1.00 }
         ],
         paymentOptions: [
-            { name: "Visa", price: 0.00 }
+            { name: "Visa", price: 0.00 },
             { name: "Mastercard", price: 0.00 },
             { name: "PayPal", price: 0.00 }
         ],
@@ -33,6 +26,5 @@ namespace A04_Haushaltshilfe {
             { name: "Vacuuming", price: 15 }
         ]
     };
-
-
-}
+})(A04_Haushaltshilfe || (A04_Haushaltshilfe = {}));
+//# sourceMappingURL=HaushaltshilfeData.js.map

@@ -1,9 +1,10 @@
-namespace A04_Haushaltshilfe {
-    export function generateContent(_data: Data): void {
+"use strict";
+var A04_Haushaltshilfe;
+(function (A04_Haushaltshilfe) {
+    function generateContent(_data) {
         for (let category in _data) {
-            let items: Item[] = _data[category];
-
-            let group: HTMLElement | null = null;
+            let items = _data[category];
+            let group = null;
             switch (category) {
                 case "article":
                     group = createSelect(items, category);
@@ -17,69 +18,61 @@ namespace A04_Haushaltshilfe {
                 default:
                     break;
             }
-
-            let fieldset: HTMLFieldSetElement | null = document.querySelector("fieldset#" + category);
+            let fieldset = document.querySelector("fieldset#" + category);
             if (fieldset && group)
                 fieldset.appendChild(group);
         }
     }
-
-    function createSelect(_items: Item[], _category: string): HTMLElement | null {
-        let group: HTMLDivElement = document.createElement("div");
+    A04_Haushaltshilfe.generateContent = generateContent;
+    function createSelect(_items, _category) {
+        let group = document.createElement("div");
         for (let item of _items) {
-            let select: HTMLSelectElement = document.createElement("select");
+            let select = document.createElement("select");
             select.setAttribute("price", item.price.toFixed(2));
             select.value = item.name;
             select.name = _category;
             select.id = item.name;
-
-            let label: HTMLLabelElement = document.createElement("label");
+            let label = document.createElement("label");
             label.textContent = item.name;
             label.htmlFor = item.name;
-
             group.appendChild(select);
             group.appendChild(label);
         }
         return group;
     }
-
-    function createRadio(_items: Item[], _category: string): HTMLElement | null {
-        let group: HTMLDivElement = document.createElement("div");
+    function createRadio(_items, _category) {
+        let group = document.createElement("div");
         for (let item of _items) {
-            let radio: HTMLInputElement = document.createElement("radio");
+            let radio = document.createElement("radio");
             radio.type = "checkbox";
             radio.setAttribute("price", "");
             radio.value = item.name;
             radio.name = _category;
             radio.id = item.name;
-
-            let label: HTMLLabelElement = document.createElement("label");
+            let label = document.createElement("label");
             label.textContent = item.name;
             label.htmlFor = item.name;
-
             group.appendChild(radio);
             group.appendChild(label);
         }
         return group;
     }
-
-    function createMultiple(_items: Item[], _category: string): HTMLElement | null {
-        let group: HTMLDivElement = document.createElement("div");
+    function createMultiple(_items, _category) {
+        let group = document.createElement("div");
         for (let item of _items) {
-            let checkbox: HTMLInputElement = document.createElement("input");
+            let checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.setAttribute("price", item.price.toFixed(2));
             checkbox.value = item.name;
             checkbox.name = _category;
             checkbox.id = item.name;
-
-            let label: HTMLLabelElement = document.createElement("label");
+            let label = document.createElement("label");
             label.textContent = item.name;
             label.htmlFor = item.name;
-
             group.appendChild(checkbox);
             group.appendChild(label);
         }
         return group;
     }
-}
+})(A04_Haushaltshilfe || (A04_Haushaltshilfe = {}));
+//# sourceMappingURL=HaushaltshilfeGenerateContent.js.map

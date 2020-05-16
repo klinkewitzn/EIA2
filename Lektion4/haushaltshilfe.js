@@ -1,6 +1,6 @@
 "use strict";
-var A03_Haushaltshilfe;
-(function (A03_Haushaltshilfe) {
+var A04_Haushaltshilfe;
+(function (A04_Haushaltshilfe) {
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
         console.log("Start");
@@ -9,7 +9,7 @@ var A03_Haushaltshilfe;
         let banking = document.querySelector("input#banking");
         let submit = document.querySelector("button#submit");
         addGrocery.addEventListener("click", handleChangeGrocery);
-        chores.addEventListener("input", handleChangeChores);
+        chores.addEventListener("change", handleChangeChores);
         banking.addEventListener("input", handleChangeBanking);
         submit.addEventListener("click", submitOrder);
     }
@@ -44,7 +44,7 @@ var A03_Haushaltshilfe;
         span.appendChild(txt);
         displayChores.appendChild(span);
     }
-})(A03_Haushaltshilfe || (A03_Haushaltshilfe = {}));
+})(A04_Haushaltshilfe || (A04_Haushaltshilfe = {}));
 function handleChangeGrocery(_event) {
     console.log("handleChangeGrocery");
     let article = document.querySelector("select#article");

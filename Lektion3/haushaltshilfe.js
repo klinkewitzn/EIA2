@@ -9,7 +9,7 @@ var A03_Haushaltshilfe;
         let banking = document.querySelector("input#banking");
         let submit = document.querySelector("button#submit");
         addGrocery.addEventListener("click", handleChangeGrocery);
-        chores.addEventListener("input", handleChangeChores);
+        chores.addEventListener("change", handleChangeChores);
         banking.addEventListener("input", handleChangeBanking);
         submit.addEventListener("click", submitOrder);
     }
