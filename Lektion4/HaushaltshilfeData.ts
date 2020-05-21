@@ -22,7 +22,7 @@ namespace A04_Haushaltshilfe {
             { name: "Bananensaft", price: 1.00 }
         ],
         paymentOptions: [
-            { name: "Visa", price: 0.00 }
+            { name: "Visa", price: 0.00 },
             { name: "Mastercard", price: 0.00 },
             { name: "PayPal", price: 0.00 }
         ],

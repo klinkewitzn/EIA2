@@ -17,7 +17,7 @@ namespace A04_Haushaltshilfe {
         let target: HTMLInputElement = <HTMLInputElement>_event.target;
         console.log(target.value);
         let displayBanking: HTMLElement = <HTMLElement>document.querySelector("div#displayBanking");
-        displayBanking.innerHTML = "withdraw  " +  target.value + " €";
+        displayBanking.innerHTML = "withdraw  " + target.value + " €";
     }
     function submitOrder(): void {
         alert("Ihre Bestellung wurde abgeschickt.");
@@ -35,9 +35,9 @@ namespace A04_Haushaltshilfe {
                 console.log(inputs[i].value + " ");
                 //let item: HTMLInputElement = <HTMLInputElement>document.querySelector("[value='" + inputs[i] + "']");
                 //let price: number = Number(item.getAttribute("price"));
-                
-                displayChores.innerHTML += "<br>" + inputs[i].value + " " /*+ price */ ;
-               
+
+                displayChores.innerHTML += "<br>" + inputs[i].value + " " /*+ price */;
+
             }
         }
         //Versuch eines löschen spans in displayChores
@@ -47,29 +47,29 @@ namespace A04_Haushaltshilfe {
         span.appendChild(txt);
         displayChores.appendChild(span);
 
-        
+
 
     }
 }
 
-    //var checks = document.querySelectorAll("input[type=checkbox]");
-    //console.log(checks.values);
-    /*
-    let chores: HTMLInputElement = <HTMLInputElement> document.querySelector("fieldset#household");
-    //console.log(chores.value);
+//var checks = document.querySelectorAll("input[type=checkbox]");
+//console.log(checks.values);
+/*
+let chores: HTMLInputElement = <HTMLInputElement> document.querySelector("fieldset#household");
+//console.log(chores.value);
 
-    let article: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#article");
-    let unit: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#unit");
-    let shop: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#shop");
-    let amount: HTMLInputElement = <HTMLInputElement>document.querySelector("input#amount");
-    let displayGroceries: HTMLElement = <HTMLElement>document.querySelector("div#displayGroceries");
-    let fd: FormData = new FormData();
-    fd.append("Article", article.value);
-    fd.append("Amount", amount.value);
-    fd.append("Unit", unit.value);
-    fd.append("Shop", shop.value);
-    //console.log(Array.from(fd));  */
-}
+let article: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#article");
+let unit: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#unit");
+let shop: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#shop");
+let amount: HTMLInputElement = <HTMLInputElement>document.querySelector("input#amount");
+let displayGroceries: HTMLElement = <HTMLElement>document.querySelector("div#displayGroceries");
+let fd: FormData = new FormData();
+fd.append("Article", article.value);
+fd.append("Amount", amount.value);
+fd.append("Unit", unit.value);
+fd.append("Shop", shop.value);
+//console.log(Array.from(fd));  */
+
 function handleChangeGrocery(_event: Event): void {
     console.log("handleChangeGrocery");
     let article: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#article");
