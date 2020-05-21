@@ -3,22 +3,21 @@
 namespace A05_Haushaltshilfe {
     window.addEventListener("load", handleLoad);
 
+    let form: HTMLFormElement = <HTMLFormElement>document.querySelector("form");
 
-    function handleLoad(_event: Event): void {
-
+    async function handleLoad(_event: Event): Promise<void> {
+        let response: Response = await fetch("HaushaltshilfeData.json");
+        let offer: string = await response.text(); // generiert das Offer als String
+        let data: Data = JSON.parse(offer); // wandelt den Offer- String in ein JSon-Objekt um.
         generateContent(data);
-
         let form: HTMLDivElement = <HTMLDivElement>document.querySelector("div#tasks");
         let slider: HTMLInputElement = <HTMLInputElement>document.querySelector("input#mass");
         let submitbutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#publish");
         let deletebutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#delete");
-
-
         deletebutton.addEventListener("click", deleteData);
         submitbutton.addEventListener("click", submitData);
         form.addEventListener("change", handleChange);
         slider.addEventListener("input", displayMass);
-
 
         displayOrder();
     }
@@ -30,9 +29,15 @@ namespace A05_Haushaltshilfe {
     }
 
 
-    function submitData(_event: Event): void {
+    async function submitData(_event: Event): Promise<void> {
+        let formData: FormData = new FormData(form);
+        let query: URLSearchParams = new URLSearchParams(<any>formData);
+        await fetch("index.html?" + query.toString());
+        alert("order sent");
+        _event.preventDefault();
         alert("your Data has been published!");
     }
+
     function handleChange(_event: Event): void {
         displayOrder();
 
