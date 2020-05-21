@@ -1,7 +1,7 @@
 {
     "Shopping": [
         {
-            "name": "Butter",
+            "name": "Peanut Butter",
             "price": 1.50
         },
         {
@@ -9,11 +9,11 @@
             "price": 1.20
         },
         {
-            "name": "Coffee",
+            "name": "Coconut Water",
             "price": 3.50
         },
         {
-            "name": "Cheese",
+            "name": "Tofu",
             "price": 1.80
         },
         {
@@ -21,12 +21,16 @@
             "price": 2.70
         },
         {
-            "name": "Pasta",
+            "name": "Noddles",
             "price": 1.10
         },
         {
             "name": "Apple",
             "price": 0.80
+        },
+        {
+            "name":"Avocado",
+            "price": 1.20
         }
     ],
     "Household": [

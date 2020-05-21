@@ -3,8 +3,12 @@
 var A05_Haushaltshilfe;
 (function (A05_Haushaltshilfe) {
     window.addEventListener("load", handleLoad);
-    function handleLoad(_event) {
-        A05_Haushaltshilfe.generateContent(A05_Haushaltshilfe.data);
+    let form = document.querySelector("form");
+    async function handleLoad(_event) {
+        let response = await fetch("HaushaltshilfeData.json");
+        let offer = await response.text(); // generiert das Offer als String
+        let data = JSON.parse(offer); // wandelt den Offer- String in ein JSon-Objekt um.
+        A05_Haushaltshilfe.generateContent(data);
         let form = document.querySelector("div#tasks");
         let slider = document.querySelector("input#mass");
         let submitbutton = document.querySelector("button#publish");
@@ -19,7 +23,12 @@ var A05_Haushaltshilfe;
         let order = document.querySelector("div#order");
         order.innerHTML = "";
     }
-    function submitData(_event) {
+    async function submitData(_event) {
+        let formData = new FormData(form);
+        let query = new URLSearchParams(formData);
+        await fetch("index.html?" + query.toString());
+        alert("order sent");
+        _event.preventDefault();
         alert("your Data has been published!");
     }
     function handleChange(_event) {
