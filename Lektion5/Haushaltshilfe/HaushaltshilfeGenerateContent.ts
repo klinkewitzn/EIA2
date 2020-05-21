@@ -9,6 +9,9 @@ namespace A05_Haushaltshilfe {
     export interface Data {
         [category: string]: Item[];
     }
+    export interface Extras {
+        name: string;
+    }
     export function generateContent(_data: Data): void {
 
         for (let category in _data) {

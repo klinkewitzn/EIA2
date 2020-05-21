@@ -5,5 +5,5 @@ namespace A05_Haushaltshilfe {
     export let Shop: string[] = ["Aldi", "Rewe", "Lidl", "Kaufland", "Edeka", "Market"];
     export let Payment: string[] = ["PayPal", "Creditcard", "SEPA", "bank collection", "DIRECTeBanking"];
 
-    
+
 }

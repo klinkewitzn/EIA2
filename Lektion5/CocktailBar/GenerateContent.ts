@@ -5,10 +5,12 @@ namespace L04_CocktailBar {
         price: number;
 
     }
-
     export interface Data {
 
         [category: string]: Item[];
+    }
+    export interface Extra {
+        name: string;
     }
 
     export function generateContent(_data: Data): void {
