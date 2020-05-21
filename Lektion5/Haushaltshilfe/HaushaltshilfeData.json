@@ -1,0 +1,51 @@
+{
+    "Shopping": [
+        {
+            "name": "Butter",
+            "price": 1.50
+        },
+        {
+            "name": "Milk",
+            "price": 1.20
+        },
+        {
+            "name": "Coffee",
+            "price": 3.50
+        },
+        {
+            "name": "Cheese",
+            "price": 1.80
+        },
+        {
+            "name": "Bread",
+            "price": 2.70
+        },
+        {
+            "name": "Pasta",
+            "price": 1.10
+        },
+        {
+            "name": "Apple",
+            "price": 0.80
+        }
+    ],
+    "Household": [
+        {
+            "name": "mow the lawn",
+            "price": 10.00
+        },
+        {
+            "name": "cook a dish",
+            "price": 15
+        },
+        {
+            "name": "feed the pets",
+            "price": 5
+        },
+        {
+            "name": "clean the house",
+            "price": 25
+        }
+    ]
+    
+}

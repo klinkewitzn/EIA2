@@ -1,6 +1,14 @@
 //Vorlage= Aufgabe 4 von Tanja Schuchter, da meine Aufgabe4 nicht funktioniert hat
 
 namespace A05_Haushaltshilfe {
+    export interface Item {
+        name: string;
+        price: number;
+    }
+
+    export interface Data {
+        [category: string]: Item[];
+    }
     export function generateContent(_data: Data): void {
 
         for (let category in _data) {

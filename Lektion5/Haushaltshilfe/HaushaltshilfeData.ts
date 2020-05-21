@@ -1,14 +1,6 @@
 //Vorlage= Aufgabe 4 von Tanja Schuchter, da meine Aufgabe4 nicht funktioniert hat
 
 namespace A05_Haushaltshilfe {
-    export interface Item {
-        name: string;
-        price: number;
-    }
-
-    export interface Data {
-        [category: string]: Item[];
-    }
 
     export let Shop: string[] = ["Aldi", "Rewe", "Lidl", "Kaufland", "Edeka", "Market"];
     export let Payment: string[] = ["PayPal", "Creditcard", "SEPA", "bank collection", "DIRECTeBanking"];
@@ -32,6 +24,6 @@ namespace A05_Haushaltshilfe {
             { name: "clean the house", price: 25.00 }
         ]
     };
-
+  
 
 }
