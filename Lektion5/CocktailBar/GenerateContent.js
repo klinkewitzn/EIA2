@@ -1,30 +1,30 @@
 "use strict";
-var L05_CocktailBar;
-(function (L05_CocktailBar) {
+var L04_CocktailBar;
+(function (L04_CocktailBar) {
     function generateContent(_data) {
+        //console.log(_data);
         for (let category in _data) {
-            // console.log(category);
             let items = _data[category];
-            let group = null;
+            let group = null; // diese Variable dürfte auch Null den Wert null angeben
             switch (category) {
                 case "Drink":
                     group = createSelect(items, category);
                     break;
-                case "Container":
+                case "Extras":
                     group = createSingle(items, category);
                     break;
-                case "Extras":
+                case "Container":
                     group = createMultiple(items, category);
                     break;
                 default:
                     break;
             }
-            let fieldset = document.querySelector("fieldset#" + category);
-            if (fieldset && group)
+            let fieldset = document.querySelector("fieldset#" + category); //HTML FieldSet oder Null (der senkrechte Strich heißt oder)
+            if (fieldset && group) // wenn das fieldset und (&&) die gruppe definiert ist, dann in eine Familie zusammenbringen
                 fieldset.appendChild(group);
         }
     }
-    L05_CocktailBar.generateContent = generateContent;
+    L04_CocktailBar.generateContent = generateContent;
     function createSelect(_items, _category) {
         let group = document.createElement("select");
         group.name = _category;
@@ -58,8 +58,9 @@ var L05_CocktailBar;
         let group = document.createElement("span");
         for (let item of _items) {
             let checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.setAttribute("price", item.price.toFixed(2));
+            checkbox.type = "checkbox"; // das Input Element checkbox bekommt jetzt den Type checkbox.
+            checkbox.setAttribute("price", item.price.toFixed(2)); // für die Checkbox wird das Attribut Price "erstellt" der Wert ist der Preis des je aktuellen items.
+            // price ist ein string das toFixed bewirkt, dass der string in eine Zahl umgewandelt wird und zwei Nachkommastellen ausgibt.
             checkbox.value = item.name;
             checkbox.name = _category;
             checkbox.id = item.name;
@@ -69,7 +70,7 @@ var L05_CocktailBar;
             group.appendChild(checkbox);
             group.appendChild(label);
         }
-        return group;
+        return group; // Liefert gruppe zurück
     }
-})(L05_CocktailBar || (L05_CocktailBar = {}));
+})(L04_CocktailBar || (L04_CocktailBar = {}));
 //# sourceMappingURL=GenerateContent.js.map
