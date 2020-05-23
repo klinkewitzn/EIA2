@@ -9,9 +9,6 @@ namespace L04_CocktailBar {
 
         [category: string]: Item[];
     }
-    export interface Extra {
-        name: string;
-    }
 
     export function generateContent(_data: Data): void {
         //console.log(_data);

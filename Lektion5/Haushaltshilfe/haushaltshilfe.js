@@ -24,10 +24,10 @@ var A05_Haushaltshilfe;
         order.innerHTML = "";
     }
     async function submitData(_event) {
+        console.log("submit Button");
         let formData = new FormData(form);
         let query = new URLSearchParams(formData);
         await fetch("index.html?" + query.toString());
-        alert("order sent");
         _event.preventDefault();
         alert("your Data has been published!");
     }

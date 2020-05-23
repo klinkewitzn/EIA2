@@ -30,10 +30,10 @@ namespace A05_Haushaltshilfe {
 
 
     async function submitData(_event: Event): Promise<void> {
+        console.log("submit Button");
         let formData: FormData = new FormData(form);
         let query: URLSearchParams = new URLSearchParams(<any>formData);
         await fetch("index.html?" + query.toString());
-        alert("order sent");
         _event.preventDefault();
         alert("your Data has been published!");
     }
