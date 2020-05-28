@@ -6,7 +6,7 @@
   "dependencies": {},
   "devDependencies": {},
   "scripts": {
-    "start": "node Lektion6/Test/Convert.js"
+    "start": "node Lektion6/CocktailBar/Server/Server.js"
   },
   "repository": {
     "type": "git",
