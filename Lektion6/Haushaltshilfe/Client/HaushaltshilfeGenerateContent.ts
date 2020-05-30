@@ -1,6 +1,6 @@
 //Vorlage= Aufgabe 4 von Tanja Schuchter, da meine Aufgabe4 nicht funktioniert hat
 
-namespace A05_Haushaltshilfe {
+namespace A06_Haushaltshilfe {
     export interface Item {
         name: string;
         price: number;

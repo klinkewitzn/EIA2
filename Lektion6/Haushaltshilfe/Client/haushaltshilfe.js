@@ -1,7 +1,7 @@
 "use strict";
 //Vorlage= Aufgabe 4 von Tanja Schuchter, da meine Aufgabe4 nicht funktioniert hat
-var A05_Haushaltshilfe;
-(function (A05_Haushaltshilfe) {
+var A06_Haushaltshilfe;
+(function (A06_Haushaltshilfe) {
     window.addEventListener("load", handleLoad);
     let form;
     let url = "https://anewbeginning.herokuapp.com";
@@ -9,7 +9,7 @@ var A05_Haushaltshilfe;
         let response = await fetch("HaushaltshilfeData.json"); //(await) warten bis fetch die Daten von HouseData.json hat
         let offer = await response.text(); //text() liefert mir nicht direkt einen string, sondern nur die Promise einen string zu liefern, wenn sie die Daten hat (solage warten ->await)
         let data = JSON.parse(offer); //JSON.prse wandelt den offer- string in ein Objekt um
-        A05_Haushaltshilfe.generateContent(data);
+        A06_Haushaltshilfe.generateContent(data);
         form = document.querySelector("form");
         let slider = document.querySelector("input#mass");
         let submitbutton = document.querySelector("button[type=button]");
@@ -66,5 +66,5 @@ var A05_Haushaltshilfe;
         let amount = _event.target.value;
         progress.value = parseFloat(amount);
     }
-})(A05_Haushaltshilfe || (A05_Haushaltshilfe = {}));
+})(A06_Haushaltshilfe || (A06_Haushaltshilfe = {}));
 //# sourceMappingURL=haushaltshilfe.js.map
