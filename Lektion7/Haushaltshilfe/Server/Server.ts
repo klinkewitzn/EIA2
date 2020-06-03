@@ -15,7 +15,7 @@ export namespace A07_Haushaltshilfe {
 
     let databaseUrl: string = "mongodb://localhost:27017";
 
-    startServer(port);
+    startServer(port); //start Server auf Port den wir gefunden haben
     connectToDatabase(databaseUrl);
 
     function startServer(_port: number | string): void {
@@ -29,7 +29,7 @@ export namespace A07_Haushaltshilfe {
     async function connectToDatabase(_url: string): Promise<void> {
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true}; //mit diesen beiden Dingen Verbindung zur Datenbank aufbauen
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
-        await mongoClient.connect();
+        await mongoClient.connect(); //Verbinde dich
         orders = mongoClient.db("CocktailBar").collection("Orders");//geh in die Datenbank CocktailBar und hol dir dort aus der Collection Orders
         console.log("Database connection ", orders != undefined);
     }
