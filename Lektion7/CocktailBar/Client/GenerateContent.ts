@@ -1,4 +1,4 @@
-namespace L06_CocktailBar {
+namespace L07_CocktailBar {
     
     export interface Item {
         name: string;

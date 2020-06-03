@@ -1,17 +1,38 @@
 import * as Http from "http";
 import * as Url from "url";
+import * as Mongo from "mongodb";
 
 export namespace A07_Haushaltshilfe {
-    let server: Http.Server = Http.createServer();
+    interface Order {
+        [type: string]: string | string[];
+    }
+
+    let orders: Mongo.Collection;
 
     let port: number | string | undefined = process.env.PORT;
     if (port == undefined)
         port = 5001;
 
-    console.log("Server starting on port:" + port);
+    let databaseUrl: string = "mongodb://localhost:27017";
 
-    server.listen(port);
-    server.addListener("request", handleRequest);
+    startServer(port);
+    connectToDatabase(databaseUrl);
+
+    function startServer(_port: number | string): void {
+        let server: Http.Server = Http.createServer();
+        console.log("Server starting on port:" + _port);
+
+        server.listen(_port);
+        server.addListener("request", handleRequest);
+    }
+
+    async function connectToDatabase(_url: string): Promise<void> {
+        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true}; //mit diesen beiden Dingen Verbindung zur Datenbank aufbauen
+        let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
+        await mongoClient.connect();
+        orders = mongoClient.db("CocktailBar").collection("Orders");//geh in die Datenbank CocktailBar und hol dir dort aus der Collection Orders
+        console.log("Database connection ", orders != undefined);
+    }
 
     function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
         console.log("What's up?");
@@ -21,14 +42,21 @@ export namespace A07_Haushaltshilfe {
 
         if (_request.url) {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
-            /*for (let key in url.query) {
+            for (let key in url.query) {
                 _response.write(key + ":" + url.query[key] + "<br/>");
-            } */
+            } 
 
             let jsonString: string = JSON.stringify(url.query);
-            _response.write(jsonString);
+            _response.write(jsonString); //schreiben wir
+
+            storeOrder(url.query); //übergeben wir
         }
 
         _response.end();
     }
-} 
+
+
+    function storeOrder(_order: Order): void {//siehe Interface Order
+        orders.insert(_order);
+    }
+}
