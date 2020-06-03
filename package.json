@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "\"# EIA2\"",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@types/mongodb": "^3.5.20",
+    "mongodb": "^3.5.8"
+  },
   "devDependencies": {},
   "scripts": {
-    "start": "node Lektion6/Haushaltshilfe/Server/Server.js"
+    "start": "node Lektion7/Haushaltshilfe/Server/Server.js"
   },
   "repository": {
     "type": "git",
