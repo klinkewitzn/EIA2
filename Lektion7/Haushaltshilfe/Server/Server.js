@@ -10,8 +10,8 @@ var A07_Haushaltshilfe;
     let port = process.env.PORT;
     if (port == undefined)
         port = 5001;
-    let databaseUrl = "mongodb://localhost:27017";
-    startServer(port);
+    let databaseUrl = "mongodb+srv://Testuser:TestuserPassword@eia2-ucdf8.mongodb.net/<Testuser>?retryWrites=true&w=majority";
+    startServer(port); //start Server auf Port den wir gefunden haben
     connectToDatabase(databaseUrl);
     function startServer(_port) {
         let server = Http.createServer();
@@ -22,8 +22,8 @@ var A07_Haushaltshilfe;
     async function connectToDatabase(_url) {
         let options = { useNewUrlParser: true, useUnifiedTopology: true }; //mit diesen beiden Dingen Verbindung zur Datenbank aufbauen
         let mongoClient = new Mongo.MongoClient(_url, options);
-        await mongoClient.connect();
-        orders = mongoClient.db("CocktailBar").collection("Orders"); //geh in die Datenbank CocktailBar und hol dir dort aus der Collection Orders
+        await mongoClient.connect(); //Verbinde dich
+        orders = mongoClient.db("Haushaltshilfe").collection("Orders"); //geh in die Datenbank CocktailBar und hol dir dort aus der Collection Orders
         console.log("Database connection ", orders != undefined);
     }
     function handleRequest(_request, _response) {
@@ -37,7 +37,7 @@ var A07_Haushaltshilfe;
             }
             let jsonString = JSON.stringify(url.query);
             _response.write(jsonString); //schreiben wir
-            storeOrder(url.query); //übergeben wir
+            storeOrder(url.query); //übergeben wir //query Objekt wird gebastelt, (Json String wird zu Objekt geparst)
         }
         _response.end();
     }

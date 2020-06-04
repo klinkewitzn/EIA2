@@ -4,7 +4,7 @@ import * as Mongo from "mongodb";
 
 export namespace A07_Haushaltshilfe {
     interface Order {
-        [type: string]: string | string[];
+        [type: string]: string | string[] | undefined;
     }
 
     let orders: Mongo.Collection;
@@ -13,7 +13,7 @@ export namespace A07_Haushaltshilfe {
     if (port == undefined)
         port = 5001;
 
-    let databaseUrl: string = "mongodb://localhost:27017";
+    let databaseUrl: string = "mongodb+srv://Testuser:TestuserPassword@eia2-ucdf8.mongodb.net/<Testuser>?retryWrites=true&w=majority";
 
     startServer(port); //start Server auf Port den wir gefunden haben
     connectToDatabase(databaseUrl);
@@ -30,7 +30,7 @@ export namespace A07_Haushaltshilfe {
         let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true}; //mit diesen beiden Dingen Verbindung zur Datenbank aufbauen
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);
         await mongoClient.connect(); //Verbinde dich
-        orders = mongoClient.db("CocktailBar").collection("Orders");//geh in die Datenbank CocktailBar und hol dir dort aus der Collection Orders
+        orders = mongoClient.db("Haushaltshilfe").collection("Orders");//geh in die Datenbank CocktailBar und hol dir dort aus der Collection Orders
         console.log("Database connection ", orders != undefined);
     }
 
@@ -48,8 +48,7 @@ export namespace A07_Haushaltshilfe {
 
             let jsonString: string = JSON.stringify(url.query);
             _response.write(jsonString); //schreiben wir
-
-            storeOrder(url.query); //übergeben wir
+            storeOrder(url.query); //übergeben wir //query Objekt wird gebastelt, (Json String wird zu Objekt geparst)
         }
 
         _response.end();
