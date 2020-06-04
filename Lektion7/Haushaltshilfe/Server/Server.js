@@ -11,7 +11,7 @@ var A07_Haushaltshilfe;
     if (port == undefined)
         port = 5001;
     //mongodb+srv://Testuser:<password>@eia2-ucdf8.mongodb.net/<dbname>?retryWrites=true&w=majority
-    let databaseUrl = "mongodb+srv://Testuser:TestuserPassword@eia2-ucdf8.mongodb.net/<dbname>?retryWrites=true&w=majority";
+    let databaseUrl = "mongodb+srv://Testuser:TestuserPassword@eia2-ucdf8.mongodb.net/<Testuser>?retryWrites=true&w=majority";
     startServer(port); //start Server auf Port den wir gefunden haben
     connectToDatabase(databaseUrl);
     function startServer(_port) {
