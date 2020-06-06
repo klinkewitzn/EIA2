@@ -4,7 +4,8 @@ var A07_Haushaltshilfe;
 (function (A07_Haushaltshilfe) {
     window.addEventListener("load", handleLoad);
     let form;
-    let url = "http://localhost:5001";
+    let url = "https://anewbeginning.herokuapp.com/";
+    //let url: string = "http://localhost:5001";
     async function handleLoad(_event) {
         let response = await fetch("HaushaltshilfeData.json"); //(await) warten bis fetch die Daten von HouseData.json hat
         let offer = await response.text(); //text() liefert mir nicht direkt einen string, sondern nur die Promise einen string zu liefern, wenn sie die Daten hat (solage warten ->await)
