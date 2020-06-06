@@ -49,13 +49,19 @@ export namespace A07_Haushaltshilfe {
 
         console.log("What's up?");
 
-        _response.setHeader("content-type", "text/html; charset=utf-8");
-        _response.setHeader("Access-Control-Allow-Origin", "*");
+        _response.setHeader("content-type", "text/html; charset=utf-8");//Header gibt an, dass die Antwort ein mit utf-8 kodierter Text ist, also text     
+        _response.setHeader("Access-Control-Allow-Origin", "*");//und dass sie von jedem geöffnet werden darf (Sicherheitsmechanismen werden ausgeschalten)(Asterisk bedeutet wieder "alles") 
 
-        if (_request.url) {
-            let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
+        console.log("_request.url: ", _request.url); //der url mit dem ich die anfrage gestellt habe
+
+
+
+        if (_request.url) { //Haben wir überhaupt einen url da, mit dem wir bearbeiten können? --> if
+            let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);//dann url übersetzen lassen mit parser und aufrufen --> parser
+            //--> true: macht aus url gut lesbares assoziatives array
             for (let key in url.query) {
                 _response.write(key + ":" + url.query[key] + "<br/>");
+                //ich kann html auf dem server zusammenbauen und an den client zurückschicken sodass dieser das dieser die response als html interpretiert
             } 
 
             let jsonString: string = JSON.stringify(url.query);
