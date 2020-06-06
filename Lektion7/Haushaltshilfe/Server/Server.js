@@ -46,7 +46,7 @@ var A07_Haushaltshilfe;
             let url = Url.parse(_request.url, true); //dann url übersetzen lassen mit parser und aufrufen --> parser
             //--> true: macht aus url gut lesbares assoziatives array
             for (let key in url.query) {
-                _response.write("Thank you for your order!" + key + ":" + url.query[key] + "<br/>");
+                _response.write(key + ":" + url.query[key] + "<br/>");
                 //ich kann html auf dem server zusammenbauen und an den client zurückschicken sodass dieser das dieser die response als html interpretiert
             }
             let jsonString = JSON.stringify(url.query);

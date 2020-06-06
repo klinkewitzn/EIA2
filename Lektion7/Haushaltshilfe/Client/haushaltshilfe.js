@@ -27,7 +27,7 @@ var A07_Haushaltshilfe;
         let query = new URLSearchParams(formData);
         let response = await fetch(url + "?" + query.toString());
         let responseText = await response.text();
-        alert("" + responseText);
+        alert("Thank you for your order!" + "\n" + "\n" + "Order Details:" + "\n" + responseText);
     }
     function deleteData() {
         let order = document.querySelector("div#order");
