@@ -111,7 +111,7 @@ namespace A07_Haushaltshilfe {
     show.addEventListener("click", showDatabaseContent);
     hide.addEventListener("click", hideDatabaseContent);
 
-    async function showDatabaseContent(_event: Event): Promise<void> {
+    async function showDatabaseContent(_event: Event): Promise<void> { //Funktion von Valentina Schwan kopiert
 
         let response: Response = await fetch(url + "?" + "getOrders=yes");
         let databaseContent: HTMLSpanElement = <HTMLSpanElement>document.querySelector("#databaseContent");
@@ -143,7 +143,7 @@ namespace A07_Haushaltshilfe {
 
     }
 
-    function hideDatabaseContent(): void {
+    function hideDatabaseContent(): void { //Funktion von Valentina Schwan kopiert
         let databaseContent: HTMLSpanElement = <HTMLSpanElement>document.querySelector("#databaseContent");
         databaseContent.innerHTML = "";
     }

@@ -32,20 +32,20 @@ export namespace A07_Haushaltshilfe {
 
     //Verbindung zu Datenbank aufbauen
     async function connectToDatabase(_url: string): Promise<void> {
-        let options: Mongo.MongoClientOptions = {useNewUrlParser: true, useUnifiedTopology: true}; //mit diesen beiden Dingen Verbindung zur Datenbank aufbauen
+        let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true }; //mit diesen beiden Dingen Verbindung zur Datenbank aufbauen
         let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(_url, options);//mongoclient erzeugen
         await mongoClient.connect(); //Verbinde dich
         orders = mongoClient.db("Haushaltshilfe").collection("Orders");//geh in die Datenbank CocktailBar und hol dir dort aus der Collection Orders
         console.log("Database connection ", orders != undefined);//hat geklappt oder nicht --> true/false
     }
 
-    function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
-/*IncomingMessage: liefert Informationen zur eingegangenen Request, z.B URL als String. 
-                            parse: interpretiert den URL und erzeugt daraus ein neues Objekt, dessen Eigenschaft query nun wieder ein assoziatives Array darstellt.
-        ServerResponse: Objekt, welches Informationen für die Antwort sammelt.  
-                        diese Information wird in zwei grundlegende Kategorien aufgeteilt
-                            --> Header: Information zur eigentlichen Nachricht 
-                                Body: die Nachricht selbst.*/
+    async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
+        /*IncomingMessage: liefert Informationen zur eingegangenen Request, z.B URL als String. 
+                                    parse: interpretiert den URL und erzeugt daraus ein neues Objekt, dessen Eigenschaft query nun wieder ein assoziatives Array darstellt.
+                ServerResponse: Objekt, welches Informationen für die Antwort sammelt.  
+                                diese Information wird in zwei grundlegende Kategorien aufgeteilt
+                                    --> Header: Information zur eigentlichen Nachricht 
+                                        Body: die Nachricht selbst.*/
 
         console.log("What's up?");
 
@@ -55,18 +55,44 @@ export namespace A07_Haushaltshilfe {
         console.log("_request.url: ", _request.url); //der url mit dem ich die anfrage gestellt habe
 
 
+        /*
+                if (_request.url) { //Haben wir überhaupt einen url da, mit dem wir bearbeiten können? --> if
+                    let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);//dann url übersetzen lassen mit parser und aufrufen --> parser
+                    //--> true: macht aus url gut lesbares assoziatives array
+                    for (let key in url.query) {
+                        _response.write( key + ":" + url.query[key] + "<br/>");
+                        //ich kann html auf dem server zusammenbauen und an den client zurückschicken sodass dieser das dieser die response als html interpretiert
+                    } 
+        
+                    let jsonString: string = JSON.stringify(url.query);
+                    _response.write(jsonString); //schreiben wir
+                    storeOrder(url.query); //übergeben wir //query Objekt wird gebastelt, (Json String wird zu Objekt geparst)
+                }           */
+
 
         if (_request.url) { //Haben wir überhaupt einen url da, mit dem wir bearbeiten können? --> if
-            let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);//dann url übersetzen lassen mit parser und aufrufen --> parser
+            let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true); //dann url übersetzen lassen mit parser und aufrufen --> parser 
             //--> true: macht aus url gut lesbares assoziatives array
-            for (let key in url.query) {
-                _response.write( key + ":" + url.query[key] + "<br/>");
-                //ich kann html auf dem server zusammenbauen und an den client zurückschicken sodass dieser das dieser die response als html interpretiert
-            } 
+            console.log(url.query);
 
-            let jsonString: string = JSON.stringify(url.query);
-            _response.write(jsonString); //schreiben wir
-            storeOrder(url.query); //übergeben wir //query Objekt wird gebastelt, (Json String wird zu Objekt geparst)
+
+            if (_request.url == "/?getOrders=yes") {
+                let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+                let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
+                await mongoClient.connect();
+                let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders");
+                let mongoCursor: Mongo.Cursor<any> = orders.find();
+                await mongoCursor.forEach(retrieveOrder);
+                let jsonString: string = JSON.stringify(allOrders);
+                let answer: string = jsonString.toString();
+                _response.write(answer);
+                allOrders = [];
+            } else {
+                let jsonString: string = JSON.stringify(url.query);
+                _response.write(jsonString);
+                storeOrder(url.query);
+            }
+
         }
 
         _response.end();
@@ -75,5 +101,10 @@ export namespace A07_Haushaltshilfe {
 
     function storeOrder(_order: Order): void {//siehe Interface Order
         orders.insert(_order);
+    }
+    let allOrders: string[] = [];
+    function retrieveOrder(_item: object): void {
+        let jsonString: string = JSON.stringify(_item);
+        allOrders.push(jsonString);
     }
 }
