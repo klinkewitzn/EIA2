@@ -38,7 +38,7 @@ export namespace A07_Haushaltshilfe {
         orders = mongoClient.db("Haushaltshilfe").collection("Orders");//geh in die Datenbank CocktailBar und hol dir dort aus der Collection Orders
         console.log("Database connection ", orders != undefined);//hat geklappt oder nicht --> true/false
     }
-
+    let allOrders: string[] = [];
     async function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
         /*IncomingMessage: liefert Informationen zur eingegangenen Request, z.B URL als String. 
                                     parse: interpretiert den URL und erzeugt daraus ein neues Objekt, dessen Eigenschaft query nun wieder ein assoziatives Array darstellt.
@@ -102,7 +102,7 @@ export namespace A07_Haushaltshilfe {
     function storeOrder(_order: Order): void {//siehe Interface Order
         orders.insert(_order);
     }
-    let allOrders: string[] = [];
+    
     function retrieveOrder(_item: object): void {  //Funktion von Valentina Schwan kopiert
         let jsonString: string = JSON.stringify(_item);
         allOrders.push(jsonString);

@@ -31,6 +31,7 @@ var A07_Haushaltshilfe;
         orders = mongoClient.db("Haushaltshilfe").collection("Orders"); //geh in die Datenbank CocktailBar und hol dir dort aus der Collection Orders
         console.log("Database connection ", orders != undefined); //hat geklappt oder nicht --> true/false
     }
+    let allOrders = [];
     async function handleRequest(_request, _response) {
         /*IncomingMessage: liefert Informationen zur eingegangenen Request, z.B URL als String.
                                     parse: interpretiert den URL und erzeugt daraus ein neues Objekt, dessen Eigenschaft query nun wieder ein assoziatives Array darstellt.
@@ -82,7 +83,6 @@ var A07_Haushaltshilfe;
     function storeOrder(_order) {
         orders.insert(_order);
     }
-    let allOrders = [];
     function retrieveOrder(_item) {
         let jsonString = JSON.stringify(_item);
         allOrders.push(jsonString);
