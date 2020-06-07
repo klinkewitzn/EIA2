@@ -68,8 +68,8 @@ var A07_Haushaltshilfe;
         progress.value = parseFloat(amount);
     }
     //get hide and show button
-    let show = document.querySelector("#show");
-    let hide = document.querySelector("#hide");
+    let show = document.querySelector("button#show");
+    let hide = document.querySelector("button#hide");
     show.addEventListener("click", showDatabaseContent);
     hide.addEventListener("click", hideDatabaseContent);
     async function showDatabaseContent(_event) {

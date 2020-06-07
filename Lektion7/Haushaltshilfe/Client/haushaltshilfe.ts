@@ -106,8 +106,8 @@ namespace A07_Haushaltshilfe {
     }
 
     //get hide and show button
-    let show = <HTMLButtonElement>document.querySelector("#show");
-    let hide = <HTMLButtonElement>document.querySelector("#hide");
+    let show = <HTMLButtonElement>document.querySelector("button#show");
+    let hide = <HTMLButtonElement>document.querySelector("button#hide");
     show.addEventListener("click", showDatabaseContent);
     hide.addEventListener("click", hideDatabaseContent);
 
