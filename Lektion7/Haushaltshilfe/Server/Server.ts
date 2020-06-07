@@ -103,7 +103,7 @@ export namespace A07_Haushaltshilfe {
         orders.insert(_order);
     }
     let allOrders: string[] = [];
-    function retrieveOrder(_item: object): void {
+    function retrieveOrder(_item: object): void {  //Funktion von Valentina Schwan kopiert
         let jsonString: string = JSON.stringify(_item);
         allOrders.push(jsonString);
     }
