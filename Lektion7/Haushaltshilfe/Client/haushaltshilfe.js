@@ -67,5 +67,43 @@ var A07_Haushaltshilfe;
         let amount = _event.target.value;
         progress.value = parseFloat(amount);
     }
+    //get hide and show button
+    let show = document.querySelector("#show");
+    let hide = document.querySelector("#hide");
+    show.addEventListener("click", showDatabaseContent);
+    hide.addEventListener("click", hideDatabaseContent);
+    async function showDatabaseContent(_event) {
+        let response = await fetch(url + "?" + "getOrders=yes");
+        let databaseContent = document.querySelector("#databaseContent");
+        databaseContent.innerHTML = "";
+        let responseText = await response.text();
+        let replace = responseText.replace(/\\|{|}|"|/g, "");
+        console.log(replace);
+        for (let entry of replace) {
+            switch (entry) {
+                case ("_"):
+                    databaseContent.innerHTML += "<br>" + entry;
+                    break;
+                case ("["):
+                    break;
+                case ("]"):
+                    break;
+                case (","):
+                    databaseContent.innerHTML += "<br>";
+                    break;
+                case (":"):
+                    databaseContent.innerHTML += entry + " ";
+                    break;
+                default:
+                    databaseContent.innerHTML += "" + entry;
+                    break;
+            }
+        }
+        console.log(responseText);
+    }
+    function hideDatabaseContent() {
+        let databaseContent = document.querySelector("#databaseContent");
+        databaseContent.innerHTML = "";
+    }
 })(A07_Haushaltshilfe || (A07_Haushaltshilfe = {}));
 //# sourceMappingURL=haushaltshilfe.js.map

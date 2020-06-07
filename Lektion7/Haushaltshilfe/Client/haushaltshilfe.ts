@@ -104,4 +104,50 @@ namespace A07_Haushaltshilfe {
         let amount: string = (<HTMLInputElement>_event.target).value;
         progress.value = parseFloat(amount);
     }
+
+    //get hide and show button
+    let show = <HTMLButtonElement>document.querySelector("#show");
+    let hide = <HTMLButtonElement>document.querySelector("#hide");
+    show.addEventListener("click", showDatabaseContent);
+    hide.addEventListener("click", hideDatabaseContent);
+
+    async function showDatabaseContent(_event: Event): Promise<void> {
+
+        let response: Response = await fetch(url + "?" + "getOrders=yes");
+        let databaseContent: HTMLSpanElement = <HTMLSpanElement>document.querySelector("#databaseContent");
+        databaseContent.innerHTML = "";
+        let responseText: string = await response.text();
+        let replace: string = responseText.replace(/\\|{|}|"|/g, "");
+        console.log(replace);
+        for (let entry of replace) {
+            switch (entry) {
+                case ("_"):
+                    databaseContent.innerHTML += "<br>" + entry;
+                    break;
+                case ("["):
+                    break;
+                case ("]"):
+                    break;
+                case (","):
+                    databaseContent.innerHTML += "<br>";
+                    break;
+                case (":"):
+                    databaseContent.innerHTML += entry + " ";
+                    break;
+                default:
+                    databaseContent.innerHTML += "" + entry;
+                    break;
+            }
+        }
+        console.log(responseText);
+
+    }
+
+    function hideDatabaseContent(): void {
+        let databaseContent: HTMLSpanElement = <HTMLSpanElement>document.querySelector("#databaseContent");
+        databaseContent.innerHTML = "";
+    }
+
+
+
 }
