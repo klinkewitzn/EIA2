@@ -63,7 +63,7 @@ var A07_Haushaltshilfe;
                 let options = { useNewUrlParser: true, useUnifiedTopology: true };
                 let mongoClient = new Mongo.MongoClient(databaseUrl, options);
                 await mongoClient.connect();
-                let orders = mongoClient.db("Household").collection("Orders");
+                let orders = mongoClient.db("Haushaltshilfe").collection("Orders");
                 let mongoCursor = orders.find();
                 await mongoCursor.forEach(retrieveOrder);
                 let jsonString = JSON.stringify(allOrders);

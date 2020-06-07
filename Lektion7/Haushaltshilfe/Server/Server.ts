@@ -80,7 +80,7 @@ export namespace A07_Haushaltshilfe {
                 let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
                 let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
                 await mongoClient.connect();
-                let orders: Mongo.Collection = mongoClient.db("Household").collection("Orders");
+                let orders: Mongo.Collection = mongoClient.db("Haushaltshilfe").collection("Orders");
                 let mongoCursor: Mongo.Cursor<any> = orders.find();
                 await mongoCursor.forEach(retrieveOrder);
                 let jsonString: string = JSON.stringify(allOrders);
