@@ -180,12 +180,6 @@ var L08_VirusCanvas;
     }
     function drawVirus(_position, _size) {
         console.log("Virus", _position, _size);
-        //let coronaviren: CanvasRenderingContext2D = <CanvasRenderingContext2D>crc2.canvas.getContext("2d");
-        //let nParticles: number = 5;
-        //let radiusParticle: number = 20;
-        //let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
-        //let particle: Path2D = new Path2D();
-        //crc2.beginPath();
         crc2.save();
         crc2.beginPath();
         crc2.translate(_position.x, _position.y);
@@ -226,10 +220,6 @@ var L08_VirusCanvas;
         crc2.beginPath();
         crc2.translate(_position.x, _position.y);
         crc2.restore();
-        //crc2.fillStyle = gradient;
-        // for (let drawn: number = 0; drawn < nParticles; drawn++) {
-        //  _position.x = Math.random() * crc2.canvas.width/1.8;
-        //  _position.y = 50 + (10 * Math.random() );
         drawAntibodys(_position, { x: 100, y: 100 });
     }
 })(L08_VirusCanvas || (L08_VirusCanvas = {}));
