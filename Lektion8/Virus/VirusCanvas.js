@@ -186,6 +186,9 @@ var L08_VirusCanvas;
         //let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
         //let particle: Path2D = new Path2D();
         //crc2.beginPath();
+        crc2.save();
+        crc2.beginPath();
+        crc2.translate(_position.x, _position.y);
         crc2.arc(180, 300, 19, 0, 2 * Math.PI);
         crc2.stroke();
         crc2.strokeStyle = "HSL(0, 76%, 47%)";
@@ -226,7 +229,7 @@ var L08_VirusCanvas;
         // for (let drawn: number = 0; drawn < nParticles; drawn++) {
         //  _position.x = Math.random() * crc2.canvas.width/1.8;
         //  _position.y = 50 + (10 * Math.random() );
-        drawAntibodys(_position, { x: 200, y: 100 });
+        drawAntibodys(_position, { x: 100, y: 100 });
     }
     //crc2.restore();
     //crc2.closePath();
