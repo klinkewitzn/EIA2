@@ -9,27 +9,21 @@ var L08_VirusCanvas;
             return;
         crc2 = canvas.getContext("2d");
         drawCellTissue();
-        drawHumanCells({ x: 60, y: 700 }, { x: 300, y: 230 });
+        drawHumanCells({ x: 1100, y: 600 }, { x: 300, y: 230 });
         //drawVirus({ x: 0, y: 100 }, { x: 70, y: 70 });
         //drawAntibodys({ x: 0, y: 100 }, { x: 70, y: 70 });
-        drawParticles({ x: 200, y: 600 }, { x: crc2.canvas.width, y: crc2.canvas.height });
-        drawEllipse({ x: 0, y: 400 }, { x: 190, y: 190 });
-        let bodyPositionMin = { "x": 100, "y": 300 };
-        let bodyPositionMax = { "x": 0, "y": 0 };
+        drawParticles({ x: 700, y: 700 }, { x: crc2.canvas.width, y: crc2.canvas.height });
+        drawEllipse({ x: 900, y: 200 }, { x: 250, y: 200 });
+        crc2.save();
+        crc2.translate(130, 0);
+        let bodyPositionMin = { "x": 0, "y": 10 };
+        let bodyPositionMax = { "x": 10 * Math.random(), "y": 5 * Math.random() + 9 };
         for (let i = 0; i < 6; i++) {
-            let X = Math.random() * (bodyPositionMax.x - bodyPositionMin.x) + bodyPositionMin.x;
-            let Y = Math.random() * (bodyPositionMax.y - bodyPositionMin.y) + bodyPositionMin.y;
-            drawVirus({ "x": X, "y": Y }, { "x": 40, "y": 40 });
+            let X = Math.random() * (30 * Math.random() * bodyPositionMax.x - bodyPositionMin.x) + bodyPositionMin.x;
+            let Y = Math.random() * (30 * Math.random() * bodyPositionMax.y - bodyPositionMin.y) + bodyPositionMin.y;
+            drawVirus({ "x": X, "y": Y }, { "x": 200, "y": 400 });
+            crc2.restore();
         }
-        /* let coronaPositionMin: Vector = { "x": 0, "y": 0 };
-         let coronaPositionMax: Vector = { "x": 10, "y": 10 };
-         for (let i: number = 0; i < 5; i++) {
- 
-             let X: number = Math.random() * (coronaPositionMax.x - coronaPositionMin.x) + coronaPositionMin.x;
-             let Y: number = Math.random() * (coronaPositionMax.y - coronaPositionMin.y) + coronaPositionMin.y;
-             drawAntibodys({ "x": X, "y": Y }, { "x": 10, "y": 10 });
- 
-         }*/
     }
     function drawCellTissue() {
         console.log("unspezifisches Zellgewebe");
@@ -63,7 +57,7 @@ var L08_VirusCanvas;
     }
     function drawParticles(_position, _size) {
         console.log("halbdurchsichtige Partikel", _position, _size);
-        let nParticles = 20;
+        let nParticles = 80;
         let radiusParticle = 19;
         let particle = new Path2D();
         let gradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
@@ -88,7 +82,7 @@ var L08_VirusCanvas;
     function drawAntibodys(_position, _size) {
         console.log("Antibodys", _position, _size);
         let nParticles = 3;
-        let radiusParticle = 200;
+        let radiusParticle = 50;
         let particle = new Path2D();
         let gradient = crc2.createRadialGradient(0, 0, 1, 30, 70, radiusParticle);
         crc2.beginPath();
@@ -220,7 +214,7 @@ var L08_VirusCanvas;
         crc2.beginPath();
         crc2.translate(_position.x, _position.y);
         crc2.restore();
-        drawAntibodys(_position, { x: 100, y: 100 });
+        drawAntibodys(_position, { x: 100, y: 600 });
     }
 })(L08_VirusCanvas || (L08_VirusCanvas = {}));
 //# sourceMappingURL=VirusCanvas.js.map
