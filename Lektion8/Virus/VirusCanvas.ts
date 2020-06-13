@@ -18,28 +18,28 @@ namespace L08_VirusCanvas {
         //drawVirus({ x: 0, y: 100 }, { x: 70, y: 70 });
         //drawAntibodys({ x: 0, y: 100 }, { x: 70, y: 70 });
         drawParticles({ x: 200, y: 600 }, { x: crc2.canvas.width, y: crc2.canvas.height });
-        drawEllipse({ x: 0, y: 100 }, { x: 190, y: 190 });
+        drawEllipse({ x: 0, y: 400 }, { x: 190, y: 190 });
 
- 
+
         let bodyPositionMin: Vector = { "x": 100, "y": 300 };
-        let bodyPositionMax: Vector = { "x": 50, "y": 50 };
+        let bodyPositionMax: Vector = { "x": 0, "y": 0 };
         for (let i: number = 0; i < 6; i++) {
 
             let X: number = Math.random() * (bodyPositionMax.x - bodyPositionMin.x) + bodyPositionMin.x;
             let Y: number = Math.random() * (bodyPositionMax.y - bodyPositionMin.y) + bodyPositionMin.y;
 
-        drawVirus({ "x": X, "y": Y }, { "x": 40, "y": 40 });
+            drawVirus({ "x": X, "y": Y }, { "x": 40, "y": 40 });
         }
 
-       /* let coronaPositionMin: Vector = { "x": 0, "y": 0 };
-        let coronaPositionMax: Vector = { "x": 10, "y": 10 };
-        for (let i: number = 0; i < 5; i++) {
-
-            let X: number = Math.random() * (coronaPositionMax.x - coronaPositionMin.x) + coronaPositionMin.x;
-            let Y: number = Math.random() * (coronaPositionMax.y - coronaPositionMin.y) + coronaPositionMin.y;
-            drawAntibodys({ "x": X, "y": Y }, { "x": 10, "y": 10 });
-
-        }*/
+        /* let coronaPositionMin: Vector = { "x": 0, "y": 0 };
+         let coronaPositionMax: Vector = { "x": 10, "y": 10 };
+         for (let i: number = 0; i < 5; i++) {
+ 
+             let X: number = Math.random() * (coronaPositionMax.x - coronaPositionMin.x) + coronaPositionMin.x;
+             let Y: number = Math.random() * (coronaPositionMax.y - coronaPositionMin.y) + coronaPositionMin.y;
+             drawAntibodys({ "x": X, "y": Y }, { "x": 10, "y": 10 });
+ 
+         }*/
 
 
 
@@ -104,7 +104,7 @@ namespace L08_VirusCanvas {
             let x: number = (Math.random() - 0.5) * _size.x;
             let y: number = - (Math.random() * _size.y);
             crc2.translate(x, y);
-            crc2.fill(particle); 
+            crc2.fill(particle);
             crc2.restore();
         }
         crc2.restore();
@@ -125,25 +125,25 @@ namespace L08_VirusCanvas {
         crc2.arc(100, 90, 15, 1.2, 1.6 * Math.PI);
         crc2.stroke();
         crc2.strokeStyle = "green";
-        crc2.moveTo(45,90);
-        crc2.lineTo(86,90);
+        crc2.moveTo(45, 90);
+        crc2.lineTo(86, 90);
         crc2.stroke();
         crc2.stroke();
-        crc2.closePath(); 
-        
+        crc2.closePath();
+
         crc2.beginPath();
         crc2.arc(130, 120, 15, 0.5, 1.3 * Math.PI);
         crc2.stroke();
         crc2.strokeStyle = "green";
-        crc2.moveTo(120,130);
-        crc2.lineTo(86,160);
+        crc2.moveTo(120, 130);
+        crc2.lineTo(86, 160);
         crc2.stroke();
         crc2.stroke();
-        crc2.closePath(); 
+        crc2.closePath();
 
         crc2.strokeStyle = "HSL(0, 76%, 47%)";
         crc2.lineWidth = 2;
-        
+
         crc2.save();
         crc2.beginPath();
         crc2.translate(_position.x, _position.y);
@@ -162,7 +162,7 @@ namespace L08_VirusCanvas {
 
 
     }
- 
+
     function drawEllipse(_position: Vector, _size: Vector): void {
         console.log("Killerzellen", _position, _size);
 
@@ -185,7 +185,7 @@ namespace L08_VirusCanvas {
             let x: number = (Math.random() - 0.5) * _size.x;
             let y: number = - (Math.random() * _size.y);
             crc2.translate(x, y);
-            crc2.fill(particle); 
+            crc2.fill(particle);
             crc2.restore();
         }
         crc2.restore();
@@ -269,61 +269,39 @@ namespace L08_VirusCanvas {
         crc2.stroke();
 
 
-        crc2.restore();
+
         crc2.closePath();
         crc2.save();
-       
-        
-        
+        crc2.restore();
+
+
         crc2.save();
         crc2.beginPath();
         crc2.translate(_position.x, _position.y);
+        crc2.restore();
 
-      
-       //crc2.fillStyle = gradient;
 
-     
-      // for (let drawn: number = 0; drawn < nParticles; drawn++) {
-      //  _position.x = Math.random() * crc2.canvas.width/1.8;
-      //  _position.y = 50 + (10 * Math.random() );
 
-        drawAntibodys(_position, {x: 100, y: 100});
-        
+        //crc2.fillStyle = gradient;
+
+
+        // for (let drawn: number = 0; drawn < nParticles; drawn++) {
+        //  _position.x = Math.random() * crc2.canvas.width/1.8;
+        //  _position.y = 50 + (10 * Math.random() );
+
+        drawAntibodys(_position, { x: 100, y: 100 });
+
     }
 
-       //crc2.restore();
-       //crc2.closePath();
-        //showVirus({ "x": 50, "y": 200 });
-
-        /*
-        coronaviren.beginPath();
-        coronaviren.arc(200, 300, 20, 0, 2 * Math.PI, true);
-        coronaviren.fillStyle = ("HSL(0, 83%, 53%)");
-        coronaviren.strokeStyle = ("HSL(0, 83%, 53%)");
-        coronaviren.arc(250, 230, 5, 0, 2 * Math.PI, true);
-        coronaviren.fillStyle = ("HSL(0, 76%, 47%)");
-        coronaviren.strokeStyle = ("HSL(0, 83%, 53%)");
-        coronaviren.fill();
-        coronaviren.stroke();
-        */
-    }
-    
- /*
-function showVirus(_position: Vector){
-    for (let drawn: number = 0; drawn < 6; drawn++) {
-        crc2.save();
-        _position.x = Math.random()  * crc2.canvas.width;
-        _position.y = Math.random() * crc2.canvas.height;
-        //drawAntibodys(_position, {x: 100, y: 0})
-        drawVirus(_position, {x: 10, y: 10})
-     
-    }
-}*/
-
-
-    
 
 }
+
+
+
+
+
+
+
 
 
 

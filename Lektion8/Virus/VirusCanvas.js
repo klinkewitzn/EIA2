@@ -13,9 +13,9 @@ var L08_VirusCanvas;
         //drawVirus({ x: 0, y: 100 }, { x: 70, y: 70 });
         //drawAntibodys({ x: 0, y: 100 }, { x: 70, y: 70 });
         drawParticles({ x: 200, y: 600 }, { x: crc2.canvas.width, y: crc2.canvas.height });
-        drawEllipse({ x: 0, y: 100 }, { x: 190, y: 190 });
+        drawEllipse({ x: 0, y: 400 }, { x: 190, y: 190 });
         let bodyPositionMin = { "x": 100, "y": 300 };
-        let bodyPositionMax = { "x": 50, "y": 50 };
+        let bodyPositionMax = { "x": 0, "y": 0 };
         for (let i = 0; i < 6; i++) {
             let X = Math.random() * (bodyPositionMax.x - bodyPositionMin.x) + bodyPositionMin.x;
             let Y = Math.random() * (bodyPositionMax.y - bodyPositionMin.y) + bodyPositionMin.y;
@@ -219,31 +219,18 @@ var L08_VirusCanvas;
         crc2.fillStyle = ("HSL(0, 76%, 47%)");
         crc2.fill();
         crc2.stroke();
-        crc2.restore();
         crc2.closePath();
         crc2.save();
+        crc2.restore();
         crc2.save();
         crc2.beginPath();
         crc2.translate(_position.x, _position.y);
+        crc2.restore();
         //crc2.fillStyle = gradient;
         // for (let drawn: number = 0; drawn < nParticles; drawn++) {
         //  _position.x = Math.random() * crc2.canvas.width/1.8;
         //  _position.y = 50 + (10 * Math.random() );
         drawAntibodys(_position, { x: 100, y: 100 });
     }
-    //crc2.restore();
-    //crc2.closePath();
-    //showVirus({ "x": 50, "y": 200 });
-    /*
-    coronaviren.beginPath();
-    coronaviren.arc(200, 300, 20, 0, 2 * Math.PI, true);
-    coronaviren.fillStyle = ("HSL(0, 83%, 53%)");
-    coronaviren.strokeStyle = ("HSL(0, 83%, 53%)");
-    coronaviren.arc(250, 230, 5, 0, 2 * Math.PI, true);
-    coronaviren.fillStyle = ("HSL(0, 76%, 47%)");
-    coronaviren.strokeStyle = ("HSL(0, 83%, 53%)");
-    coronaviren.fill();
-    coronaviren.stroke();
-    */
 })(L08_VirusCanvas || (L08_VirusCanvas = {}));
 //# sourceMappingURL=VirusCanvas.js.map
