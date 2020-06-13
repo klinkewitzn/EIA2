@@ -65,7 +65,7 @@ namespace L08_VirusCanvas {
         pattern.strokeStyle = "HSL(249, 9%, 72%)";
         pattern.stroke();
         pattern.closePath();
-        //Zellkern
+        //nucleus
         pattern.beginPath();
         pattern.arc(25, 12, 2, 0, 2 * Math.PI);
         pattern.fillStyle = "HSLA(137, 47%, 56%, 0.4)";
