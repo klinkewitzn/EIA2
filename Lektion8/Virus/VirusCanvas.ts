@@ -48,8 +48,8 @@ namespace L08_VirusCanvas {
         //Gittermuster als Zellgewebe-Muster
         let pattern: CanvasRenderingContext2D = <CanvasRenderingContext2D>document.createElement("canvas").getContext("2d");
 
-        pattern.canvas.width = 40;
-        pattern.canvas.height = 20;
+        pattern.canvas.width = 50;
+        pattern.canvas.height = 30;
 
         pattern.fillStyle = "#97a0db3a";
         pattern.fillRect(0, 0, pattern.canvas.width, pattern.canvas.height);
@@ -57,16 +57,24 @@ namespace L08_VirusCanvas {
         pattern.lineTo(10, 10);
         pattern.lineTo(20, 0);
         pattern.lineTo(30, 0);
-        pattern.lineTo(40, 10);
-        pattern.lineTo(30, 20);
-        pattern.lineTo(20, 20);
+        pattern.lineTo(50, 10);
+        pattern.lineTo(30, 30);
+        pattern.lineTo(20, 30);
         pattern.lineTo(10, 10);
         pattern.stroke();
-
         pattern.strokeStyle = "HSL(249, 9%, 72%)";
         pattern.stroke();
         pattern.closePath();
+        //Zellkern
+        pattern.beginPath();
+        pattern.arc(25, 12, 2, 0, 2 * Math.PI);
+        pattern.fillStyle = "HSLA(137, 47%, 56%, 0.4)";
+        pattern.fill();
 
+        pattern.beginPath();
+        pattern.arc(2, 22, 2, 0, 2 * Math.PI);
+        pattern.fillStyle = "HSLA(137, 47%, 56%, 0.4)";
+        pattern.fill();
         crc2.fillStyle = <CanvasRenderingContext2D>crc2.createPattern(pattern.canvas, "repeat");
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
 
