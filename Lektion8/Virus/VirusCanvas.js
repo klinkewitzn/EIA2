@@ -77,13 +77,23 @@ var L08_VirusCanvas;
         crc2.lineTo(1140, 800);
         crc2.moveTo(1325, 200);
         crc2.lineTo(1500, 800);
+        crc2.moveTo(1325, 500);
+        crc2.lineTo(1500, 800);
         crc2.moveTo(1325, -170);
         crc2.lineTo(1580, 800);
         crc2.lineWidth = 20;
         crc2.strokeStyle = "HSLA(360, 100%, 72%, 1)";
         crc2.stroke();
-        crc2.restore();
-        crc2.restore();
+        crc2.closePath();
+        crc2.save();
+        crc2.beginPath();
+        crc2.moveTo(1224, 650);
+        crc2.lineTo(1300, 800);
+        crc2.lineWidth = 10;
+        crc2.strokeStyle = "HSLA(360, 100%, 72%, 1)";
+        crc2.stroke();
+        //crc2.restore();
+        //crc2.restore();
     }
     function drawParticles(_position, _size) {
         console.log("halbdurchsichtige Partikel", _position, _size);
