@@ -78,6 +78,24 @@ namespace L08_VirusCanvas {
         crc2.fillStyle = <CanvasRenderingContext2D>crc2.createPattern(pattern.canvas, "repeat");
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
 
+        crc2.beginPath();
+        crc2.moveTo(1350,0);
+        crc2.lineTo(1300,800);
+        crc2.lineWidth=80;
+        crc2.strokeStyle = "HSLA(360, 100%, 72%, 1)";
+        crc2.stroke();
+        crc2.closePath();
+        crc2.save();
+        crc2.beginPath();
+        crc2.moveTo(1325,500);
+        crc2.lineTo(1140,800);
+        crc2.moveTo(1325,200);
+        crc2.lineTo(1500,800);
+        crc2.lineWidth=30;
+        crc2.strokeStyle = "HSLA(360, 100%, 72%, 1)";
+        crc2.stroke();
+        crc2.restore();
+        crc2.restore();
     }
 
     function drawParticles(_position: Vector, _size: Vector): void {
