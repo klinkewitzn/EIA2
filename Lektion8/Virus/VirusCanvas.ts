@@ -114,7 +114,7 @@ namespace L08_VirusCanvas {
 
         console.log("Antibodys", _position, _size);
 
-        let nParticles: number = 3;
+        let nParticles: number = 7;
         let radiusParticle: number = 50;
         let particle: Path2D = new Path2D();
         let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 1, 30, 70, radiusParticle);

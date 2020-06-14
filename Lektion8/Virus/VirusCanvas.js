@@ -90,7 +90,7 @@ var L08_VirusCanvas;
     }
     function drawAntibodys(_position, _size) {
         console.log("Antibodys", _position, _size);
-        let nParticles = 3;
+        let nParticles = 7;
         let radiusParticle = 50;
         let particle = new Path2D();
         let gradient = crc2.createRadialGradient(0, 0, 1, 30, 70, radiusParticle);
