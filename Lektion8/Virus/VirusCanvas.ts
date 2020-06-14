@@ -93,7 +93,7 @@ namespace L08_VirusCanvas {
         crc2.moveTo(1325,200);
         crc2.lineTo(1500,800);
 
-        crc2.moveTo(1325,500);
+        crc2.moveTo(1325,200);
         crc2.lineTo(1500,800);
 
         crc2.moveTo(1325,-170);
