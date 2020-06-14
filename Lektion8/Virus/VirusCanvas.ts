@@ -92,7 +92,10 @@ namespace L08_VirusCanvas {
         crc2.lineTo(1140,800);
         crc2.moveTo(1325,200);
         crc2.lineTo(1500,800);
-        crc2.lineWidth=30;
+
+        crc2.moveTo(1325,-170);
+        crc2.lineTo(1580,800);
+        crc2.lineWidth=20;
         crc2.strokeStyle = "HSLA(360, 100%, 72%, 1)";
         crc2.stroke();
         crc2.restore();
