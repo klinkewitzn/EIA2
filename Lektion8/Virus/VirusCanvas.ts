@@ -78,6 +78,7 @@ namespace L08_VirusCanvas {
         crc2.fillStyle = <CanvasRenderingContext2D>crc2.createPattern(pattern.canvas, "repeat");
         crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
 
+        //Bloodvessel
         crc2.beginPath();
         crc2.moveTo(1350,0);
         crc2.lineTo(1300,800);
