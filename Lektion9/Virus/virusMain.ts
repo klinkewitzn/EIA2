@@ -141,7 +141,7 @@ namespace L09_Virus {
 
     function update(_timeslice: 5): void {
         //console.log("update in main")
-        crc2.putImageData(imgData, 2, 0);
+        crc2.putImageData(imgData, 0, 0);
     
         for (let particle of particles)
           particle.update(1 / 50);

@@ -116,7 +116,7 @@ var L09_Virus;
     }
     function update(_timeslice) {
         //console.log("update in main")
-        L09_Virus.crc2.putImageData(imgData, 2, 0);
+        L09_Virus.crc2.putImageData(imgData, 0, 0);
         for (let particle of L09_Virus.particles)
             particle.update(1 / 50);
         /*  for (let anti of antiViren)
