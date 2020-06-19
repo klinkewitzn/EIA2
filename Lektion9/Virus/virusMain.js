@@ -17,6 +17,7 @@ var L09_Virus;
         //createParticles(20);
         for (let i = 0; i < 5; i++)
             L09_Virus.particles.push(new L09_Virus.Particle(5));
+        imgData = L09_Virus.crc2.getImageData(0, 0, L09_Virus.crc2.canvas.width, L09_Virus.crc2.canvas.height);
         /*  for (let i: number = 0; i < 10; i++)
            coronaViren.push(new Corona());
      

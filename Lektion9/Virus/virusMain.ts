@@ -25,7 +25,8 @@ namespace L09_Virus {
 
         for (let i: number = 0; i < 5; i++)
         particles.push(new Particle(5));
-  
+        imgData =crc2.getImageData(0,0,crc2.canvas.width, crc2.canvas.height);
+
      /*  for (let i: number = 0; i < 10; i++)
         coronaViren.push(new Corona());
   
