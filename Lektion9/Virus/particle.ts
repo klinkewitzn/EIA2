@@ -14,7 +14,7 @@ namespace L09_Virus {
     }
 
     draw(): void {
-      // console.log("Particle draw");
+       console.log("Particle draw");
       crc2.save();
       // Mit Math.random werden zufällige Positionen erzeugt
 

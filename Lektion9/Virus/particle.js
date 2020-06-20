@@ -11,7 +11,7 @@ var L09_Virus;
             this.velocity.random(50, 100);
         }
         draw() {
-            // console.log("Particle draw");
+            console.log("Particle draw");
             L09_Virus.crc2.save();
             // Mit Math.random werden zufällige Positionen erzeugt
             let radiusParticle = 19;
