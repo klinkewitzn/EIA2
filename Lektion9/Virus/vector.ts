@@ -22,9 +22,6 @@ namespace L09_Virus {
             this.y += _addend.y;
         }
 
-       /*  substract(_subtract: Vector): Vector {
-            return new Vector(_subtract.x - this.x, _subtract.y - this.y);
-          } */
         //Für die Geschwindigkeit werden willkürliche Daten festgelegt
         random(_minLength: number, _maxLength: number): void {
             let length: number = _minLength + Math.random() * (_maxLength - _minLength);
@@ -33,8 +30,5 @@ namespace L09_Virus {
             this.set(Math.cos(direction), Math.sin(direction));
             this.scale(length);
         }
-        /* copy(): Vector {
-            return new Vector(this.x, this.y);
-          } */
     }
 }

@@ -1,54 +1,29 @@
 "use strict";
 var L09_Virus;
 (function (L09_Virus) {
-    //export let coronaViren: Corona[] = [];
-    //export let antiViren: Anti[] = [];
-    //export let blood: Blood[] = [];
-    let imgData;
-    L09_Virus.particles = [];
     window.addEventListener("load", handleLoad);
+    L09_Virus.canvas = document.querySelector("canvas");
+    L09_Virus.crc2 = L09_Virus.canvas.getContext("2d");
+    L09_Virus.coronaCells = [];
+    L09_Virus.antibodyCells = [];
+    let particleCells = [];
+    let backgroudnImage;
+    // Variable ImageData deklarieren <-- UNBEDINGT MACHEN!!!!
     function handleLoad(_event) {
-        console.log("Particles starting");
         let canvas = document.querySelector("canvas");
         if (!canvas)
             return;
         L09_Virus.crc2 = canvas.getContext("2d");
         drawBackground();
-        //createParticles(20);
-        for (let i = 0; i < 5; i++)
-            L09_Virus.particles.push(new L09_Virus.Particle(5));
-        imgData = L09_Virus.crc2.getImageData(0, 0, L09_Virus.crc2.canvas.width, L09_Virus.crc2.canvas.height);
-        /*  for (let i: number = 0; i < 10; i++)
-           coronaViren.push(new Corona());
-     
-         for (let i: number = 0; i < 5; i++)
-           blood.push(new Blood());
-     
-         for (let i: number = 0; i < 20; i++)
-           antiViren.push(new Anti());
-     
-         for (let i: number = 0; i < 5; i++)
-           blood.push(new Blood()); */
-        window.setInterval(update, 20);
+        //let sizeVector: Vector = new Vector(150, 375);
+        //drawCells(sizeVector);
+        drawCoronaVirus(10);
+        drawAntibody(10);
+        drawParticle(80);
+        window.setInterval(animation, 20);
     }
-    /* function createParticles (_nParticles: number): void {
-        console.log("Create Particles");
-        for (let i: number = 0; i < _nParticles; i++) {
-            let particle: Particle = new Particle(1);
-            particles.push(particle);
-        }
-    }
-
-    function update(): void {
-        drawBackground();
-        for (let particle of particles) {
-            let newPosition: Vector = new Vector(particle.position.x, particle.position.y);
-            particle.move(1 / 50);
-            particle.draw(newPosition, newPosition);
-        }
-    } */
     function drawBackground() {
-        console.log("drawBackground");
+        console.log("unspezifisches Zellgewebe");
         //Hintergrundfarbe: Gradient
         let gradient = L09_Virus.crc2.createLinearGradient(0, 0, 0, L09_Virus.crc2.canvas.height);
         gradient.addColorStop(0, "HSL(261, 97%, 89%)");
@@ -115,17 +90,56 @@ var L09_Virus;
         L09_Virus.crc2.strokeStyle = "HSLA(360, 100%, 72%, 1)";
         L09_Virus.crc2.stroke();
     }
-    function update(_timeslice) {
-        //console.log("update in main")
-        L09_Virus.crc2.putImageData(imgData, 0, 0);
-        for (let particle of L09_Virus.particles)
-            particle.update(1 / 50);
-        /*  for (let anti of antiViren)
-           anti.update(1 / 50);
-     
-         for (let bloodPiece of blood)
-           bloodPiece.update(1 / 50); */
+    backgroudnImage = L09_Virus.crc2.getImageData(0, 0, L09_Virus.canvas.width, L09_Virus.canvas.height);
+    // ---- CORONA VIREN WERDEN ERSTELLT ---- \\
+    function drawCoronaVirus(_nCorona) {
+        for (let i = 0; i < _nCorona; i++) {
+            let positionX = Math.random() * L09_Virus.crc2.canvas.width;
+            let positionY = Math.random() * L09_Virus.canvas.height;
+            let postion = new L09_Virus.Vector(positionX, positionY);
+            let corona = new L09_Virus.Corona(postion);
+            corona.draw();
+            L09_Virus.coronaCells.push(corona);
+        }
+    }
+    // ---- ANTIKÖRPER WERDEN ERSTELLT ---- \\
+    function drawAntibody(_nAntibody) {
+        for (let i = 0; i < _nAntibody; i++) {
+            let positionX = Math.random() * L09_Virus.canvas.width;
+            let positionY = Math.random() * L09_Virus.canvas.height;
+            let postion = new L09_Virus.Vector(positionX, positionY);
+            let antibody = new L09_Virus.Antibody(postion);
+            antibody.draw();
+            L09_Virus.antibodyCells.push(antibody);
+        }
+    }
+    // ---- PARTIKEL WERDEN ERSTELLT ---- \\
+    function drawParticle(_nParticle) {
+        for (let drawn = 0; drawn < _nParticle; drawn++) {
+            L09_Virus.crc2.save();
+            let positionX = Math.random() * L09_Virus.canvas.width;
+            let positionY = Math.random() * L09_Virus.canvas.height;
+            let postion = new L09_Virus.Vector(positionX, positionY);
+            let particle = new L09_Virus.Particle(postion);
+            particle.draw();
+            particleCells.push(particle);
+        }
+    }
+    // ------ ANIMATION ------ oder auch "update"\\
+    function animation() {
+        L09_Virus.crc2.putImageData(backgroudnImage, 0, 0);
+        for (let corona of L09_Virus.coronaCells) {
+            corona.move(1 / 20);
+            corona.draw();
+        }
+        for (let antibody of L09_Virus.antibodyCells) {
+            antibody.move(1 / 20);
+            antibody.draw();
+        }
+        for (let particle of particleCells) {
+            particle.move(1 / 20);
+            particle.draw();
+        }
     }
 })(L09_Virus || (L09_Virus = {}));
-;
 //# sourceMappingURL=virusMain.js.map
