@@ -11,7 +11,7 @@ var L09_Virus;
             this.velocity.random(50, 100);
         }
         draw() {
-            // console.log("Draw Corona");
+            console.log("corona drawn" + this.position.x, this.position.y);
             L09_Virus.crc2.save();
             L09_Virus.crc2.beginPath();
             L09_Virus.crc2.translate(this.position.x, this.position.y);
@@ -46,7 +46,6 @@ var L09_Virus;
             L09_Virus.crc2.fill();
             L09_Virus.crc2.stroke();
             L09_Virus.crc2.closePath();
-            L09_Virus.crc2.save();
             L09_Virus.crc2.restore();
             // crc2.save();
             // crc2.beginPath();

@@ -11,10 +11,12 @@ var L09_Virus;
             this.velocity.random(50, 100);
         }
         draw() {
-            console.log("Antibodys");
+            console.log(console.log("antibody drawn" + this.position.x, this.position.y));
+            L09_Virus.crc2.save();
+            L09_Virus.crc2.beginPath();
+            L09_Virus.crc2.translate(this.position.x, this.position.y);
             let radiusParticle = 50;
             let gradient = L09_Virus.crc2.createRadialGradient(0, 0, 1, 30, 70, radiusParticle);
-            L09_Virus.crc2.beginPath();
             L09_Virus.crc2.arc(100, 90, 15, 1.2, 1.6 * Math.PI);
             L09_Virus.crc2.stroke();
             L09_Virus.crc2.strokeStyle = "green";
@@ -38,6 +40,7 @@ var L09_Virus;
             //crc2.beginPath();
             //crc2.translate(_position.x, _position.y);
             L09_Virus.crc2.fillStyle = gradient;
+            L09_Virus.crc2.restore();
         }
         move(_timeslice) {
             let offset = new L09_Virus.Vector(this.velocity.x, this.velocity.y);

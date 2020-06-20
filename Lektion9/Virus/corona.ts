@@ -14,7 +14,7 @@ namespace L09_Virus {
         }
 
         draw(): void {
-            // console.log("Draw Corona");
+             console.log("corona drawn" + this.position.x, this.position.y);
             crc2.save();
             crc2.beginPath();
             crc2.translate(this.position.x, this.position.y);
@@ -52,7 +52,7 @@ namespace L09_Virus {
 
 
             crc2.closePath();
-            crc2.save();
+            
             crc2.restore();
 
 
