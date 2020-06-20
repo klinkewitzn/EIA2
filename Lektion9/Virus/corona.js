@@ -8,7 +8,7 @@ var L09_Virus;
             else
                 this.position = new L09_Virus.Vector(0, 0);
             this.velocity = new L09_Virus.Vector(0, 0);
-            this.velocity.random(50, 100);
+            this.velocity.random(20, 50);
         }
         draw() {
             console.log("corona drawn" + this.position.x, this.position.y);
@@ -47,10 +47,6 @@ var L09_Virus;
             L09_Virus.crc2.stroke();
             L09_Virus.crc2.closePath();
             L09_Virus.crc2.restore();
-            // crc2.save();
-            // crc2.beginPath();
-            /* crc2.translate(_position.x, _position.y);*/
-            //crc2.restore(); 
         }
         move(_timeslice) {
             let offset = new L09_Virus.Vector(this.velocity.x, this.velocity.y);

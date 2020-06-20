@@ -10,7 +10,7 @@ namespace L09_Virus {
                 this.position = new Vector(0, 0);
 
             this.velocity = new Vector(0, 0);
-            this.velocity.random(50, 100);
+            this.velocity.random(20, 50);
         }
 
         draw(): void {
@@ -55,11 +55,6 @@ namespace L09_Virus {
             
             crc2.restore();
 
-
-            // crc2.save();
-            // crc2.beginPath();
-            /* crc2.translate(_position.x, _position.y);*/
-            //crc2.restore(); 
         }
 
         move(_timeslice: number): void {
@@ -77,11 +72,5 @@ namespace L09_Virus {
                 this.position.y -= crc2.canvas.height;
         }
 
-        // infects(): boolean {
-        //     if ()
-        //     let hitsize: number = 50 * this.size;
-        //     let difference: Vector = new Vector(_hotspot.x - this.position.x, _hotspot.y - this.position.y);
-        //     return (Math.abs(difference.x) < hitsize && Math.abs(difference.y) < hitsize);
-        // }
     }
 }

@@ -2,15 +2,17 @@ namespace L09_Virus {
   window.addEventListener("load", handleLoad);
   export let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
   export let crc2: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
+  //export let particle: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
 
 
   export let coronaCells: Corona[] = [];
   export let antibodyCells: Antibody[] = [];
-  let particleCells: Particle[] = [];
+  export let particleCells: Particle[] = [];
+  export let humanCells: HumanCell[] = [];
 
 
-  let backgroudnImage: ImageData;
-  // Variable ImageData deklarieren <-- UNBEDINGT MACHEN!!!!
+  let backgroudnImage: ImageData; //Variable Image Data deklarieren!!!! (für später: get und put imageData)
+  
 
   function handleLoad(_event: Event): void {
     let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
@@ -20,13 +22,13 @@ namespace L09_Virus {
 
 
     drawBackground();
-    //let sizeVector: Vector = new Vector(150, 375);
-    //drawCells(sizeVector);
-    drawCoronaVirus(10);
+    drawVirus(25);
     drawAntibody(10);
+   // drawHumanCell(15);
     drawParticle(80);
+    
 
-    window.setInterval(animation, 20);
+    window.setInterval(update, 35);
   }
 
 
@@ -109,31 +111,26 @@ namespace L09_Virus {
     crc2.lineWidth = 2;
     crc2.strokeStyle = "HSLA(360, 100%, 72%, 1)";
     crc2.stroke();
+    backgroudnImage = crc2.getImageData(0, 0, canvas.width, canvas.height); //getImage Data diese Daten werden als Hintergrund gespeichert
+
   }
 
-  
+  /* Corona Viren werden erstellt */
 
+  function drawVirus(_nVirus: number): void {
 
+    for (let i: number = 0; i < _nVirus; i++) {
 
-  // ---- CORONA VIREN WERDEN ERSTELLT ---- \\
-
-  function drawCoronaVirus(_nCorona: number): void {
-
-    for (let i: number = 0; i < _nCorona; i++) {
-  
       let positionX: number = Math.random() * crc2.canvas.width;
       let positionY: number = Math.random() * canvas.height;
       let postion: Vector = new Vector(positionX, positionY);
       let corona: Corona = new Corona(postion);
       corona.draw();
       coronaCells.push(corona);
-
-
     }
-
   }
 
-  // ---- ANTIKÖRPER WERDEN ERSTELLT ---- \\
+/*   antibodys werden erstellt */
 
   function drawAntibody(_nAntibody: number): void {
     for (let i: number = 0; i < _nAntibody; i++) {
@@ -143,11 +140,10 @@ namespace L09_Virus {
       let antibody: Antibody = new Antibody(postion);
       antibody.draw();
       antibodyCells.push(antibody);
- backgroudnImage = crc2.getImageData(0, 0, canvas.width, canvas.height);   
     }
   }
 
-  // ---- PARTIKEL WERDEN ERSTELLT ---- \\
+  /* partikel werden erstellt */
   function drawParticle(_nParticle: number): void {
     for (let drawn: number = 0; drawn < _nParticle; drawn++) {
       crc2.save();
@@ -160,11 +156,21 @@ namespace L09_Virus {
 
     }
   }
+/* human Cells werden erstellt */
+ // function drawHumanCell(_nhumanCell: number): void {
+   // for (let i: number = 0; i < _nhumanCell; i++) {
+   //   let positionX: number = Math.random() * canvas.width;
+    //  let positionY: number = Math.random() * canvas.height;
+     // let postion: Vector = new Vector(positionX, positionY);
+     // let humanCell: HumanCell = new HumanCell(postion);
+     // humanCell.draw();
+    //  humanCells.push(humanCell);
+    //}
+  //}
+  /* update/animation für alle zellenklassen*/
 
-  // ------ ANIMATION ------ oder auch "update"\\
-
-  function animation(): void {
-    crc2.putImageData(backgroudnImage, 0, 0);
+  function update(): void {
+    crc2.putImageData(backgroudnImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder aktualisierung auf den canvas "gelegt"
     for (let corona of coronaCells) {
       corona.move(1 / 20);
       corona.draw();
@@ -180,5 +186,9 @@ namespace L09_Virus {
       particle.draw();
     }
 
+   /*  for (let humanCell of humanCells) {
+      //humanCell.move(1 / 20);
+      humanCell.draw();
+    } */
   }
 }

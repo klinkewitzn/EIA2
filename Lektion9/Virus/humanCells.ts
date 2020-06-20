@@ -1,5 +1,5 @@
 namespace L09_Virus {
-    export class Antibody {
+    export class HumanCell {
         position: Vector;
         velocity: Vector;
 
@@ -14,37 +14,23 @@ namespace L09_Virus {
         }
 
         draw(): void {
-            console.log("antibody drawn" + this.position.x, this.position.y);
+            console.log("humanCell drawn" + this.position.x, this.position.y);
             crc2.save();
             crc2.beginPath();
             crc2.translate(this.position.x, this.position.y);
+
             let radiusParticle: number = 50;
-            let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 1, 30, 70, radiusParticle);
+            let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
 
-            
-            crc2.arc(100, 90, 15, 1.2, 1.6 * Math.PI);
-            crc2.stroke();
-            crc2.strokeStyle = "green";
-            crc2.moveTo(45, 90);
-            crc2.lineTo(86, 90);
-            crc2.stroke();
-            crc2.stroke();
-            crc2.closePath();
-
-            crc2.beginPath();
-            crc2.arc(130, 120, 15, 0.5, 1.3 * Math.PI);
-            crc2.stroke();
-            crc2.strokeStyle = "green";
-            crc2.moveTo(120, 130);
-            crc2.lineTo(86, 160);
-            crc2.stroke();
-            crc2.stroke();
-            crc2.closePath();
-
+            crc2.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
+            gradient.addColorStop(0, "HSLA(360, 100%, 22%,1)");
+            gradient.addColorStop(0.5, "HSLA(360, 100%, 22%,1)");
+            gradient.addColorStop(0.6, "HSLA(360, 100%, 47%,1)");
+            gradient.addColorStop(1, "HSLA(360, 100%, 47%, 1)");
             crc2.strokeStyle = "HSL(0, 76%, 47%)";
-            crc2.lineWidth = 2;
-
+            crc2.lineWidth = 7;         
             crc2.fillStyle = gradient;
+
             crc2.restore();
         }
 

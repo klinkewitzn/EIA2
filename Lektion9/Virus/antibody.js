@@ -8,10 +8,10 @@ var L09_Virus;
             else
                 this.position = new L09_Virus.Vector(0, 0);
             this.velocity = new L09_Virus.Vector(0, 0);
-            this.velocity.random(50, 100);
+            this.velocity.random(20, 40);
         }
         draw() {
-            console.log(console.log("antibody drawn" + this.position.x, this.position.y));
+            console.log("antibody drawn" + this.position.x, this.position.y);
             L09_Virus.crc2.save();
             L09_Virus.crc2.beginPath();
             L09_Virus.crc2.translate(this.position.x, this.position.y);
@@ -36,9 +36,6 @@ var L09_Virus;
             L09_Virus.crc2.closePath();
             L09_Virus.crc2.strokeStyle = "HSL(0, 76%, 47%)";
             L09_Virus.crc2.lineWidth = 2;
-            //crc2.save();
-            //crc2.beginPath();
-            //crc2.translate(_position.x, _position.y);
             L09_Virus.crc2.fillStyle = gradient;
             L09_Virus.crc2.restore();
         }

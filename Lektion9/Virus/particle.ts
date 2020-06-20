@@ -10,7 +10,7 @@ namespace L09_Virus {
         this.position = new Vector(0, 0);
 
       this.velocity = new Vector(0, 0);
-      this.velocity.random(50, 100);
+      this.velocity.random(10, 20);
     }
 
     draw(): void {
@@ -20,17 +20,18 @@ namespace L09_Virus {
       crc2.translate(this.position.x, this.position.y);
       // Mit Math.random werden zufällige Positionen erzeugt
 
-      let radiusParticle: number = 19;
-      let particle: Path2D = new Path2D();
+      let radiusParticle: number = 5;
+      //let particle: Path2D = new Path2D();
       let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
 
-      particle.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
+      crc2.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
       gradient.addColorStop(0, "HSLA(249, 9%, 47%, 0.3)");
       gradient.addColorStop(1, "HSLA(249, 9%, 47%, 0.8)");
+      crc2.fillStyle = gradient;
       crc2.stroke();
 
 
-      crc2.fillStyle = gradient;
+      
       crc2.closePath();
       crc2.restore();
 

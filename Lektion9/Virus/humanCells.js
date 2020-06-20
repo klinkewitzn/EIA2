@@ -1,30 +1,30 @@
 "use strict";
 var L09_Virus;
 (function (L09_Virus) {
-    class Particle {
+    class HumanCell {
         constructor(_position) {
             if (_position)
                 this.position = _position;
             else
                 this.position = new L09_Virus.Vector(0, 0);
             this.velocity = new L09_Virus.Vector(0, 0);
-            this.velocity.random(10, 20);
+            this.velocity.random(20, 40);
         }
         draw() {
-            console.log("Particle draw");
+            console.log("humanCell drawn" + this.position.x, this.position.y);
             L09_Virus.crc2.save();
             L09_Virus.crc2.beginPath();
             L09_Virus.crc2.translate(this.position.x, this.position.y);
-            // Mit Math.random werden zufällige Positionen erzeugt
-            let radiusParticle = 5;
-            //let particle: Path2D = new Path2D();
+            let radiusParticle = 50;
             let gradient = L09_Virus.crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
             L09_Virus.crc2.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
-            gradient.addColorStop(0, "HSLA(249, 9%, 47%, 0.3)");
-            gradient.addColorStop(1, "HSLA(249, 9%, 47%, 0.8)");
+            gradient.addColorStop(0, "HSLA(360, 100%, 22%,1)");
+            gradient.addColorStop(0.5, "HSLA(360, 100%, 22%,1)");
+            gradient.addColorStop(0.6, "HSLA(360, 100%, 47%,1)");
+            gradient.addColorStop(1, "HSLA(360, 100%, 47%, 1)");
+            L09_Virus.crc2.strokeStyle = "HSL(0, 76%, 47%)";
+            L09_Virus.crc2.lineWidth = 7;
             L09_Virus.crc2.fillStyle = gradient;
-            L09_Virus.crc2.stroke();
-            L09_Virus.crc2.closePath();
             L09_Virus.crc2.restore();
         }
         move(_timeslice) {
@@ -41,6 +41,6 @@ var L09_Virus;
                 this.position.y -= L09_Virus.crc2.canvas.height;
         }
     }
-    L09_Virus.Particle = Particle;
+    L09_Virus.HumanCell = HumanCell;
 })(L09_Virus || (L09_Virus = {}));
-//# sourceMappingURL=particle.js.map
+//# sourceMappingURL=humanCells.js.map
