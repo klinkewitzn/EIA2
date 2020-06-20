@@ -86,11 +86,10 @@ var L09_Virus;
         L09_Virus.crc2.beginPath();
         L09_Virus.crc2.moveTo(1224, 650);
         L09_Virus.crc2.lineTo(1300, 800);
-        L09_Virus.crc2.lineWidth = 10;
+        L09_Virus.crc2.lineWidth = 2;
         L09_Virus.crc2.strokeStyle = "HSLA(360, 100%, 72%, 1)";
         L09_Virus.crc2.stroke();
     }
-    backgroudnImage = L09_Virus.crc2.getImageData(0, 0, L09_Virus.canvas.width, L09_Virus.canvas.height);
     // ---- CORONA VIREN WERDEN ERSTELLT ---- \\
     function drawCoronaVirus(_nCorona) {
         for (let i = 0; i < _nCorona; i++) {
@@ -111,6 +110,7 @@ var L09_Virus;
             let antibody = new L09_Virus.Antibody(postion);
             antibody.draw();
             L09_Virus.antibodyCells.push(antibody);
+            backgroudnImage = L09_Virus.crc2.getImageData(0, 0, L09_Virus.canvas.width, L09_Virus.canvas.height);
         }
     }
     // ---- PARTIKEL WERDEN ERSTELLT ---- \\

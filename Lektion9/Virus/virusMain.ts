@@ -106,12 +106,12 @@ namespace L09_Virus {
 
     crc2.moveTo(1224, 650);
     crc2.lineTo(1300, 800);
-    crc2.lineWidth = 10;
+    crc2.lineWidth = 2;
     crc2.strokeStyle = "HSLA(360, 100%, 72%, 1)";
     crc2.stroke();
   }
 
-  backgroudnImage = crc2.getImageData(0, 0, canvas.width, canvas.height);
+  
 
 
 
@@ -120,12 +120,15 @@ namespace L09_Virus {
   function drawCoronaVirus(_nCorona: number): void {
 
     for (let i: number = 0; i < _nCorona; i++) {
+  
       let positionX: number = Math.random() * crc2.canvas.width;
       let positionY: number = Math.random() * canvas.height;
       let postion: Vector = new Vector(positionX, positionY);
       let corona: Corona = new Corona(postion);
       corona.draw();
       coronaCells.push(corona);
+
+
     }
 
   }
@@ -140,6 +143,7 @@ namespace L09_Virus {
       let antibody: Antibody = new Antibody(postion);
       antibody.draw();
       antibodyCells.push(antibody);
+ backgroudnImage = crc2.getImageData(0, 0, canvas.width, canvas.height);   
     }
   }
 

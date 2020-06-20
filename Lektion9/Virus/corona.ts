@@ -17,8 +17,8 @@ namespace L09_Virus {
             // console.log("Draw Corona");
             crc2.save();
             crc2.beginPath();
-           /*  crc2.translate(_position.x, _position.y); */
-    
+            crc2.translate(this.position.x, this.position.y);
+
             crc2.arc(180, 300, 19, 0, 2 * Math.PI);
             crc2.stroke();
             crc2.strokeStyle = "HSL(0, 76%, 47%)";
@@ -49,17 +49,17 @@ namespace L09_Virus {
             crc2.fillStyle = ("HSL(0, 76%, 47%)");
             crc2.fill();
             crc2.stroke();
-    
-    
+
+
             crc2.closePath();
             crc2.save();
             crc2.restore();
-    
-    
-             crc2.save();
-            crc2.beginPath();
-           /* crc2.translate(_position.x, _position.y);*/
-            crc2.restore(); 
+
+
+            // crc2.save();
+            // crc2.beginPath();
+            /* crc2.translate(_position.x, _position.y);*/
+            //crc2.restore(); 
         }
 
         move(_timeslice: number): void {

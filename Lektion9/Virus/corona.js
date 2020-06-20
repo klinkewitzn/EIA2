@@ -14,7 +14,7 @@ var L09_Virus;
             // console.log("Draw Corona");
             L09_Virus.crc2.save();
             L09_Virus.crc2.beginPath();
-            /*  crc2.translate(_position.x, _position.y); */
+            L09_Virus.crc2.translate(this.position.x, this.position.y);
             L09_Virus.crc2.arc(180, 300, 19, 0, 2 * Math.PI);
             L09_Virus.crc2.stroke();
             L09_Virus.crc2.strokeStyle = "HSL(0, 76%, 47%)";
@@ -48,10 +48,10 @@ var L09_Virus;
             L09_Virus.crc2.closePath();
             L09_Virus.crc2.save();
             L09_Virus.crc2.restore();
-            L09_Virus.crc2.save();
-            L09_Virus.crc2.beginPath();
+            // crc2.save();
+            // crc2.beginPath();
             /* crc2.translate(_position.x, _position.y);*/
-            L09_Virus.crc2.restore();
+            //crc2.restore(); 
         }
         move(_timeslice) {
             let offset = new L09_Virus.Vector(this.velocity.x, this.velocity.y);
