@@ -1,0 +1,18 @@
+body {
+    overflow: hidden;
+    margin: 0px;
+}
+
+@media (min-width: 300px){
+    canvas {
+        height: 100%;
+        width: 100%;
+    }
+
+}
+@media (min-width: 1200px){
+    canvas {
+        height: 100%;
+        width: 100%;
+    }
+}

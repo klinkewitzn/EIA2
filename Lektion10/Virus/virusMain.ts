@@ -1,15 +1,15 @@
-namespace L09_Virus {
+namespace L10_Virus {
   window.addEventListener("load", handleLoad);
   export let canvas: HTMLCanvasElement = <HTMLCanvasElement>document.querySelector("canvas");
   export let crc2: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
   //export let particle: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
 
-
-  export let coronaCells: Corona[] = [];
+  let cells: Cell[] = [];
+  /* export let coronaCells: Corona[] = [];
   export let antibodyCells: Antibody[] = [];
   export let particleCells: Particle[] = [];
   export let humanCells: HumanCell[] = [];
-
+ */
 
   let backgroudnImage: ImageData; //Variable Image Data deklarieren!!!! (für später: get und put imageData)
 
@@ -22,10 +22,10 @@ namespace L09_Virus {
 
 
     drawBackground();
-    drawVirus(25);
-    drawAntibody(10);
-    drawHumanCell(9);
-    drawParticle(80);
+    createVirus(25);
+    createAntibody(10);
+    createHumanCell(9);
+    createParticle(80);
 
 
     window.setInterval(update, 35);
@@ -117,7 +117,7 @@ namespace L09_Virus {
 
   /* Corona Viren werden erstellt */
 
-  function drawVirus(_nVirus: number): void {
+  function createVirus(_nVirus: number): void {
 
     for (let i: number = 0; i < _nVirus; i++) {
 
@@ -126,25 +126,25 @@ namespace L09_Virus {
       let postion: Vector = new Vector(positionX, positionY);
       let corona: Corona = new Corona(postion);
       corona.draw();
-      coronaCells.push(corona);
+      cells.push(corona);
     }
   }
 
   /*   antibodys werden erstellt */
 
-  function drawAntibody(_nAntibody: number): void {
+  function createAntibody(_nAntibody: number): void {
     for (let i: number = 0; i < _nAntibody; i++) {
       let positionX: number = Math.random() * canvas.width;
       let positionY: number = Math.random() * canvas.height;
       let postion: Vector = new Vector(positionX, positionY);
       let antibody: Antibody = new Antibody(postion);
       antibody.draw();
-      antibodyCells.push(antibody);
+      cells.push(antibody);
     }
   }
 
   /* partikel werden erstellt */
-  function drawParticle(_nParticle: number): void {
+  function createParticle(_nParticle: number): void {
     for (let drawn: number = 0; drawn < _nParticle; drawn++) {
       crc2.save();
       let positionX: number = Math.random() * canvas.width;
@@ -152,41 +152,41 @@ namespace L09_Virus {
       let postion: Vector = new Vector(positionX, positionY);
       let particle: Particle = new Particle(postion);
       particle.draw();
-      particleCells.push(particle);
+      cells.push(particle);
 
     }
   }
   /* human Cells werden erstellt */
-  function drawHumanCell(_nhumanCell: number): void {
+  function createHumanCell(_nhumanCell: number): void {
     for (let i: number = 0; i < _nhumanCell; i++) {
       let positionX: number = Math.random() * canvas.width;
       let positionY: number = Math.random() * canvas.height;
       let postion: Vector = new Vector(positionX, positionY);
       let humanCell: HumanCell = new HumanCell(postion);
       humanCell.draw();
-      humanCells.push(humanCell);
+      cells.push(humanCell);
     }
   }
   /* update/animation für alle zellenklassen*/
 
   function update(): void {
     crc2.putImageData(backgroudnImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder aktualisierung auf den canvas "gelegt"
-    for (let corona of coronaCells) {
+    for (let corona of cells) {
       corona.move(1 / 20);
       corona.draw();
     }
 
-    for (let antibody of antibodyCells) {
+    for (let antibody of cells) {
       antibody.move(1 / 20);
       antibody.draw();
     }
 
-    for (let particle of particleCells) {
+    for (let particle of cells) {
       particle.move(1 / 20);
       particle.draw();
     }
 
-    for (let humanCell of humanCells) {
+    for (let humanCell of cells) {
       humanCell.move(1 / 20);
       humanCell.draw();
     }

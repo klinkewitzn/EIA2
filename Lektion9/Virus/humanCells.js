@@ -15,7 +15,7 @@ var L09_Virus;
             L09_Virus.crc2.save();
             L09_Virus.crc2.beginPath();
             L09_Virus.crc2.translate(this.position.x, this.position.y);
-            let radiusParticle = 50;
+            let radiusParticle = 16;
             let gradient = L09_Virus.crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
             L09_Virus.crc2.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
             gradient.addColorStop(0, "HSLA(360, 100%, 22%,1)");
@@ -25,6 +25,8 @@ var L09_Virus;
             L09_Virus.crc2.strokeStyle = "HSL(0, 76%, 47%)";
             L09_Virus.crc2.lineWidth = 7;
             L09_Virus.crc2.fillStyle = gradient;
+            L09_Virus.crc2.fill();
+            L09_Virus.crc2.stroke();
             L09_Virus.crc2.restore();
         }
         move(_timeslice) {

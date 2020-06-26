@@ -18,7 +18,7 @@ var L09_Virus;
         drawBackground();
         drawVirus(25);
         drawAntibody(10);
-        // drawHumanCell(15);
+        drawHumanCell(9);
         drawParticle(80);
         window.setInterval(update, 35);
     }
@@ -126,16 +126,16 @@ var L09_Virus;
         }
     }
     /* human Cells werden erstellt */
-    // function drawHumanCell(_nhumanCell: number): void {
-    // for (let i: number = 0; i < _nhumanCell; i++) {
-    //   let positionX: number = Math.random() * canvas.width;
-    //  let positionY: number = Math.random() * canvas.height;
-    // let postion: Vector = new Vector(positionX, positionY);
-    // let humanCell: HumanCell = new HumanCell(postion);
-    // humanCell.draw();
-    //  humanCells.push(humanCell);
-    //}
-    //}
+    function drawHumanCell(_nhumanCell) {
+        for (let i = 0; i < _nhumanCell; i++) {
+            let positionX = Math.random() * L09_Virus.canvas.width;
+            let positionY = Math.random() * L09_Virus.canvas.height;
+            let postion = new L09_Virus.Vector(positionX, positionY);
+            let humanCell = new L09_Virus.HumanCell(postion);
+            humanCell.draw();
+            L09_Virus.humanCells.push(humanCell);
+        }
+    }
     /* update/animation für alle zellenklassen*/
     function update() {
         L09_Virus.crc2.putImageData(backgroudnImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder aktualisierung auf den canvas "gelegt"
@@ -151,10 +151,10 @@ var L09_Virus;
             particle.move(1 / 20);
             particle.draw();
         }
-        /*  for (let humanCell of humanCells) {
-           //humanCell.move(1 / 20);
-           humanCell.draw();
-         } */
+        for (let humanCell of L09_Virus.humanCells) {
+            humanCell.move(1 / 20);
+            humanCell.draw();
+        }
     }
 })(L09_Virus || (L09_Virus = {}));
 //# sourceMappingURL=virusMain.js.map

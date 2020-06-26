@@ -15,15 +15,14 @@ var L09_Virus;
             L09_Virus.crc2.save();
             L09_Virus.crc2.beginPath();
             L09_Virus.crc2.translate(this.position.x, this.position.y);
-            // Mit Math.random werden zufällige Positionen erzeugt
-            let radiusParticle = 5;
+            let radiusParticle = 9;
             //let particle: Path2D = new Path2D();
             let gradient = L09_Virus.crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
             L09_Virus.crc2.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
             gradient.addColorStop(0, "HSLA(249, 9%, 47%, 0.3)");
             gradient.addColorStop(1, "HSLA(249, 9%, 47%, 0.8)");
             L09_Virus.crc2.fillStyle = gradient;
-            L09_Virus.crc2.stroke();
+            L09_Virus.crc2.fill();
             L09_Virus.crc2.closePath();
             L09_Virus.crc2.restore();
         }
