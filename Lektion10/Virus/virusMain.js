@@ -25,7 +25,7 @@ var L10_Virus;
         window.setInterval(update, 35);
     }
     function drawBackground() {
-        console.log("unspezifisches Zellgewebe");
+        //console.log("unspezifisches Zellgewebe");
         //Hintergrundfarbe: Gradient
         let gradient = L10_Virus.crc2.createLinearGradient(0, 0, 0, L10_Virus.crc2.canvas.height);
         gradient.addColorStop(0, "HSL(261, 97%, 89%)");

@@ -7,7 +7,7 @@ namespace L10_Virus {
     }
 
     draw(): void {
-      console.log("Particle draw");
+      //console.log("Particle draw");
       crc2.save();
       crc2.beginPath();
       crc2.translate(this.position.x, this.position.y);

@@ -7,7 +7,7 @@ namespace L10_Virus {
         }
 
         draw(): void {
-            console.log("corona drawn" + this.position.x, this.position.y);
+            //console.log("corona drawn" + this.position.x, this.position.y);
             crc2.save();
             crc2.beginPath();
             crc2.translate(this.position.x, this.position.y);

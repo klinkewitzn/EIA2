@@ -35,7 +35,7 @@ namespace L10_Virus {
 
   function drawBackground(): void {
 
-    console.log("unspezifisches Zellgewebe");
+    //console.log("unspezifisches Zellgewebe");
     //Hintergrundfarbe: Gradient
     let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
     gradient.addColorStop(0, "HSL(261, 97%, 89%)");

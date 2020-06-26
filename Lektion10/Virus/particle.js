@@ -7,7 +7,7 @@ var L10_Virus;
             this.velocity.random(20, 50);
         }
         draw() {
-            console.log("Particle draw");
+            //console.log("Particle draw");
             L10_Virus.crc2.save();
             L10_Virus.crc2.beginPath();
             L10_Virus.crc2.translate(this.position.x, this.position.y);

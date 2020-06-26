@@ -8,7 +8,7 @@ namespace L10_Virus {
             this.velocity.random(20, 50);
         }
         draw(): void {
-            console.log("antibody drawn" + this.position.x, this.position.y);
+            //console.log("antibody drawn" + this.position.x, this.position.y);
             crc2.save();
             crc2.beginPath();
             crc2.translate(this.position.x, this.position.y);
@@ -47,5 +47,4 @@ namespace L10_Virus {
             super.move(_timeslice);
         }
     }
-}
 }
