@@ -6,11 +6,6 @@ var L10_Virus;
     L10_Virus.crc2 = L10_Virus.canvas.getContext("2d");
     //export let particle: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
     let cells = [];
-    /* export let coronaCells: Corona[] = [];
-    export let antibodyCells: Antibody[] = [];
-    export let particleCells: Particle[] = [];
-    export let humanCells: HumanCell[] = [];
-   */
     let backgroudnImage; //Variable Image Data deklarieren!!!! (für später: get und put imageData)
     function handleLoad(_event) {
         let canvas = document.querySelector("canvas");
@@ -141,21 +136,9 @@ var L10_Virus;
     /* update/animation für alle zellenklassen*/
     function update() {
         L10_Virus.crc2.putImageData(backgroudnImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder aktualisierung auf den canvas "gelegt"
-        for (let corona of cells) {
-            corona.move(1 / 20);
-            corona.draw();
-        }
-        for (let antibody of cells) {
-            antibody.move(1 / 20);
-            antibody.draw();
-        }
-        for (let particle of cells) {
-            particle.move(1 / 20);
-            particle.draw();
-        }
-        for (let humanCell of cells) {
-            humanCell.move(1 / 20);
-            humanCell.draw();
+        for (let cell of cells) { //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
+            cell.move(1 / 20);
+            cell.draw();
         }
     }
 })(L10_Virus || (L10_Virus = {}));

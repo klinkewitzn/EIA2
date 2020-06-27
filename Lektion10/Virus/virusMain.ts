@@ -5,11 +5,6 @@ namespace L10_Virus {
   //export let particle: CanvasRenderingContext2D = <CanvasRenderingContext2D>canvas.getContext("2d");
 
   let cells: Cell[] = [];
-  /* export let coronaCells: Corona[] = [];
-  export let antibodyCells: Antibody[] = [];
-  export let particleCells: Particle[] = [];
-  export let humanCells: HumanCell[] = [];
- */
 
   let backgroudnImage: ImageData; //Variable Image Data deklarieren!!!! (für später: get und put imageData)
 
@@ -20,7 +15,6 @@ namespace L10_Virus {
       return;
     crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
 
-
     drawBackground();
     createVirus(25);
     createAntibody(10);
@@ -30,8 +24,6 @@ namespace L10_Virus {
 
     window.setInterval(update, 35);
   }
-
-
 
   function drawBackground(): void {
 
@@ -171,24 +163,11 @@ namespace L10_Virus {
 
   function update(): void {
     crc2.putImageData(backgroudnImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder aktualisierung auf den canvas "gelegt"
-    for (let corona of cells) {
-      corona.move(1 / 20);
-      corona.draw();
-    }
 
-    for (let antibody of cells) {
-      antibody.move(1 / 20);
-      antibody.draw();
-    }
+    for (let cell of cells) {   //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
 
-    for (let particle of cells) {
-      particle.move(1 / 20);
-      particle.draw();
-    }
-
-    for (let humanCell of cells) {
-      humanCell.move(1 / 20);
-      humanCell.draw();
+      cell.move(1 / 20);
+      cell.draw();
     }
   }
 }
