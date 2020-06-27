@@ -137,7 +137,7 @@ var L10_Virus;
     function update() {
         L10_Virus.crc2.putImageData(backgroudnImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder aktualisierung auf den canvas "gelegt"
         for (let cell of cells) { //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
-            cell.move(1 / 20);
+            cell.move(1 / 30);
             cell.draw();
         }
     }

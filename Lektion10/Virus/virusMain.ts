@@ -166,7 +166,7 @@ namespace L10_Virus {
 
     for (let cell of cells) {   //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
 
-      cell.move(1 / 20);
+      cell.move(1 / 30);
       cell.draw();
     }
   }
