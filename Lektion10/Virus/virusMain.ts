@@ -16,7 +16,7 @@ namespace L10_Virus {
     crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
 
     drawBackground();
-    createVirus(25);
+    createVirus(12);
     createAntibody(10);
     createHumanCell(9);
     createParticle(80);
