@@ -12,7 +12,6 @@ var L10_Virus;
             L10_Virus.crc2.beginPath();
             L10_Virus.crc2.translate(this.position.x, this.position.y);
             let radiusParticle = 9;
-            //let particle: Path2D = new Path2D();
             let gradient = L10_Virus.crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
             L10_Virus.crc2.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
             gradient.addColorStop(0, "HSLA(249, 9%, 47%, 0.3)");

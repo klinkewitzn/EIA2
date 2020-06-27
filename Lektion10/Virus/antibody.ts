@@ -2,7 +2,7 @@ namespace L10_Virus {
     export class Antibody extends Cell {
 
         rotation: number;
-        constructor(_position: Vector) {
+        constructor(_position?: Vector) {
             super(_position);
             this.velocity.random(20, 50);
             this.rotation = Math.random() * 360

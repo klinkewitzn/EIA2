@@ -1,7 +1,7 @@
 namespace L10_Virus {
   export class Particle extends Cell {
 
-    constructor(_position: Vector) {
+    constructor(_position?: Vector) {
       super(_position);
       this.velocity.random(20, 50);
     }
@@ -13,7 +13,6 @@ namespace L10_Virus {
       crc2.translate(this.position.x, this.position.y);
 
       let radiusParticle: number = 9;
-      //let particle: Path2D = new Path2D();
       let gradient: CanvasGradient = crc2.createRadialGradient(0, 0, 0, 0, 0, radiusParticle);
 
       crc2.arc(0, 0, radiusParticle, 0, 2 * Math.PI);
@@ -22,11 +21,8 @@ namespace L10_Virus {
       crc2.fillStyle = gradient;
       crc2.fill();
 
-
-
       crc2.closePath();
       crc2.restore();
-
     }
 
     move(_timeslice: number): void {
