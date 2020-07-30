@@ -174,7 +174,8 @@ namespace zauberbild {
         let response: Response = await fetch(url + "?savePicture&name=" + nameOfPicture + "&" + query.toString());
         let responseText: string = await response.text();
         console.log(responseText);
-        alert(responseText);
+        alert( responseText);
+      
         /*  console.log("DATA SENT");
      let formData: FormData = new FormData(form);
      let query: URLSearchParams = new URLSearchParams(<any>formData);
@@ -218,19 +219,19 @@ namespace zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let star: Star = new Star(position);
             star.draw(crcStar);
-             console.log("Stern");
+            console.log("Stern");
         }
-    }
 
-    for (let i: number = 0; i < 1; i++) {
-        let positionX: number = 120;
-        let positionY: number = 15;
-        let position: Vector = new Vector(positionX, positionY);
-        let ellipse: Ellipse = new Ellipse(position);
-        ellipse.draw(crcEllipse);
-        console.log("Ellipse gezeichnet");
-    }
+        for (let i: number = 0; i < 1; i++) {
+            let positionX: number = 120;
+            let positionY: number = 15;
+            let position: Vector = new Vector(positionX, positionY);
+            let ellipse: Ellipse = new Ellipse(position);
+            ellipse.draw(crcEllipse);
+            console.log("Ellipse gezeichnet");
+        }
 
+    }
 
     //Symbole auf Canvas zeichnen
 /*   function drawSymbolOnCanvas(_event: MouseEvent): void { */

@@ -58,7 +58,7 @@ export namespace zauberbild {
             //Bild wird in MongoDB Collection gespeichert
             if (splitURL[0] == "/?savePicture") {
                 (await pictures).insertOne(url.query);
-                _response.write("Daten sind in MongoDB angekommen");
+                _response.write("Dein Bild wurde gespeichert!");
  
              }
             /* //Daten aus Datenbank zurückholen

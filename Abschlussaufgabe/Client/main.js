@@ -171,14 +171,14 @@ var zauberbild;
             star.draw(zauberbild.crcStar);
             console.log("Stern");
         }
-    }
-    for (let i = 0; i < 1; i++) {
-        let positionX = 120;
-        let positionY = 15;
-        let position = new zauberbild.Vector(positionX, positionY);
-        let ellipse = new zauberbild.Ellipse(position);
-        ellipse.draw(zauberbild.crcEllipse);
-        console.log("Ellipse gezeichnet");
+        for (let i = 0; i < 1; i++) {
+            let positionX = 120;
+            let positionY = 15;
+            let position = new zauberbild.Vector(positionX, positionY);
+            let ellipse = new zauberbild.Ellipse(position);
+            ellipse.draw(zauberbild.crcEllipse);
+            console.log("Ellipse gezeichnet");
+        }
     }
     //Symbole auf Canvas zeichnen
     /*   function drawSymbolOnCanvas(_event: MouseEvent): void { */
