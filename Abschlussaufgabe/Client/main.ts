@@ -218,7 +218,7 @@ namespace zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let star: Star = new Star(position);
             star.draw(crcStar);
-            // console.log("Sternchen ist hier!");
+             console.log("Stern");
         }
     }
 

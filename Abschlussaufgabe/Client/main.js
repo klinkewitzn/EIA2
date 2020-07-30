@@ -169,7 +169,7 @@ var zauberbild;
             let position = new zauberbild.Vector(positionX, positionY);
             let star = new zauberbild.Star(position);
             star.draw(zauberbild.crcStar);
-            // console.log("Sternchen ist hier!");
+            console.log("Stern");
         }
     }
     for (let i = 0; i < 1; i++) {
