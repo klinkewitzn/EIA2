@@ -6,13 +6,9 @@ var zauberbild;
             if (_position)
                 this.position = _position.copy();
             this.active = false;
-            /* this.color = "green"; */
             this.velocity = new zauberbild.Vector(0, 0);
             this.velocity.random(50, 100);
         }
-        /*   changeColor(_color: string): void {
-              this.color = _color;
-          } */
         rotate(_factor) {
             this.rotation = _factor;
         }

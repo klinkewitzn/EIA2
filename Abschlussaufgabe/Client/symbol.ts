@@ -12,17 +12,14 @@ namespace zauberbild {
                 this.position = _position.copy();
 
             this.active = false;
-            /* this.color = "green"; */
-
             this.velocity = new Vector(0, 0);
             this.velocity.random(50, 100);
         }
 
-        abstract draw(context: CanvasRenderingContext2D): void;
+        abstract draw(crc: CanvasRenderingContext2D): void;
 
-      /*   changeColor(_color: string): void {
-            this.color = _color;
-        } */
+
+        
 
         rotate(_factor: number): void {
             this.rotation = _factor;
