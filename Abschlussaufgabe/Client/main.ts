@@ -238,7 +238,7 @@ namespace zauberbild {
             dataPictures.push(imgColor);
             console.log(dataPictures);
         }
-        let dataServer: string = JSON.stringify(dataPictures); //wandelt Arraxy um, damit der Server es lesen kann 
+        let dataServer: string = JSON.stringify(dataPictures); //wandelt Array um, damit der Server es lesen kann 
         let query: URLSearchParams = new URLSearchParams(dataServer);
         let response: Response = await fetch(url + "?safeImage&name=" + "A" + nameOfPicture + "&" + query.toString());
         let responseText: string = await response.text();

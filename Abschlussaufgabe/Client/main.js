@@ -188,7 +188,7 @@ var zauberbild;
             dataPictures.push(imgColor);
             console.log(dataPictures);
         }
-        let dataServer = JSON.stringify(dataPictures); //wandelt Arraxy um, damit der Server es lesen kann 
+        let dataServer = JSON.stringify(dataPictures); //wandelt Array um, damit der Server es lesen kann 
         let query = new URLSearchParams(dataServer);
         let response = await fetch(url + "?safeImage&name=" + "A" + nameOfPicture + "&" + query.toString());
         let responseText = await response.text();
