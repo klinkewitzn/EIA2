@@ -1,7 +1,7 @@
 namespace zauberbild {
 
     export abstract class Symbol {
-        color: string;
+       /*  color: string; */
         rotation: number;
         velocity: Vector;
         position: Vector;
@@ -12,7 +12,7 @@ namespace zauberbild {
                 this.position = _position.copy();
 
             this.active = false;
-            this.color = "green";
+            /* this.color = "green"; */
 
             this.velocity = new Vector(0, 0);
             this.velocity.random(50, 100);
@@ -20,9 +20,9 @@ namespace zauberbild {
 
         abstract draw(context: CanvasRenderingContext2D): void;
 
-        changeColor(_color: string): void {
+      /*   changeColor(_color: string): void {
             this.color = _color;
-        }
+        } */
 
         rotate(_factor: number): void {
             this.rotation = _factor;

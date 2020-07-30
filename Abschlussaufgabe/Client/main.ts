@@ -39,7 +39,7 @@ namespace zauberbild {
         canvasStar = <HTMLCanvasElement>document.querySelector("#canvasStar");
         canvasHeart = <HTMLCanvasElement>document.querySelector("#canvasHeart");
         canvasMoon = <HTMLCanvasElement>document.querySelector("#canvasMoon");
-        canvasEllipse = <HTMLCanvasElement>document.querySelector("#canvasFlash");
+        canvasEllipse = <HTMLCanvasElement>document.querySelector("#canvasEllipse");
 
         /*         canvasMain.addEventListener("click", drawSymbolOnCanvas);
                 canvasStar.addEventListener("click", getID);
@@ -53,16 +53,13 @@ namespace zauberbild {
         crcMoon = <CanvasRenderingContext2D>canvasMoon.getContext("2d");
         crcEllipse = <CanvasRenderingContext2D>canvasEllipse.getContext("2d");
 
-        drawStar();
-        drawMoon();
-        drawHeart();
-        drawEllipse();
+        createSymbols();
+
+        //drawStar();
         drawDefaultCanvas();
 
         format.addEventListener("change", canvasSize);
         backgroundColor.addEventListener("change", chooseBackground);
-        /*         createSymbols(); */
-
     }
 
     /*
@@ -80,72 +77,6 @@ namespace zauberbild {
         crc2.fillRect(0, 0, 400, 400);
 
     }
-    function drawEllipse() {
-        crcEllipse.beginPath();
-        crcEllipse.translate(150, 73)
-        crcEllipse.scale(0.7, 0.6)
-        crcEllipse.arc(0, 0, 100, 0, Math.PI * 2, true);
-        crcEllipse.fillStyle = "HSL(0,53%,58%)"
-        crcEllipse.fill();
-    }
-    function drawStar() {
-        crcStar.beginPath();
-        crcStar.save();
-        crcStar.translate(20, 10);
-        crcStar.scale(1.2, 0.6);
-        //cxt.scale(0.4, 0.4);
-        crcStar.moveTo(108, 0.0);
-        crcStar.lineTo(141, 70);
-        crcStar.lineTo(218, 78.3);
-        crcStar.lineTo(162, 131);
-        crcStar.lineTo(175, 205);
-        crcStar.lineTo(108, 170);
-        crcStar.lineTo(41.2, 205);
-        crcStar.lineTo(55, 131);
-        crcStar.lineTo(1, 78);
-        crcStar.lineTo(75, 68);
-        crcStar.lineTo(108, 0);
-        crcStar.closePath();
-        crcStar.fillStyle = "HSL(0,53%,58%)";
-        crcStar.fill();
-        crcStar.restore();
-    }
-    function drawMoon() {
-        crcMoon.save();
-        crcMoon.scale(1.1, 1.3);
-        //cxt.scale(0.4, 0.8);
-        //crcMoon.translate(this.position.x, this.position.y);
-        //crcMoon.fillStyle = this.color;
-        //context.lineWidth = 5;
-        crcMoon.beginPath();
-        crcMoon.bezierCurveTo(170, 0, -100, 60, 170, 110);
-        crcMoon.bezierCurveTo(170, 100, 90, 70, 170, 0);
-        crcMoon.fillStyle = "HSL(0,53%,58%)";
-        crcMoon.fill();
-        crcMoon.restore();
-    }
-    function drawHeart() {
-        crcHeart.save();
-        crcHeart.scale(1.2, 1.2);
-        /*  crcHeart.translate(this.position.x, this.position.y); */
-        crcHeart.beginPath();
-        crcHeart.moveTo(75, 40);
-        crcHeart.bezierCurveTo(75, 37, 70, 25, 50, 25);
-        crcHeart.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
-        crcHeart.bezierCurveTo(20, 80, 40, 102, 75, 120);
-        crcHeart.bezierCurveTo(110, 102, 130, 80, 130, 62.5);
-        crcHeart.bezierCurveTo(130, 62.5, 130, 25, 100, 25);
-        crcHeart.bezierCurveTo(85, 25, 75, 37, 75, 40);
-        crcHeart.fillStyle = "HSL(0,53%,58%)";
-        crcHeart.fill();
-
-        crcHeart.restore();
-    }
-
-
-
-
-
 
     function canvasSize(_event: Event): void {
 
@@ -260,39 +191,45 @@ namespace zauberbild {
   
       } */
 
-    /*     function createSymbols(): void {
-            for (let i: number = 0; i < 1; i++) {
-                let positionX: number = 20;
-                let positionY: number = 15;
-                let position: Vector = new Vector(positionX, positionY);
-                let star: Star = new Star(position);
-                star.draw(crcStar);
-                // console.log("Sternchen ist hier!");
-            }
-            for (let i: number = 0; i < 1; i++) {
-                let positionX: number = 0;
-                let positionY: number = -10;
-                let position: Vector = new Vector(positionX, positionY);
-                let heart: Heart = new Heart(position);
-                heart.draw(crcHeart);
-                // console.log("Herzchen auch :)");
-            }
-            for (let i: number = 0; i < 1; i++) {
-                let positionX: number = 20;
-                let positionY: number = 5;
-                let position: Vector = new Vector(positionX, positionY);
-                let moon: Moon = new Moon(position);
-                moon.draw(crcMoon);
-                // console.log("Mond ebenfalls!");
-            }
-            for (let i: number = 0; i < 1; i++) {
-                let positionX: number = 120;
-                let positionY: number = 15;
-                let position: Vector = new Vector(positionX, positionY);
-                let ellipse: Ellipse = new Ellipse(position);
-                ellipse.draw(crcEllipse);
-                // console.log("Blitz anwesend :D");
-            } */
+    //Symbole werden in ihre Canvas gezeichnet
+    function createSymbols(): void {
+
+        for (let i: number = 0; i < 1; i++) {
+            let positionX: number = 0;
+            let positionY: number = -10;
+            let position: Vector = new Vector(positionX, positionY);
+            let heart: Heart = new Heart(position);
+            heart.draw(crcHeart);
+            console.log("Herz gezeichnet");
+        }
+
+        for (let i: number = 0; i < 1; i++) {
+            let positionX: number = 20;
+            let positionY: number = 5;
+            let position: Vector = new Vector(positionX, positionY);
+            let moon: Moon = new Moon(position);
+            moon.draw(crcMoon);
+            console.log("Mond gezeichnet");
+        }
+
+        for (let i: number = 0; i < 1; i++) {
+            let positionX: number = 20;
+            let positionY: number = 15;
+            let position: Vector = new Vector(positionX, positionY);
+            let star: Star = new Star(position);
+            star.draw(crcStar);
+            // console.log("Sternchen ist hier!");
+        }
+    }
+
+    for (let i: number = 0; i < 1; i++) {
+        let positionX: number = 120;
+        let positionY: number = 15;
+        let position: Vector = new Vector(positionX, positionY);
+        let ellipse: Ellipse = new Ellipse(position);
+        ellipse.draw(crcEllipse);
+        console.log("Ellipse gezeichnet");
+    }
 
 
     //Symbole auf Canvas zeichnen

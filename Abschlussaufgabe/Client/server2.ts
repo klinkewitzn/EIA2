@@ -55,7 +55,7 @@ export namespace zauberbild {
             let splitURL = _request.url.split('&');
             console.log("SPLIT URL" + splitURL[0]);
 
-
+            //Bild wird in MongoDB Collection gespeichert
             if (splitURL[0] == "/?savePicture") {
                 (await pictures).insertOne(url.query);
                 _response.write("Daten sind in MongoDB angekommen");

@@ -70,7 +70,7 @@ background: rgb(232, 240, 241);
     border-style: solid;
     border-color: brown; 
 }
-#canvasFlash{
+#canvasEllipse{
    /*  background-color: rgb(53, 62, 163); */
     width: 87px;
     height: 87px;
