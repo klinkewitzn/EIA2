@@ -1,4 +1,4 @@
-import * as Http from "http";
+/* import * as Http from "http";
 import * as Url from "url";
 import * as Mongo from "mongodb";
 // benötigten module importieren
@@ -100,7 +100,7 @@ export namespace zauberbild {
 
 
        // _response.write("This is my response");
-        _response.end();
+      /*   _response.end();
     }
     function storeOrder(_picture: Picture): void {
         pictures.insert(_picture);
@@ -112,4 +112,4 @@ export namespace zauberbild {
         let jsonString: string = JSON.stringify(_item);
         allPictures.push(jsonString);
     }
-}
+} */ 
