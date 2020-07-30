@@ -181,7 +181,7 @@ var zauberbild;
     }
     async function sendData(_event) {
         console.log("funktion sendData verbunden");
-        let nameOfPicture = prompt("Bennene dein Zauberbild: ");
+        let nameOfPicture = prompt("Benenne dein Zauberbild: ");
         if (nameOfPicture != null) {
             dataPictures.push(nameOfPicture);
             dataPictures.push(canvasMain.width.toString(), canvasMain.height.toString());

@@ -230,7 +230,7 @@ namespace zauberbild {
     }
     async function sendData(_event: Event): Promise<void> {
         console.log("funktion sendData verbunden");
-        let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
+        let nameOfPicture: string | null = prompt("Benenne dein Zauberbild: ");
         if (nameOfPicture != null) {
 
             dataPictures.push(nameOfPicture);
