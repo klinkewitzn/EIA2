@@ -47,12 +47,24 @@ var zauberbild;
             console.log(url.query);
             let splitURL = _request.url.split('&');
             console.log("SPLIT URL" + splitURL[0]);
-            //Daten aus Datenbank zurückholen
-            /* if (_request.url == "/?getPicture=yes") {
+            if (splitURL[0] == "/?saveImage") {
+                pictures = mongoClient.db("Zauberbild").collection("Bilder"); //Daten der collection zuordnen
+                await (pictures).insertOne(url.query);
+                _response.write("Picture saved");
+            }
+            if (splitURL[0] == "/?getImage") { //ausgewählter Titel mit Titel in Datenbank abgleichen und die richtigen
+                //Bilddaten anfordern, raussuchen
+            }
+            if (splitURL[0] == "/?getTitles") { //alle Titel aus Datenbank raussuchen
+                let names = pictures.find({ name: "A" });
+                console.log(names);
+            }
+            /* //Daten aus Datenbank zurückholen
+             if (_request.url == "/?getPicture=yes") {
                 let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
                 let mongoClient: Mongo.MongoClient = new Mongo.MongoClient(databaseUrl, options);
                 await mongoClient.connect();
-                let orders: Mongo.Collection = mongoClient.db("Haushaltshilfe").collection("Orders");
+                let orders: Mongo.Collection = mongoClient.db("Zauberbild").collection("Bilder");
                 let mongoCursor: Mongo.Cursor<any> = orders.find();
                 await mongoCursor.forEach(retrieveOrder);
                 let jsonString: string = JSON.stringify(allOrders);
@@ -63,7 +75,7 @@ var zauberbild;
                 let jsonString: string = JSON.stringify(url.query);
                 _response.write(jsonString);
                 storeOrder(url.query);
-            } */
+            }  */
         }
         _response.end();
     }
