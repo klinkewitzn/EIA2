@@ -3,7 +3,6 @@ import * as Url from "url";//dazu da den url, der mit der request reinkam weiter
 import * as Mongo from "mongodb";
 
 
-
 export namespace zauberbild {
     /* interface Picture {
         [type: string]: string | string[] | undefined;
