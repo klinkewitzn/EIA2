@@ -48,8 +48,7 @@ var zauberbild;
             let splitURL = _request.url.split('&');
             console.log("SPLIT URL" + splitURL[0]);
             if (splitURL[0] == "/?savePicture") {
-                let newCollection = mongoClient.db("Zauberbild").createCollection(splitURL[1]);
-                (await newCollection).insertOne(url.query);
+                (await pictures).insertOne(url.query);
                 _response.write("Daten sind in MongoDB angekommen");
             }
             /* //Daten aus Datenbank zurückholen

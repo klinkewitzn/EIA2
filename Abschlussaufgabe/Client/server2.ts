@@ -57,8 +57,7 @@ export namespace zauberbild {
 
 
             if (splitURL[0] == "/?savePicture") {
-                let newCollection: Promise<Mongo.Collection<any>> = mongoClient.db("Zauberbild").createCollection(splitURL[1]);
-                (await newCollection).insertOne(url.query);
+                (await pictures).insertOne(url.query);
                 _response.write("Daten sind in MongoDB angekommen");
  
              }
