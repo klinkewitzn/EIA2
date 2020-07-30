@@ -190,7 +190,7 @@ var zauberbild;
         }
         let dataServer = JSON.stringify(dataPictures); //wandelt Array um, damit der Server es lesen kann 
         let query = new URLSearchParams(dataServer);
-        let response = await fetch(url + "?savePictures&name=" + nameOfPicture + "&" + query.toString());
+        let response = await fetch(url + "?savePicture&name=" + nameOfPicture + "&" + query.toString());
         let responseText = await response.text();
         console.log(responseText);
         alert(responseText);
