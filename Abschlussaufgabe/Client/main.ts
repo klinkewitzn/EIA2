@@ -240,7 +240,7 @@ namespace zauberbild {
         }
         let dataServer: string = JSON.stringify(dataPictures); //wandelt Array um, damit der Server es lesen kann 
         let query: URLSearchParams = new URLSearchParams(dataServer);
-        let response: Response = await fetch(url + "?safeImage&name=" + "A" + nameOfPicture + "&" + query.toString());
+        let response: Response = await fetch(url + "?safeImage&name=" + nameOfPicture + "&" + query.toString());
         let responseText: string = await response.text();
         console.log(responseText);
         alert(responseText);
