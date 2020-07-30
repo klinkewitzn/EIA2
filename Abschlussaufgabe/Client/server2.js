@@ -47,17 +47,10 @@ var zauberbild;
             console.log(url.query);
             let splitURL = _request.url.split('&');
             console.log("SPLIT URL" + splitURL[0]);
-            if (splitURL[0] == "/?saveImage") {
-                pictures = mongoClient.db("Zauberbild").collection("Bilder"); //Daten der collection zuordnen
-                await (pictures).insertOne(url.query);
-                _response.write("Picture saved");
-            }
-            if (splitURL[0] == "/?getImage") { //ausgewählter Titel mit Titel in Datenbank abgleichen und die richtigen
-                //Bilddaten anfordern, raussuchen
-            }
-            if (splitURL[0] == "/?getTitles") { //alle Titel aus Datenbank raussuchen
-                let names = pictures.find({ name: "A" });
-                console.log(names);
+            if (splitURL[0] == "/?savePicture") {
+                let newCollection = mongoClient.db("Pictures").createCollection(splitURL[1]);
+                (await newCollection).insertOne(url.query);
+                _response.write("Ist angekommen");
             }
             /* //Daten aus Datenbank zurückholen
              if (_request.url == "/?getPicture=yes") {
