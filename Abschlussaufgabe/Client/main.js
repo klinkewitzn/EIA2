@@ -179,6 +179,28 @@ var zauberbild;
         }
         backgroundImage = zauberbild.crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
     }
+    async function sendData(_event) {
+        console.log("funktion sendData verbunden");
+        let nameOfPicture = prompt("Bennene dein Zauberbild: ");
+        if (nameOfPicture != null) {
+            dataPictures.push(nameOfPicture);
+            dataPictures.push(canvasMain.width.toString(), canvasMain.height.toString());
+            dataPictures.push(imgColor);
+            console.log(dataPictures);
+        }
+        let dataServer = JSON.stringify(dataPictures); //wandelt Arraxy um, damit der Server es lesen kann 
+        let query = new URLSearchParams(dataServer);
+        let response = await fetch(url + "?safeImage&name=" + "A" + nameOfPicture + "&" + query.toString());
+        let responseText = await response.text();
+        console.log(responseText);
+        alert(responseText);
+        /*  console.log("DATA SENT");
+     let formData: FormData = new FormData(form);
+     let query: URLSearchParams = new URLSearchParams(<any>formData);
+     let response: Response = await fetch(url + "?" + query.toString());
+     let responseText: string = await response.text();
+     alert("Thank you for your order!" + "\n" + "\n" + "Order Details:" + "\n" + responseText); */
+    }
     //Abspeichern der ID der Symbole
     /*   function getID(_event: MouseEvent): void {
           let target: HTMLElement = <HTMLElement>_event.target;
@@ -219,28 +241,6 @@ var zauberbild;
                 ellipse.draw(crcEllipse);
                 // console.log("Blitz anwesend :D");
             } */
-    async function sendData(_event) {
-        console.log("funktion sendData verbunden");
-        let nameOfPicture = prompt("Bennene dein Zauberbild: ");
-        if (nameOfPicture != null) {
-            dataPictures.push(nameOfPicture);
-            dataPictures.push(canvasMain.width.toString(), canvasMain.height.toString());
-            dataPictures.push(imgColor);
-            console.log(dataPictures);
-        }
-        let dataServer = JSON.stringify(dataPictures); //wandelt Arraxy um, damit der Server es lesen kann 
-        let query = new URLSearchParams(dataServer);
-        let response = await fetch(url + "?safeImage&name=" + "A" + nameOfPicture + "&" + query.toString());
-        let responseText = await response.text();
-        console.log(responseText);
-        alert(responseText);
-        /*  console.log("DATA SENT");
-     let formData: FormData = new FormData(form);
-     let query: URLSearchParams = new URLSearchParams(<any>formData);
-     let response: Response = await fetch(url + "?" + query.toString());
-     let responseText: string = await response.text();
-     alert("Thank you for your order!" + "\n" + "\n" + "Order Details:" + "\n" + responseText); */
-    }
     //Symbole auf Canvas zeichnen
     /*   function drawSymbolOnCanvas(_event: MouseEvent): void { */
     /*  for (let symbol of symbols) {
