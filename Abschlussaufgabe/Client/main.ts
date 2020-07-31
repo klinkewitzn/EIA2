@@ -15,10 +15,9 @@ namespace zauberbild {
     let canvasEllipse: HTMLCanvasElement;
     let backgroundColor: HTMLSelectElement;
     let imgColor: string;
-    /*  let id: string; */
+    let id: string;
     let dataPictures: string[] = [];
-
-    // let symbols: SuperClass[] = [];
+    let symbols: Symbol[] = [];
 
     window.addEventListener("load", handleLoad);
     //handle Load Funktion
@@ -41,11 +40,11 @@ namespace zauberbild {
         canvasMoon = <HTMLCanvasElement>document.querySelector("#canvasMoon");
         canvasEllipse = <HTMLCanvasElement>document.querySelector("#canvasEllipse");
 
-        /*         canvasMain.addEventListener("click", drawSymbolOnCanvas);
-                canvasStar.addEventListener("click", getID);
-                canvasHeart.addEventListener("click", getID);
-                canvasMoon.addEventListener("click", getID);
-                canvasEllipse.addEventListener("click", getID); */
+        canvasMain.addEventListener("click", drawSymbolOnMainCanvas);
+        canvasStar.addEventListener("click", getID);
+        canvasHeart.addEventListener("click", getID);
+        canvasMoon.addEventListener("click", getID);
+        canvasEllipse.addEventListener("click", getID);
 
         crc2 = <CanvasRenderingContext2D>canvasMain.getContext("2d");
         crcStar = <CanvasRenderingContext2D>canvasStar.getContext("2d");
@@ -54,12 +53,12 @@ namespace zauberbild {
         crcEllipse = <CanvasRenderingContext2D>canvasEllipse.getContext("2d");
 
         createSymbols();
-
-        //drawStar();
         drawDefaultCanvas();
 
         format.addEventListener("change", canvasSize);
         backgroundColor.addEventListener("change", chooseBackground);
+
+
     }
 
     /*
@@ -174,23 +173,15 @@ namespace zauberbild {
         let response: Response = await fetch(url + "?savePicture&name=" + nameOfPicture + "&" + query.toString());
         let responseText: string = await response.text();
         console.log(responseText);
-        alert( responseText);
-      
-        /*  console.log("DATA SENT");
-     let formData: FormData = new FormData(form);
-     let query: URLSearchParams = new URLSearchParams(<any>formData);
-     let response: Response = await fetch(url + "?" + query.toString());
-     let responseText: string = await response.text();
-     alert("Thank you for your order!" + "\n" + "\n" + "Order Details:" + "\n" + responseText); */
+        alert(responseText);
 
     }
     //Abspeichern der ID der Symbole
-    /*   function getID(_event: MouseEvent): void {
-          let target: HTMLElement = <HTMLElement>_event.target;
-          let id = target.id;
-          console.log(id);
-  
-      } */
+    function getID(_event: MouseEvent): void {
+        let target: HTMLElement = <HTMLElement>_event.target;
+        let id = target.id;
+        console.log("getting ID of" + id);
+    }
 
     //Symbole werden in ihre Canvas gezeichnet
     function createSymbols(): void {
@@ -201,7 +192,7 @@ namespace zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let heart: Heart = new Heart(position);
             heart.draw(crcHeart);
-            console.log("Herz gezeichnet");
+            //console.log("Herz gezeichnet");
         }
 
         for (let i: number = 0; i < 1; i++) {
@@ -210,7 +201,7 @@ namespace zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let moon: Moon = new Moon(position);
             moon.draw(crcMoon);
-            console.log("Mond gezeichnet");
+           // console.log("Mond gezeichnet");
         }
 
         for (let i: number = 0; i < 1; i++) {
@@ -219,7 +210,7 @@ namespace zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let star: Star = new Star(position);
             star.draw(crcStar);
-            console.log("Stern");
+            //console.log("Stern");
         }
 
         for (let i: number = 0; i < 1; i++) {
@@ -228,25 +219,26 @@ namespace zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let ellipse: Ellipse = new Ellipse(position);
             ellipse.draw(crcEllipse);
-            console.log("Ellipse gezeichnet");
+           // console.log("Ellipse gezeichnet");
         }
 
     }
 
     //Symbole auf Canvas zeichnen
-/*   function drawSymbolOnCanvas(_event: MouseEvent): void { */
-/*  for (let symbol of symbols) {
-     symbol.active = false;
- } */
-/*
+    function drawSymbolOnMainCanvas(_event: MouseEvent): void {
+        console.log("Symbole werden auf Main Canvas gezeichnet");
+        for (let symbol of symbols) {
+            symbol.active = false;
+        }
         switch (id) {
             case "canvasStar":
+                console.log(_event);
                 let starx: number = _event.offsetX;
                 let stary: number = _event.offsetY;
                 let starposition: Vector = new Vector(starx, stary);
                 let star: Star = new Star(starposition);
                 star.draw(crc2);
-                //symbols.push(star);
+                symbols.push(star);
                 id = "";
                 break;
             case "canvasHeart":
@@ -255,7 +247,7 @@ namespace zauberbild {
                 let heartposition: Vector = new Vector(heartx, hearty);
                 let heart: Heart = new Heart(heartposition);
                 heart.draw(crc2);
-                // symbols.push(heart);
+                symbols.push(heart);
                 id = "";
                 break;
             case "canvasMoon":
@@ -264,7 +256,7 @@ namespace zauberbild {
                 let moonposition: Vector = new Vector(moonx, moony);
                 let moon: Moon = new Moon(moonposition);
                 moon.draw(crc2);
-                //symbols.push(moon);
+                symbols.push(moon);
                 id = "";
                 break;
             case "canvasEllipse":
@@ -273,9 +265,10 @@ namespace zauberbild {
                 let ellipseposition: Vector = new Vector(ellipsex, ellipsey);
                 let ellipse: Ellipse = new Ellipse(ellipseposition);
                 ellipse.draw(crc2);
-                // symbols.push(flash);
+                symbols.push(ellipse);
                 id = "";
                 break;
         }
 
-    } */}
+    }
+}

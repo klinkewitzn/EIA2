@@ -10,9 +10,9 @@ var zauberbild;
     let canvasEllipse;
     let backgroundColor;
     let imgColor;
-    /*  let id: string; */
+    let id;
     let dataPictures = [];
-    // let symbols: SuperClass[] = [];
+    let symbols = [];
     window.addEventListener("load", handleLoad);
     //handle Load Funktion
     async function handleLoad(_event) {
@@ -29,18 +29,17 @@ var zauberbild;
         canvasHeart = document.querySelector("#canvasHeart");
         canvasMoon = document.querySelector("#canvasMoon");
         canvasEllipse = document.querySelector("#canvasEllipse");
-        /*         canvasMain.addEventListener("click", drawSymbolOnCanvas);
-                canvasStar.addEventListener("click", getID);
-                canvasHeart.addEventListener("click", getID);
-                canvasMoon.addEventListener("click", getID);
-                canvasEllipse.addEventListener("click", getID); */
+        canvasMain.addEventListener("click", drawSymbolOnMainCanvas);
+        canvasStar.addEventListener("click", getID);
+        canvasHeart.addEventListener("click", getID);
+        canvasMoon.addEventListener("click", getID);
+        canvasEllipse.addEventListener("click", getID);
         zauberbild.crc2 = canvasMain.getContext("2d");
         zauberbild.crcStar = canvasStar.getContext("2d");
         zauberbild.crcHeart = canvasHeart.getContext("2d");
         zauberbild.crcMoon = canvasMoon.getContext("2d");
         zauberbild.crcEllipse = canvasEllipse.getContext("2d");
         createSymbols();
-        //drawStar();
         drawDefaultCanvas();
         format.addEventListener("change", canvasSize);
         backgroundColor.addEventListener("change", chooseBackground);
@@ -131,20 +130,13 @@ var zauberbild;
         let responseText = await response.text();
         console.log(responseText);
         alert(responseText);
-        /*  console.log("DATA SENT");
-     let formData: FormData = new FormData(form);
-     let query: URLSearchParams = new URLSearchParams(<any>formData);
-     let response: Response = await fetch(url + "?" + query.toString());
-     let responseText: string = await response.text();
-     alert("Thank you for your order!" + "\n" + "\n" + "Order Details:" + "\n" + responseText); */
     }
     //Abspeichern der ID der Symbole
-    /*   function getID(_event: MouseEvent): void {
-          let target: HTMLElement = <HTMLElement>_event.target;
-          let id = target.id;
-          console.log(id);
-  
-      } */
+    function getID(_event) {
+        let target = _event.target;
+        let id = target.id;
+        console.log("getting ID of" + id);
+    }
     //Symbole werden in ihre Canvas gezeichnet
     function createSymbols() {
         for (let i = 0; i < 1; i++) {
@@ -153,7 +145,7 @@ var zauberbild;
             let position = new zauberbild.Vector(positionX, positionY);
             let heart = new zauberbild.Heart(position);
             heart.draw(zauberbild.crcHeart);
-            console.log("Herz gezeichnet");
+            //console.log("Herz gezeichnet");
         }
         for (let i = 0; i < 1; i++) {
             let positionX = 20;
@@ -161,7 +153,7 @@ var zauberbild;
             let position = new zauberbild.Vector(positionX, positionY);
             let moon = new zauberbild.Moon(position);
             moon.draw(zauberbild.crcMoon);
-            console.log("Mond gezeichnet");
+            // console.log("Mond gezeichnet");
         }
         for (let i = 0; i < 1; i++) {
             let positionX = 20;
@@ -169,7 +161,7 @@ var zauberbild;
             let position = new zauberbild.Vector(positionX, positionY);
             let star = new zauberbild.Star(position);
             star.draw(zauberbild.crcStar);
-            console.log("Stern");
+            //console.log("Stern");
         }
         for (let i = 0; i < 1; i++) {
             let positionX = 120;
@@ -177,54 +169,54 @@ var zauberbild;
             let position = new zauberbild.Vector(positionX, positionY);
             let ellipse = new zauberbild.Ellipse(position);
             ellipse.draw(zauberbild.crcEllipse);
-            console.log("Ellipse gezeichnet");
+            // console.log("Ellipse gezeichnet");
         }
     }
     //Symbole auf Canvas zeichnen
-    /*   function drawSymbolOnCanvas(_event: MouseEvent): void { */
-    /*  for (let symbol of symbols) {
-         symbol.active = false;
-     } */
-    /*
-            switch (id) {
-                case "canvasStar":
-                    let starx: number = _event.offsetX;
-                    let stary: number = _event.offsetY;
-                    let starposition: Vector = new Vector(starx, stary);
-                    let star: Star = new Star(starposition);
-                    star.draw(crc2);
-                    //symbols.push(star);
-                    id = "";
-                    break;
-                case "canvasHeart":
-                    let heartx: number = _event.offsetX;
-                    let hearty: number = _event.offsetY;
-                    let heartposition: Vector = new Vector(heartx, hearty);
-                    let heart: Heart = new Heart(heartposition);
-                    heart.draw(crc2);
-                    // symbols.push(heart);
-                    id = "";
-                    break;
-                case "canvasMoon":
-                    let moonx: number = _event.offsetX;
-                    let moony: number = _event.offsetY;
-                    let moonposition: Vector = new Vector(moonx, moony);
-                    let moon: Moon = new Moon(moonposition);
-                    moon.draw(crc2);
-                    //symbols.push(moon);
-                    id = "";
-                    break;
-                case "canvasEllipse":
-                    let ellipsex: number = _event.offsetX;
-                    let ellipsey: number = _event.offsetY;
-                    let ellipseposition: Vector = new Vector(ellipsex, ellipsey);
-                    let ellipse: Ellipse = new Ellipse(ellipseposition);
-                    ellipse.draw(crc2);
-                    // symbols.push(flash);
-                    id = "";
-                    break;
-            }
-    
-        } */ 
+    function drawSymbolOnMainCanvas(_event) {
+        console.log("Symbole werden auf Main Canvas gezeichnet");
+        for (let symbol of symbols) {
+            symbol.active = false;
+        }
+        switch (id) {
+            case "canvasStar":
+                console.log(_event);
+                let starx = _event.offsetX;
+                let stary = _event.offsetY;
+                let starposition = new zauberbild.Vector(starx, stary);
+                let star = new zauberbild.Star(starposition);
+                star.draw(zauberbild.crc2);
+                symbols.push(star);
+                id = "";
+                break;
+            case "canvasHeart":
+                let heartx = _event.offsetX;
+                let hearty = _event.offsetY;
+                let heartposition = new zauberbild.Vector(heartx, hearty);
+                let heart = new zauberbild.Heart(heartposition);
+                heart.draw(zauberbild.crc2);
+                symbols.push(heart);
+                id = "";
+                break;
+            case "canvasMoon":
+                let moonx = _event.offsetX;
+                let moony = _event.offsetY;
+                let moonposition = new zauberbild.Vector(moonx, moony);
+                let moon = new zauberbild.Moon(moonposition);
+                moon.draw(zauberbild.crc2);
+                symbols.push(moon);
+                id = "";
+                break;
+            case "canvasEllipse":
+                let ellipsex = _event.offsetX;
+                let ellipsey = _event.offsetY;
+                let ellipseposition = new zauberbild.Vector(ellipsex, ellipsey);
+                let ellipse = new zauberbild.Ellipse(ellipseposition);
+                ellipse.draw(zauberbild.crc2);
+                symbols.push(ellipse);
+                id = "";
+                break;
+        }
+    }
 })(zauberbild || (zauberbild = {}));
 //# sourceMappingURL=main.js.map
