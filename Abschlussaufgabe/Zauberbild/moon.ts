@@ -10,13 +10,21 @@ namespace zauberbild {
 
         draw(crcMoon: CanvasRenderingContext2D): void {
             crcMoon.save();
-            crcMoon.scale(1.1, 1.3);
             crcMoon.beginPath();
-            crcMoon.bezierCurveTo(170, 0, -100, 60, 170, 110);
-            crcMoon.bezierCurveTo(170, 100, 90, 70, 170, 0);
-            crcMoon.closePath();
-            crcMoon.fillStyle = "HSL(0,53%,58%)";
-            crcMoon.fill();
+            crcMoon.translate(this.position.x, this.position.y);
+            crcMoon.scale(0.6, 0.6)
+            /* crcMoon.arc(0, 0, 100, 1, Math.PI * 1, false); */
+            crcMoon.moveTo(40, 60);
+            crcMoon.bezierCurveTo(-91, 60, -91, -60, 40, -60);
+            crcMoon.moveTo(40, 60);
+           crcMoon.bezierCurveTo(-61, 60, -61, -60, 40, -60); 
+           crcMoon.lineWidth = 3;
+            /* crcMoon.closePath(); */
+            crcMoon.strokeStyle = "HSL(268, 100%, 4%)"
+            crcMoon.stroke();
+            
+           /*  crcMoon.fillStyle = "HSL(0,53%,58%)"
+            crcMoon.fill(); */
             crcMoon.restore();
         }
     }

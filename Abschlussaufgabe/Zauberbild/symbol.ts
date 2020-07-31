@@ -18,9 +18,6 @@ namespace zauberbild {
 
         abstract draw(crc: CanvasRenderingContext2D): void;
 
-
-        
-
         rotate(_factor: number): void {
             this.rotation = _factor;
         }

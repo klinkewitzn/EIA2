@@ -3,6 +3,40 @@ window.addEventListener("load",function(){
 let canvas: HTMLCanvasElement =<HTMLCanvasElement>document.querySelector("canvas");
 let crc2: CanvasRenderingContext2D =<CanvasRenderingContext2D>canvas.getContext("2d");
 let kreis2: CanvasRenderingContext2D =<CanvasRenderingContext2D>canvas.getContext("2d");
+let crcStar: CanvasRenderingContext2D =<CanvasRenderingContext2D>canvas.getContext("2d");
+
+crc2.save();
+        crc2.canvas.width = 400;
+        crc2.canvas.height = 400;
+        crc2.fillStyle = "HSL(249, 100%, 88%)";
+        crc2.fill();
+        crc2.fillRect(0, 0, 400, 400);
+        crc2.restore();
+
+        
+        crcStar.beginPath();
+        crcStar.save();
+        crcStar.translate(0, 0);
+        crcStar.scale(1.2, 0.6);
+        //cxt.scale(0.4, 0.4);
+        crcStar.moveTo(108, 0.0);
+        crcStar.lineTo(141, 70);
+        crcStar.lineTo(218, 78.3);
+        crcStar.lineTo(162, 131);
+        crcStar.lineTo(175, 205);
+        crcStar.lineTo(108, 170);
+        crcStar.lineTo(41.2, 205);
+        crcStar.lineTo(55, 131);
+        crcStar.lineTo(1, 78);
+        crcStar.lineTo(75, 68);
+        crcStar.lineTo(108, 0);
+        crcStar.closePath();
+        crcStar.fillStyle = "HSL(0,53%,58%)";
+        crcStar.fill();
+        crcStar.restore();
+
+
+
 
 crc2.fillStyle = "#FF0000";
 crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);

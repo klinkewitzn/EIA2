@@ -19,6 +19,9 @@ namespace zauberbild {
     let dataPictures: string[] = [];
     let symbols: Symbol[] = [];
 
+
+
+
     window.addEventListener("load", handleLoad);
     //handle Load Funktion
     async function handleLoad(_event: Event): Promise<void> {
@@ -39,13 +42,20 @@ namespace zauberbild {
         canvasMoon = <HTMLCanvasElement>document.querySelector("#canvasMoon");
         canvasEllipse = <HTMLCanvasElement>document.querySelector("#canvasEllipse");
 
+        var domRect = canvasMain.getBoundingClientRect();
+        console.log(domRect);
+        let a = canvasMain.getBoundingClientRect().left;
+        console.log(a);
+        let b = canvasMain.getBoundingClientRect().top;
+        console.log(b);
+
         canvasMain.addEventListener("click", drawSymbolOnMainCanvas);
         canvasStar.addEventListener("click", getID);
         canvasHeart.addEventListener("click", getID);
         canvasMoon.addEventListener("click", getID);
         canvasEllipse.addEventListener("click", getID);
 
-       /*  canvasMain.addEventListener("click", deleteSymbol); */
+        /*  canvasMain.addEventListener("click", deleteSymbol); */
 
         crc2 = <CanvasRenderingContext2D>canvasMain.getContext("2d");
         crcStar = <CanvasRenderingContext2D>canvasStar.getContext("2d");
@@ -56,16 +66,26 @@ namespace zauberbild {
         createSymbols();
         drawDefaultCanvas();
 
-        format.addEventListener("change", canvasSize);
+        canvasMain = <HTMLCanvasElement>document.getElementById("mainCanvasDraw");
+        crc2 = <CanvasRenderingContext2D>canvasMain.getContext("2d");
+        backgroundImage = crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
+
+        
+
+        format.addEventListener("change", canvasSize); 0
         backgroundColor.addEventListener("change", chooseBackground);
+
+        console.log(symbols);
     }
 
-   /*  function deleteSymbol();
-    function deleteData(): void {
+    /*  function deleteSymbol();
+     function deleteData(): void {
+ 
+         let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
+         order.innerHTML = "";
+     } */
 
-        let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
-        order.innerHTML = "";
-    } */
+
 
     function drawDefaultCanvas() {
         crc2.save();
@@ -77,6 +97,7 @@ namespace zauberbild {
         crc2.restore();
 
     }
+
 
     function canvasSize(_event: Event): void {
 
@@ -193,18 +214,23 @@ namespace zauberbild {
 
         let positionstar: Vector = new Vector(0, 0);
         let star: Star = new Star(positionstar);
+        crcStar.translate(150, 70);
         star.draw(crcStar);
 
         let positionellipse: Vector = new Vector(0, 0);
         let ellipse: Ellipse = new Ellipse(positionellipse);
+        crcEllipse.scale(3.3, 1.8);
+        crcEllipse.translate(50, 40);
         ellipse.draw(crcEllipse);
 
         let positionheart: Vector = new Vector(0, 0);
         let heart: Heart = new Heart(positionheart);
+        crcHeart.translate(90, 80);
         heart.draw(crcHeart);
 
         let positionmoon: Vector = new Vector(0, 0);
-        let moon: Moon = new Moon (positionmoon);
+        let moon: Moon = new Moon(positionmoon);
+        crcMoon.translate(150, 70);
         moon.draw(crcMoon);
         /* for (let i: number = 0; i < 1; i++) {
             let positionX: number = 0;
@@ -262,6 +288,7 @@ namespace zauberbild {
                 id = "";
                 break;
             case "canvasHeart":
+                console.log(_event);
                 let heartx: number = _event.offsetX;
                 let hearty: number = _event.offsetY;
                 let heartposition: Vector = new Vector(heartx, hearty);
@@ -271,6 +298,7 @@ namespace zauberbild {
                 id = "";
                 break;
             case "canvasMoon":
+                console.log(_event);
                 let moonx: number = _event.offsetX;
                 let moony: number = _event.offsetY;
                 let moonposition: Vector = new Vector(moonx, moony);
@@ -288,7 +316,21 @@ namespace zauberbild {
                 symbols.push(ellipse);
                 id = "";
                 break;
-        }
 
+        }
+        console.log(symbols);
+        update();
     }
+
+    function update(): void {
+        console.log("Funktion update wird durchgeführt");
+
+        crc2.putImageData(backgroundImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder aktualisierung auf den canvas "gelegt"
+
+        for (let symbol of symbols) {   //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
+
+            symbol.move(1 / 30);
+        }
+    }
+
 }
