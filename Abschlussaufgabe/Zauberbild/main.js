@@ -18,9 +18,8 @@ var zauberbild;
     async function handleLoad(_event) {
         console.log("Funktion Handle Load wird ausgeführt");
         let savebutton = document.querySelector("button[type=submit]");
-        /*  let resetbutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button[type=reset]");
-  
-          resetbutton.addEventListener("click", deleteData);*/
+        let deletebutton = document.querySelector("button[type=reset]");
+        /* deletebutton.addEventListener("click", deleteData); */
         savebutton.addEventListener("click", sendData);
         let format = document.querySelector("div#chooseSize");
         backgroundColor = document.querySelector("#chooseColor");
@@ -34,6 +33,7 @@ var zauberbild;
         canvasHeart.addEventListener("click", getID);
         canvasMoon.addEventListener("click", getID);
         canvasEllipse.addEventListener("click", getID);
+        /*  canvasMain.addEventListener("click", deleteSymbol); */
         zauberbild.crc2 = canvasMain.getContext("2d");
         zauberbild.crcStar = canvasStar.getContext("2d");
         zauberbild.crcHeart = canvasHeart.getContext("2d");
@@ -44,12 +44,12 @@ var zauberbild;
         format.addEventListener("change", canvasSize);
         backgroundColor.addEventListener("change", chooseBackground);
     }
-    /*
-        function deleteData(): void {
-    
-            let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
-            order.innerHTML = "";
-        } */
+    /*  function deleteSymbol();
+     function deleteData(): void {
+ 
+         let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
+         order.innerHTML = "";
+     } */
     function drawDefaultCanvas() {
         zauberbild.crc2.save();
         zauberbild.crc2.canvas.width = 400;
@@ -147,38 +147,53 @@ var zauberbild;
     }
     //Symbole werden in ihre Canvas gezeichnet
     function createSymbols() {
-        for (let i = 0; i < 1; i++) {
-            let positionX = 0;
-            let positionY = -10;
-            let position = new zauberbild.Vector(positionX, positionY);
-            let heart = new zauberbild.Heart(position);
-            heart.draw(zauberbild.crcHeart);
+        let positionstar = new zauberbild.Vector(0, 0);
+        let star = new zauberbild.Star(positionstar);
+        star.draw(zauberbild.crcStar);
+        let positionellipse = new zauberbild.Vector(0, 0);
+        let ellipse = new zauberbild.Ellipse(positionellipse);
+        ellipse.draw(zauberbild.crcEllipse);
+        let positionheart = new zauberbild.Vector(0, 0);
+        let heart = new zauberbild.Heart(positionheart);
+        heart.draw(zauberbild.crcHeart);
+        let positionmoon = new zauberbild.Vector(0, 0);
+        let moon = new zauberbild.Moon(positionmoon);
+        moon.draw(zauberbild.crcMoon);
+        /* for (let i: number = 0; i < 1; i++) {
+            let positionX: number = 0;
+            let positionY: number = -10;
+            let position: Vector = new Vector(positionX, positionY);
+            let heart: Heart = new Heart(position);
+            heart.draw(crcHeart);
             //console.log("Herz gezeichnet");
         }
-        for (let i = 0; i < 1; i++) {
-            let positionX = 20;
-            let positionY = 5;
-            let position = new zauberbild.Vector(positionX, positionY);
-            let moon = new zauberbild.Moon(position);
-            moon.draw(zauberbild.crcMoon);
+
+        for (let i: number = 0; i < 1; i++) {
+            let positionX: number = 20;
+            let positionY: number = 5;
+            let position: Vector = new Vector(positionX, positionY);
+            let moon: Moon = new Moon(position);
+            moon.draw(crcMoon);
             // console.log("Mond gezeichnet");
         }
-        for (let i = 0; i < 1; i++) {
-            let positionX = 20;
-            let positionY = 15;
-            let position = new zauberbild.Vector(positionX, positionY);
-            let star = new zauberbild.Star(position);
-            star.draw(zauberbild.crcStar);
+
+        for (let i: number = 0; i < 1; i++) {
+            let positionX: number = 20;
+            let positionY: number = 15;
+            let position: Vector = new Vector(positionX, positionY);
+            let star: Star = new Star(position);
+            star.draw(crcStar);
             //console.log("Stern");
         }
-        for (let i = 0; i < 1; i++) {
-            let positionX = 120;
-            let positionY = 15;
-            let position = new zauberbild.Vector(positionX, positionY);
-            let ellipse = new zauberbild.Ellipse(position);
-            ellipse.draw(zauberbild.crcEllipse);
+
+        for (let i: number = 0; i < 1; i++) {
+            let positionX: number = 120;
+            let positionY: number = 15;
+            let position: Vector = new Vector(positionX, positionY);
+            let ellipse: Ellipse = new Ellipse(position);
+            ellipse.draw(crcEllipse);
             // console.log("Ellipse gezeichnet");
-        }
+        } */
     }
     //Symbole auf Canvas zeichnen
     function drawSymbolOnMainCanvas(_event) {

@@ -1,4 +1,4 @@
-namespace zBlauberbild {
+/* namespace zBlauberbild {
 
     //export let crc2: CanvasRenderingContext2D;
     export let crc3: CanvasRenderingContext2D;
@@ -8,7 +8,7 @@ namespace zBlauberbild {
     let backgroundImage: ImageData; //Variable Image Data deklarieren!!!! (für später: get und put imageData)
 
     /*     let url: string = "https://haushaltshilfe-app.herokuapp.com/";  */
-    let mainCanvas: HTMLCanvasElement;
+   /*  let mainCanvas: HTMLCanvasElement;  */
 
     /*     let dragDrop: boolean = false; 
         let objectDragDrop: Form;  
@@ -16,34 +16,34 @@ namespace zBlauberbild {
        
         let deleteButton: HTMLButtonElement; */
 
-    let backgroundColor: HTMLSelectElement;
+  /*   let backgroundColor: HTMLSelectElement; */
     /*     let circleDiv: HTMLDivElement; 
         let starDiv: HTMLDivElement; 
         let triangleDiv: HTMLDivElement; 
         let heartDiv: HTMLDivElement;  */
-    let backgroundColorSafe: string;
+/*     let backgroundColorSafe: string; */
 
 
     /*   let figures: Form[] = [];
       let safeMagicImage: string[] = [];   */
 
 
-    window.addEventListener("load", handleLoad);
+   /*  window.addEventListener("load", handleLoad);
 
     async function handleLoad(_event: Event): Promise<void> {
 
         console.log("Funktion Handle Load wird ausgeführt");
 
         let format: HTMLDivElement = <HTMLDivElement>document.querySelector("div#chooseFormat");
-        backgroundColor = <HTMLSelectElement>document.querySelector("#chooseColor");
+        backgroundColor = <HTMLSelectElement>document.querySelector("#chooseColor"); */
 
         /* circleDiv = <HTMLDivElement>document.getElementById("symbolOne"); 
         starDiv = <HTMLDivElement>document.getElementById("symbolTwo"); 
         triangleDiv = <HTMLDivElement>document.getElementById("symbolThree"); 
         heartDiv = <HTMLDivElement>document.getElementById("symbolFour");  */
 
-        mainCanvas = <HTMLCanvasElement>document.getElementById("mainCanvasDraw");
-        crc2 = <CanvasRenderingContext2D>mainCanvas.getContext("2d");
+     /*    mainCanvas = <HTMLCanvasElement>document.getElementById("mainCanvasDraw");
+        crc2 = <CanvasRenderingContext2D>mainCanvas.getContext("2d"); */
 
         /* let canvasCircle: HTMLCanvasElement = <HTMLCanvasElement> document.getElementById("circle"); 
         crc3 = <CanvasRenderingContext2D>canvasCircle.getContext("2d"); 
@@ -60,11 +60,11 @@ namespace zBlauberbild {
 
         deleteButton = <HTMLButtonElement>document.getElementById("buttonDelete");
         saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
-
+/* 
         format.addEventListener("change", canvasSize);
         backgroundColor.addEventListener("change", chooseBackground);
 
-
+ */
 
         /*   circleDiv.addEventListener("click", drawSymbolInMainCanvas);
           starDiv.addEventListener("click", drawSymbolInMainCanvas);
@@ -84,7 +84,7 @@ namespace zBlauberbild {
                 mainCanvas.addEventListener("mousemove", dragSymbol);  */
 
 
-    }
+    
 
     /* async function saveImage(_event: MouseEvent): Promise<void> {
 
@@ -132,7 +132,7 @@ namespace zBlauberbild {
 
     } */
 
-    function canvasSize(_event: Event): void {
+  /*   function canvasSize(_event: Event): void {
 
         console.log("Canvas Größe wurde ausgewählt");
         let target: HTMLElement = <HTMLElement>_event.target;
@@ -162,11 +162,11 @@ namespace zBlauberbild {
     function chooseBackground(_event: Event): void {
 
         console.log("choose color");
-
+ */
         /*        console.log(figures);  */
 
 
-        let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
+       /*  let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
         let value: string = target.value;
 
 
@@ -214,7 +214,7 @@ namespace zBlauberbild {
         }
         backgroundImage = crc2.getImageData(0, 0, mainCanvas.width, mainCanvas.height);
 
-    }
+    } */
 
 
 
@@ -500,5 +500,3 @@ namespace zBlauberbild {
 
 
 
-
-}

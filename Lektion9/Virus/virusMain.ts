@@ -10,9 +10,7 @@ namespace L09_Virus {
   export let particleCells: Particle[] = [];
   export let humanCells: HumanCell[] = [];
 
-
   let backgroudnImage: ImageData; //Variable Image Data deklarieren!!!! (für später: get und put imageData)
-
 
   function handleLoad(_event: Event): void {
     let canvas: HTMLCanvasElement | null = document.querySelector("canvas");

@@ -26,9 +26,8 @@ namespace zauberbild {
         console.log("Funktion Handle Load wird ausgeführt");
 
         let savebutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button[type=submit]");
-        /*  let resetbutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button[type=reset]");
-  
-          resetbutton.addEventListener("click", deleteData);*/
+        let deletebutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button[type=reset]");
+        /* deletebutton.addEventListener("click", deleteData); */
         savebutton.addEventListener("click", sendData);
 
         let format: HTMLDivElement = <HTMLDivElement>document.querySelector("div#chooseSize");
@@ -46,6 +45,8 @@ namespace zauberbild {
         canvasMoon.addEventListener("click", getID);
         canvasEllipse.addEventListener("click", getID);
 
+       /*  canvasMain.addEventListener("click", deleteSymbol); */
+
         crc2 = <CanvasRenderingContext2D>canvasMain.getContext("2d");
         crcStar = <CanvasRenderingContext2D>canvasStar.getContext("2d");
         crcHeart = <CanvasRenderingContext2D>canvasHeart.getContext("2d");
@@ -57,16 +58,14 @@ namespace zauberbild {
 
         format.addEventListener("change", canvasSize);
         backgroundColor.addEventListener("change", chooseBackground);
-
-
     }
 
-    /*
-        function deleteData(): void {
-    
-            let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
-            order.innerHTML = "";
-        } */
+   /*  function deleteSymbol();
+    function deleteData(): void {
+
+        let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
+        order.innerHTML = "";
+    } */
 
     function drawDefaultCanvas() {
         crc2.save();
@@ -191,7 +190,22 @@ namespace zauberbild {
     //Symbole werden in ihre Canvas gezeichnet
     function createSymbols(): void {
 
-        for (let i: number = 0; i < 1; i++) {
+        let positionstar: Vector = new Vector(0, 0);
+        let star: Star = new Star(positionstar);
+        star.draw(crcStar);
+
+        let positionellipse: Vector = new Vector(0, 0);
+        let ellipse: Ellipse = new Ellipse(positionellipse);
+        ellipse.draw(crcEllipse);
+
+        let positionheart: Vector = new Vector(0, 0);
+        let heart: Heart = new Heart(positionheart);
+        heart.draw(crcHeart);
+
+        let positionmoon: Vector = new Vector(0, 0);
+        let moon: Moon = new Moon (positionmoon);
+        moon.draw(crcMoon);
+        /* for (let i: number = 0; i < 1; i++) {
             let positionX: number = 0;
             let positionY: number = -10;
             let position: Vector = new Vector(positionX, positionY);
@@ -206,7 +220,7 @@ namespace zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let moon: Moon = new Moon(position);
             moon.draw(crcMoon);
-           // console.log("Mond gezeichnet");
+            // console.log("Mond gezeichnet");
         }
 
         for (let i: number = 0; i < 1; i++) {
@@ -224,8 +238,8 @@ namespace zauberbild {
             let position: Vector = new Vector(positionX, positionY);
             let ellipse: Ellipse = new Ellipse(position);
             ellipse.draw(crcEllipse);
-           // console.log("Ellipse gezeichnet");
-        }
+            // console.log("Ellipse gezeichnet");
+        } */
 
     }
 

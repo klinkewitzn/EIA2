@@ -1,4 +1,4 @@
-namespace L09_Corona {
+/* namespace L09_Corona {
   export class Blood {
     position: Vector;
     velocity: Vector;
@@ -19,7 +19,7 @@ namespace L09_Corona {
 
     draw(): void {
       this.drawCircle(this.position, this.size);
-    }
+    } */
 
     /* update(_timeslice: number): void {
       if (this.position.x > crc.canvas.width)
@@ -38,7 +38,7 @@ namespace L09_Corona {
       this.draw();
     } */
 
-    drawCircle(_position: Vector, _size: number): void {
+   /*  drawCircle(_position: Vector, _size: number): void {
       crc.fillStyle = this.bloodColor;
 
       crc.save();
@@ -56,4 +56,4 @@ namespace L09_Corona {
     let rand: number = (Math.random() * (_max - _min)) + _min;
     return rand;
   }
-}
+} */
