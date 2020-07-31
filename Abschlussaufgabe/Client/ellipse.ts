@@ -9,6 +9,7 @@ namespace zauberbild {
         }
 
         draw(crcEllipse: CanvasRenderingContext2D): void {
+            crcEllipse.save();
             crcEllipse.beginPath();
             crcEllipse.translate(150, 73)
             crcEllipse.scale(0.7, 0.6)
@@ -16,6 +17,7 @@ namespace zauberbild {
             crcEllipse.closePath();
             crcEllipse.fillStyle = "HSL(0,53%,58%)"
             crcEllipse.fill();
+            crcEllipse.restore();
         }
     }
 }

@@ -51,11 +51,13 @@ var zauberbild;
             order.innerHTML = "";
         } */
     function drawDefaultCanvas() {
+        zauberbild.crc2.save();
         zauberbild.crc2.canvas.width = 400;
         zauberbild.crc2.canvas.height = 400;
         zauberbild.crc2.fillStyle = "HSL(249, 100%, 88%)";
         zauberbild.crc2.fill();
         zauberbild.crc2.fillRect(0, 0, 400, 400);
+        zauberbild.crc2.restore();
     }
     function canvasSize(_event) {
         console.log("Canvas Größe wurde ausgewählt");
@@ -63,16 +65,22 @@ var zauberbild;
         let id = target.id;
         switch (id) {
             case "small":
+                zauberbild.crc2.save();
                 zauberbild.crc2.canvas.width = 200;
                 zauberbild.crc2.canvas.height = 200;
+                zauberbild.crc2.restore();
                 break;
             case "middle":
+                zauberbild.crc2.save();
                 zauberbild.crc2.canvas.width = 300;
                 zauberbild.crc2.canvas.height = 300;
+                zauberbild.crc2.restore();
                 break;
             case "big":
+                zauberbild.crc2.save();
                 zauberbild.crc2.canvas.width = 400;
                 zauberbild.crc2.canvas.height = 400;
+                zauberbild.crc2.restore();
                 break;
         }
         zauberbild.crc2.putImageData(backgroundImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder Aktualisierung auf den canvas "gelegt"
@@ -134,7 +142,7 @@ var zauberbild;
     //Abspeichern der ID der Symbole
     function getID(_event) {
         let target = _event.target;
-        let id = target.id;
+        id = target.id;
         console.log("getting ID of" + id);
     }
     //Symbole werden in ihre Canvas gezeichnet

@@ -69,11 +69,13 @@ namespace zauberbild {
         } */
 
     function drawDefaultCanvas() {
+        crc2.save();
         crc2.canvas.width = 400;
         crc2.canvas.height = 400;
         crc2.fillStyle = "HSL(249, 100%, 88%)";
         crc2.fill();
         crc2.fillRect(0, 0, 400, 400);
+        crc2.restore();
 
     }
 
@@ -86,19 +88,22 @@ namespace zauberbild {
         switch (id) {
 
             case "small":
+                crc2.save();
                 crc2.canvas.width = 200;
                 crc2.canvas.height = 200;
-
+                crc2.restore();
                 break;
             case "middle":
+                crc2.save();
                 crc2.canvas.width = 300;
                 crc2.canvas.height = 300;
-
+                crc2.restore();
                 break;
             case "big":
+                crc2.save();
                 crc2.canvas.width = 400;
                 crc2.canvas.height = 400;
-
+                crc2.restore();
                 break;
         }
         crc2.putImageData(backgroundImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder Aktualisierung auf den canvas "gelegt"
@@ -179,7 +184,7 @@ namespace zauberbild {
     //Abspeichern der ID der Symbole
     function getID(_event: MouseEvent): void {
         let target: HTMLElement = <HTMLElement>_event.target;
-        let id = target.id;
+        id = target.id;
         console.log("getting ID of" + id);
     }
 

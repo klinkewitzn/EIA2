@@ -6,6 +6,7 @@ var zauberbild;
             super(_position);
         }
         draw(crcEllipse) {
+            crcEllipse.save();
             crcEllipse.beginPath();
             crcEllipse.translate(150, 73);
             crcEllipse.scale(0.7, 0.6);
@@ -13,6 +14,7 @@ var zauberbild;
             crcEllipse.closePath();
             crcEllipse.fillStyle = "HSL(0,53%,58%)";
             crcEllipse.fill();
+            crcEllipse.restore();
         }
     }
     zauberbild.Ellipse = Ellipse;

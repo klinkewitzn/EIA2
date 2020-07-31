@@ -7,8 +7,8 @@ var zauberbild;
         }
         draw(crcHeart) {
             crcHeart.save();
-            crcHeart.scale(1.2, 1.2);
-            /*  crcHeart.translate(this.position.x, this.position.y); */
+            crcHeart.scale(1.4, 1.2);
+            crcHeart.translate(-10, this.position.y);
             crcHeart.beginPath();
             crcHeart.moveTo(75, 40);
             crcHeart.bezierCurveTo(75, 37, 70, 25, 50, 25);
