@@ -83,6 +83,7 @@ var zauberbild;
                 zauberbild.crc2.restore();
                 break;
         }
+        backgroundImage = zauberbild.crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
         zauberbild.crc2.putImageData(backgroundImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder Aktualisierung auf den canvas "gelegt"
     }
     function chooseBackground(_event) {
@@ -122,6 +123,7 @@ var zauberbild;
                 break;
         }
         backgroundImage = zauberbild.crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
+        zauberbild.crc2.putImageData(backgroundImage, 0, 0);
     }
     async function sendData(_event) {
         console.log("funktion sendData verbunden");

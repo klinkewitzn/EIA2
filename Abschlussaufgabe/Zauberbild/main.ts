@@ -105,6 +105,7 @@ namespace zauberbild {
                 crc2.restore();
                 break;
         }
+        backgroundImage = crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
         crc2.putImageData(backgroundImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder Aktualisierung auf den canvas "gelegt"
     }
 
@@ -160,7 +161,7 @@ namespace zauberbild {
 
         }
         backgroundImage = crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
-
+        crc2.putImageData(backgroundImage, 0, 0);
     }
     async function sendData(_event: Event): Promise<void> {
         console.log("funktion sendData verbunden");
