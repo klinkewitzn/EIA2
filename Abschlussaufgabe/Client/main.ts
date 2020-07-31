@@ -89,20 +89,20 @@ namespace zauberbild {
 
             case "small":
                 crc2.save();
-                crc2.canvas.width = 200;
-                crc2.canvas.height = 200;
-                crc2.restore();
-                break;
-            case "middle":
-                crc2.save();
                 crc2.canvas.width = 300;
                 crc2.canvas.height = 300;
                 crc2.restore();
                 break;
-            case "big":
+            case "middle":
                 crc2.save();
                 crc2.canvas.width = 400;
                 crc2.canvas.height = 400;
+                crc2.restore();
+                break;
+            case "big":
+                crc2.save();
+                crc2.canvas.width = 700;
+                crc2.canvas.height = 800;
                 crc2.restore();
                 break;
         }

@@ -66,20 +66,20 @@ var zauberbild;
         switch (id) {
             case "small":
                 zauberbild.crc2.save();
-                zauberbild.crc2.canvas.width = 200;
-                zauberbild.crc2.canvas.height = 200;
-                zauberbild.crc2.restore();
-                break;
-            case "middle":
-                zauberbild.crc2.save();
                 zauberbild.crc2.canvas.width = 300;
                 zauberbild.crc2.canvas.height = 300;
                 zauberbild.crc2.restore();
                 break;
-            case "big":
+            case "middle":
                 zauberbild.crc2.save();
                 zauberbild.crc2.canvas.width = 400;
                 zauberbild.crc2.canvas.height = 400;
+                zauberbild.crc2.restore();
+                break;
+            case "big":
+                zauberbild.crc2.save();
+                zauberbild.crc2.canvas.width = 700;
+                zauberbild.crc2.canvas.height = 800;
                 zauberbild.crc2.restore();
                 break;
         }
