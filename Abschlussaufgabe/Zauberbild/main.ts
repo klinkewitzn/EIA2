@@ -323,9 +323,10 @@ namespace zauberbild {
 
         }
         console.log(symbols);
-       /*  canvasMain.addEventListener("mousedown", mouseDown);
+        canvasMain.addEventListener("mousedown", mouseDown);
         canvasMain.addEventListener("mousemove", mouseMove);
-        canvasMain.addEventListener("mouseup", mouseUp); */
+        canvasMain.addEventListener("mouseup", mouseUp);
+
     }
 
       function update(): void {
@@ -335,11 +336,12 @@ namespace zauberbild {
           for (let symbol of symbols) {   //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
   
               symbol.move(1 / 30);
-              symbol.draw;
+              symbol.draw(crc2);
           }
       }
 
- /*    function mouseDown(_event: MouseEvent): void {
+ /*      symbols.push({ x:75-15,y:50-15, width:30,height:30,fill:"#444444",isDragging:false});  */
+    function mouseDown(_event: MouseEvent): void {
 
         console.log(symbols + "while mousedown");
         let mousePosX: number = _event.offsetX;
@@ -382,6 +384,6 @@ namespace zauberbild {
 
         }
 
-    } */
+    }
 
 }
