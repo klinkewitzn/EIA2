@@ -286,11 +286,14 @@ namespace zauberbild {
                 break;
 
         }
+       for( let symbol of symbols){
+        console.log(symbol.position);
+        }
         console.log(symbols);
         canvasMain.addEventListener("mousedown", mouseDown);
-        canvasMain.addEventListener("mousemove", mouseMove);
+    /*     canvasMain.addEventListener("mousemove", mouseMove); */
         canvasMain.addEventListener("mouseup", mouseUp);
-
+        
     }
 
     function update(): void {
@@ -300,7 +303,7 @@ namespace zauberbild {
         for (let symbol of symbols) {   //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
 
             symbol.move(1 / 30);
-            symbol.draw(crc2);
+            symbol.draw(crc2);     
         }
     }
 
@@ -316,10 +319,11 @@ namespace zauberbild {
         console.log(offsetX, offsetY);
 
         for (let symbol of symbols) {
-
+            
             if (symbol.position.x - symbol.radius.x < offsetX &&
                 symbol.position.x + symbol.radius.x > offsetX &&
-                symbol.position.y - symbol.radius.y < offsetY && symbol.position.y + symbol.radius.y > offsetY) {
+                symbol.position.y - symbol.radius.y < offsetY && 
+                symbol.position.y + symbol.radius.y > offsetY) {
                 console.log(symbol);
                 dragDrop = true;
                 let index: number = symbols.indexOf(symbol);
@@ -330,7 +334,6 @@ namespace zauberbild {
         /* console.log("array symbols" + symbols + "while mousedown");
         let mousePosX: number = _event.offsetX;
         let mousePosY: number = _event.offsetY;
-
 
         console.log(mousePosX, mousePosY);
 
@@ -349,25 +352,22 @@ namespace zauberbild {
             }
         }
     }
+function mouseUp(_event: MouseEvent): void {
+        if (dragDrop == true) {
+            dragDrop = false;
+           /*  symbols.push(objectDragDrop); */
+        }
 
-    function mouseMove(_event: MouseEvent): void {
+    }
+   /*  function mouseMove(_event: MouseEvent): void {
 
         if (dragDrop == true) {
             objectDragDrop.position.x = _event.offsetX;
             objectDragDrop.position.y = _event.offsetY;
             console.log(objectDragDrop.position.x, objectDragDrop.position.y);
         }
-    }
+    } */
 
-    function mouseUp(_event: MouseEvent): void {
-        if (dragDrop == true) {
-            dragDrop = false;
-
-            symbols.push(objectDragDrop);
-
-
-        }
-
-    }
+    
 
 }

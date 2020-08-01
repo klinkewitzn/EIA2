@@ -229,9 +229,12 @@ var zauberbild;
                 // id = "";
                 break;
         }
+        for (let symbol of symbols) {
+            console.log(symbol.position);
+        }
         console.log(symbols);
         canvasMain.addEventListener("mousedown", mouseDown);
-        canvasMain.addEventListener("mousemove", mouseMove);
+        /*     canvasMain.addEventListener("mousemove", mouseMove); */
         canvasMain.addEventListener("mouseup", mouseUp);
     }
     function update() {
@@ -253,7 +256,8 @@ var zauberbild;
         for (let symbol of symbols) {
             if (symbol.position.x - symbol.radius.x < offsetX &&
                 symbol.position.x + symbol.radius.x > offsetX &&
-                symbol.position.y - symbol.radius.y < offsetY && symbol.position.y + symbol.radius.y > offsetY) {
+                symbol.position.y - symbol.radius.y < offsetY &&
+                symbol.position.y + symbol.radius.y > offsetY) {
                 console.log(symbol);
                 dragDrop = true;
                 let index = symbols.indexOf(symbol);
@@ -263,7 +267,6 @@ var zauberbild;
                 /* console.log("array symbols" + symbols + "while mousedown");
                 let mousePosX: number = _event.offsetX;
                 let mousePosY: number = _event.offsetY;
-        
         
                 console.log(mousePosX, mousePosY);
         
@@ -282,18 +285,19 @@ var zauberbild;
             }
         }
     }
-    function mouseMove(_event) {
-        if (dragDrop == true) {
-            objectDragDrop.position.x = _event.offsetX;
-            objectDragDrop.position.y = _event.offsetY;
-            console.log(objectDragDrop.position.x, objectDragDrop.position.y);
-        }
-    }
     function mouseUp(_event) {
         if (dragDrop == true) {
             dragDrop = false;
-            symbols.push(objectDragDrop);
+            /*  symbols.push(objectDragDrop); */
         }
     }
+    /*  function mouseMove(_event: MouseEvent): void {
+ 
+         if (dragDrop == true) {
+             objectDragDrop.position.x = _event.offsetX;
+             objectDragDrop.position.y = _event.offsetY;
+             console.log(objectDragDrop.position.x, objectDragDrop.position.y);
+         }
+     } */
 })(zauberbild || (zauberbild = {}));
 //# sourceMappingURL=main.js.map
