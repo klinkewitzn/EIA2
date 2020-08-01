@@ -181,41 +181,6 @@ var zauberbild;
         let moon = new zauberbild.Moon(positionmoon);
         zauberbild.crcMoon.translate(150, 70);
         moon.draw(zauberbild.crcMoon);
-        /* for (let i: number = 0; i < 1; i++) {
-            let positionX: number = 0;
-            let positionY: number = -10;
-            let position: Vector = new Vector(positionX, positionY);
-            let heart: Heart = new Heart(position);
-            heart.draw(crcHeart);
-            //console.log("Herz gezeichnet");
-        }
-
-        for (let i: number = 0; i < 1; i++) {
-            let positionX: number = 20;
-            let positionY: number = 5;
-            let position: Vector = new Vector(positionX, positionY);
-            let moon: Moon = new Moon(position);
-            moon.draw(crcMoon);
-            // console.log("Mond gezeichnet");
-        }
-
-        for (let i: number = 0; i < 1; i++) {
-            let positionX: number = 20;
-            let positionY: number = 15;
-            let position: Vector = new Vector(positionX, positionY);
-            let star: Star = new Star(position);
-            star.draw(crcStar);
-            //console.log("Stern");
-        }
-
-        for (let i: number = 0; i < 1; i++) {
-            let positionX: number = 120;
-            let positionY: number = 15;
-            let position: Vector = new Vector(positionX, positionY);
-            let ellipse: Ellipse = new Ellipse(position);
-            ellipse.draw(crcEllipse);
-            // console.log("Ellipse gezeichnet");
-        } */
     }
     //Symbole auf Canvas zeichnen
     function drawSymbolOnMainCanvas(_event) {
@@ -232,7 +197,7 @@ var zauberbild;
                 let star = new zauberbild.Star(starposition);
                 star.draw(zauberbild.crc2);
                 symbols.push(star);
-                id = "star";
+                //id = "";
                 break;
             case "canvasHeart":
                 console.log(_event);
@@ -242,7 +207,7 @@ var zauberbild;
                 let heart = new zauberbild.Heart(heartposition);
                 heart.draw(zauberbild.crc2);
                 symbols.push(heart);
-                id = "heart";
+                // id = "";
                 break;
             case "canvasMoon":
                 console.log(_event);
@@ -252,7 +217,7 @@ var zauberbild;
                 let moon = new zauberbild.Moon(moonposition);
                 moon.draw(zauberbild.crc2);
                 symbols.push(moon);
-                id = "moon";
+                // id = "";
                 break;
             case "canvasEllipse":
                 let ellipsex = _event.offsetX;
@@ -261,7 +226,7 @@ var zauberbild;
                 let ellipse = new zauberbild.Ellipse(ellipseposition);
                 ellipse.draw(zauberbild.crc2);
                 symbols.push(ellipse);
-                id = "ellipse";
+                // id = "";
                 break;
         }
         console.log(symbols);
@@ -279,21 +244,41 @@ var zauberbild;
     }
     /*      symbols.push({ x:75-15,y:50-15, width:30,height:30,fill:"#444444",isDragging:false});  */
     function mouseDown(_event) {
-        console.log("array symbols" + symbols + "while mousedown");
-        let mousePosX = _event.offsetX;
-        let mousePosY = _event.offsetY;
-        console.log(mousePosX, mousePosY);
+        let mousePosY = _event.clientY;
+        let mousePosX = _event.clientX;
+        let canvasRect = canvasMain.getBoundingClientRect();
+        let offsetX = mousePosX - canvasRect.left;
+        let offsetY = mousePosY - canvasRect.top;
+        console.log(offsetX, offsetY);
         for (let symbol of symbols) {
-            if (symbol.position.x - symbol.radius.x < mousePosX &&
-                symbol.position.x + symbol.radius.x > mousePosX &&
-                symbol.position.y - symbol.radius.y < mousePosY &&
-                symbol.position.y + symbol.radius.y > mousePosY) {
+            if (symbol.position.x - symbol.radius.x < offsetX &&
+                symbol.position.x + symbol.radius.x > offsetX &&
+                symbol.position.y - symbol.radius.y < offsetY && symbol.position.y + symbol.radius.y > offsetY) {
                 console.log(symbol);
                 dragDrop = true;
                 let index = symbols.indexOf(symbol);
                 symbols.splice(index, 1);
                 objectDragDrop = symbol;
                 return;
+                /* console.log("array symbols" + symbols + "while mousedown");
+                let mousePosX: number = _event.offsetX;
+                let mousePosY: number = _event.offsetY;
+        
+        
+                console.log(mousePosX, mousePosY);
+        
+                for (let symbol of symbols) {
+        
+                    if (symbol.position.x - symbol.radius.x < mousePosX &&
+                        symbol.position.x + symbol.radius.x > mousePosX &&
+                        symbol.position.y - symbol.radius.y < mousePosY &&
+                        symbol.position.y + symbol.radius.y > mousePosY) {
+                        console.log(symbol);
+                        dragDrop = true;
+                        let index: number = symbols.indexOf(symbol);
+                        symbols.splice(index, 1);
+                        objectDragDrop = symbol;
+                        return; */
             }
         }
     }
