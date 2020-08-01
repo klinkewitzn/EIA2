@@ -40,9 +40,6 @@ var zauberbild;
         format.addEventListener("change", canvasSize);
         0;
         backgroundColor.addEventListener("change", chooseBackground);
-        /* canvasMain.addEventListener("mousedown", mouseDown);
-        canvasMain.addEventListener("mousemove", mouseMove);
-        canvasMain.addEventListener("mouseup", mouseUp); */
         canvasMain.addEventListener("click", drawSymbolOnMainCanvas);
         canvasStar.addEventListener("click", getID);
         canvasHeart.addEventListener("click", getID);
@@ -268,54 +265,61 @@ var zauberbild;
                 break;
         }
         console.log(symbols);
+        /*  canvasMain.addEventListener("mousedown", mouseDown);
+         canvasMain.addEventListener("mousemove", mouseMove);
+         canvasMain.addEventListener("mouseup", mouseUp); */
     }
     function update() {
         console.log("Funktion update wird durchgeführt");
         zauberbild.crc2.putImageData(backgroundImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder aktualisierung auf den canvas "gelegt"
         for (let symbol of symbols) { //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
             symbol.move(1 / 30);
+            symbol.draw;
         }
     }
-    /*  function mouseDown(_event: MouseEvent): void {
- 
-         console.log(symbols + "while mousedown");
-         let mousePosX: number = _event.offsetX;
-         let mousePosY: number = _event.offsetY;
- 
- 
-         console.log(mousePosX, mousePosY);
- 
-         for (let symbol of symbols) {
- 
-             if (symbol.position.x - symbol.radius.x < mousePosX &&
-                 symbol.position.x + symbol.radius.x > mousePosY &&
-                 symbol.position.y - symbol.radius.y < mousePosY && symbol.position.y + symbol.radius.y > mousePosY) {
-                 console.log(symbol);
-                 dragDrop = true;
-                 let index: number = symbols.indexOf(symbol);
-                 symbols.splice(index, 1);
-                 objectDragDrop = symbol;
-                 return;
-             }
-         }
-     } */
-    /*  function mouseMove(_event: MouseEvent): void {
- 
- 
-         if (dragDrop == true) {
-             objectDragDrop.position.x = _event.clientX - canvasMain.getBoundingClientRect().left;
-             objectDragDrop.position.y = _event.clientY - canvasMain.getBoundingClientRect().top;
-             console.log(objectDragDrop.position.x, objectDragDrop.position.y);
-         }
-     } */
-    /*  function mouseUp(_event: MouseEvent): void {
-         if (dragDrop == true) {
-             dragDrop = false;
- 
-             symbols.push(objectDragDrop);
- 
-         }
- 
-     } */
+    /*    function mouseDown(_event: MouseEvent): void {
+   
+           console.log(symbols + "while mousedown");
+           let mousePosX: number = _event.offsetX;
+           let mousePosY: number = _event.offsetY;
+   
+   
+           console.log(mousePosX, mousePosY);
+   
+           for (let symbol of symbols) {
+   
+               if (symbol.position.x - symbol.radius.x < mousePosX &&
+                   symbol.position.x + symbol.radius.x > mousePosY &&
+                   symbol.position.y - symbol.radius.y < mousePosY &&
+                   symbol.position.y + symbol.radius.y > mousePosY) {
+                   console.log(symbol);
+                   dragDrop = true;
+                   let index: number = symbols.indexOf(symbol);
+                   symbols.splice(index, 1);
+                   objectDragDrop = symbol;
+                   return;
+               }
+           }
+       }
+   
+       function mouseMove(_event: MouseEvent): void {
+   
+           if (dragDrop == true) {
+               objectDragDrop.position.x = _event.offsetX;
+               objectDragDrop.position.y = _event.offsetY;
+               console.log(objectDragDrop.position.x, objectDragDrop.position.y);
+           }
+       }
+   
+       function mouseUp(_event: MouseEvent): void {
+           if (dragDrop == true) {
+               dragDrop = false;
+   
+               symbols.push(objectDragDrop);
+   
+   
+           }
+   
+       } */
 })(zauberbild || (zauberbild = {}));
 //# sourceMappingURL=main.js.map
