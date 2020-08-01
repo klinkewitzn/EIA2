@@ -232,7 +232,7 @@ var zauberbild;
                 let star = new zauberbild.Star(starposition);
                 star.draw(zauberbild.crc2);
                 symbols.push(star);
-                id = "";
+                id = "star";
                 break;
             case "canvasHeart":
                 console.log(_event);
@@ -242,7 +242,7 @@ var zauberbild;
                 let heart = new zauberbild.Heart(heartposition);
                 heart.draw(zauberbild.crc2);
                 symbols.push(heart);
-                id = "";
+                id = "heart";
                 break;
             case "canvasMoon":
                 console.log(_event);
@@ -252,7 +252,7 @@ var zauberbild;
                 let moon = new zauberbild.Moon(moonposition);
                 moon.draw(zauberbild.crc2);
                 symbols.push(moon);
-                id = "";
+                id = "moon";
                 break;
             case "canvasEllipse":
                 let ellipsex = _event.offsetX;
@@ -261,7 +261,7 @@ var zauberbild;
                 let ellipse = new zauberbild.Ellipse(ellipseposition);
                 ellipse.draw(zauberbild.crc2);
                 symbols.push(ellipse);
-                id = "";
+                id = "ellipse";
                 break;
         }
         console.log(symbols);
@@ -285,7 +285,7 @@ var zauberbild;
         console.log(mousePosX, mousePosY);
         for (let symbol of symbols) {
             if (symbol.position.x - symbol.radius.x < mousePosX &&
-                symbol.position.x + symbol.radius.x > mousePosY &&
+                symbol.position.x + symbol.radius.x > mousePosX &&
                 symbol.position.y - symbol.radius.y < mousePosY &&
                 symbol.position.y + symbol.radius.y > mousePosY) {
                 console.log(symbol);

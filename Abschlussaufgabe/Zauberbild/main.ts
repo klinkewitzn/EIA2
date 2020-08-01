@@ -289,7 +289,7 @@ namespace zauberbild {
                 let star: Star = new Star(starposition);
                 star.draw(crc2);
                 symbols.push(star);
-                id = "";
+                id = "star";
                 break;
             case "canvasHeart":
                 console.log(_event);
@@ -299,7 +299,7 @@ namespace zauberbild {
                 let heart: Heart = new Heart(heartposition);
                 heart.draw(crc2);
                 symbols.push(heart);
-                id = "";
+                id = "heart";
                 break;
             case "canvasMoon":
                 console.log(_event);
@@ -309,7 +309,7 @@ namespace zauberbild {
                 let moon: Moon = new Moon(moonposition);
                 moon.draw(crc2);
                 symbols.push(moon);
-                id = "";
+                id = "moon";
                 break;
             case "canvasEllipse":
                 let ellipsex: number = _event.offsetX;
@@ -318,7 +318,7 @@ namespace zauberbild {
                 let ellipse: Ellipse = new Ellipse(ellipseposition);
                 ellipse.draw(crc2);
                 symbols.push(ellipse);
-                id = "";
+                id = "ellipse";
                 break;
 
         }
@@ -353,7 +353,7 @@ namespace zauberbild {
         for (let symbol of symbols) {
 
             if (symbol.position.x - symbol.radius.x < mousePosX &&
-                symbol.position.x + symbol.radius.x > mousePosY &&
+                symbol.position.x + symbol.radius.x > mousePosX &&
                 symbol.position.y - symbol.radius.y < mousePosY &&
                 symbol.position.y + symbol.radius.y > mousePosY) {
                 console.log(symbol);
