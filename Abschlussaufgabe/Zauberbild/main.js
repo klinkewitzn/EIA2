@@ -279,7 +279,7 @@ var zauberbild;
     }
     /*      symbols.push({ x:75-15,y:50-15, width:30,height:30,fill:"#444444",isDragging:false});  */
     function mouseDown(_event) {
-        console.log(symbols + "while mousedown");
+        console.log("array symbols" + symbols + "while mousedown");
         let mousePosX = _event.offsetX;
         let mousePosY = _event.offsetY;
         console.log(mousePosX, mousePosY);

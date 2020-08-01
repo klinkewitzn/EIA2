@@ -52,7 +52,7 @@ namespace zauberbild {
         format.addEventListener("change", canvasSize); 0
         backgroundColor.addEventListener("change", chooseBackground);
 
-       
+
         canvasMain.addEventListener("click", drawSymbolOnMainCanvas);
         canvasStar.addEventListener("click", getID);
         canvasHeart.addEventListener("click", getID);
@@ -75,7 +75,7 @@ namespace zauberbild {
         backgroundImage = crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
 
 
-            setInterval(update, 50);
+        setInterval(update, 50);
 
 
         console.log(symbols);
@@ -329,21 +329,21 @@ namespace zauberbild {
 
     }
 
-      function update(): void {
-          console.log("Funktion update wird durchgeführt");
-  
-          crc2.putImageData(backgroundImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder aktualisierung auf den canvas "gelegt"
-          for (let symbol of symbols) {   //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
-  
-              symbol.move(1 / 30);
-              symbol.draw(crc2);
-          }
-      }
+    function update(): void {
+        console.log("Funktion update wird durchgeführt");
 
- /*      symbols.push({ x:75-15,y:50-15, width:30,height:30,fill:"#444444",isDragging:false});  */
+        crc2.putImageData(backgroundImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder aktualisierung auf den canvas "gelegt"
+        for (let symbol of symbols) {   //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
+
+            symbol.move(1 / 30);
+            symbol.draw(crc2);
+        }
+    }
+
+    /*      symbols.push({ x:75-15,y:50-15, width:30,height:30,fill:"#444444",isDragging:false});  */
     function mouseDown(_event: MouseEvent): void {
 
-        console.log(symbols + "while mousedown");
+        console.log("array symbols" + symbols + "while mousedown");
         let mousePosX: number = _event.offsetX;
         let mousePosY: number = _event.offsetY;
 
