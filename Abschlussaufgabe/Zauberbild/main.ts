@@ -253,7 +253,7 @@ namespace zauberbild {
                 let star: Star = new Star(starposition);
                 star.draw(crc2);
                 symbols.push(star);
-                //id = "";
+                id = "";
                 break;
             case "canvasHeart":
                 console.log(_event);
@@ -263,7 +263,7 @@ namespace zauberbild {
                 let heart: Heart = new Heart(heartposition);
                 heart.draw(crc2);
                 symbols.push(heart);
-                // id = "";
+                id = "";
                 break;
             case "canvasMoon":
                 console.log(_event);
@@ -273,7 +273,7 @@ namespace zauberbild {
                 let moon: Moon = new Moon(moonposition);
                 moon.draw(crc2);
                 symbols.push(moon);
-                // id = "";
+                id = "";
                 break;
             case "canvasEllipse":
                 let ellipsex: number = _event.offsetX;
@@ -282,7 +282,7 @@ namespace zauberbild {
                 let ellipse: Ellipse = new Ellipse(ellipseposition);
                 ellipse.draw(crc2);
                 symbols.push(ellipse);
-                // id = "";
+                id = "";
                 break;
 
         }
@@ -292,7 +292,7 @@ namespace zauberbild {
         console.log(symbols);
         canvasMain.addEventListener("mousedown", mouseDown);
         canvasMain.addEventListener("mousemove", mouseMove);
-        canvasMain.addEventListener("mouseup", mouseUp);
+        canvasMain.addEventListener("mouseup", mouseUp); 
 
     }
 
@@ -308,7 +308,7 @@ namespace zauberbild {
     }
 
     /*      symbols.push({ x:75-15,y:50-15, width:30,height:30,fill:"#444444",isDragging:false});  */
-    function mouseDown(_event: MouseEvent): void {
+     function mouseDown(_event: MouseEvent): void {
 
         let mousePosY: number = _event.clientY;
         let mousePosX: number = _event.clientX;
@@ -317,7 +317,7 @@ namespace zauberbild {
         let offsetX: number = mousePosX - canvasRect.left;
         let offsetY: number = mousePosY - canvasRect.top;
         console.log(offsetX, offsetY);
-
+ 
         for (let symbol of symbols) {
 
             if (symbol.position.x - symbol.radius.x < offsetX &&
@@ -330,7 +330,7 @@ namespace zauberbild {
                 symbols.splice(index, 1);
                 objectDragDrop = symbol;
                 return;
-
+ 
                 /* console.log("array symbols" + symbols + "while mousedown");
                 let mousePosX: number = _event.offsetX;
                 let mousePosY: number = _event.offsetY;
@@ -349,10 +349,10 @@ namespace zauberbild {
                         symbols.splice(index, 1);
                         objectDragDrop = symbol;
                         return; */
-            }
+             }
         }
-    }
-    function mouseUp(_event: MouseEvent): void {
+    } 
+     function mouseUp(_event: MouseEvent): void {
         if (dragDrop == true) {
             dragDrop = false;
             symbols.push(objectDragDrop);
@@ -368,6 +368,6 @@ namespace zauberbild {
         }
     }
 
-
+ 
 
 }
