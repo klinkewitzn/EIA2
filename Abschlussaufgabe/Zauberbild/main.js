@@ -234,7 +234,7 @@ var zauberbild;
         }
         console.log(symbols);
         canvasMain.addEventListener("mousedown", mouseDown);
-        /*     canvasMain.addEventListener("mousemove", mouseMove); */
+        canvasMain.addEventListener("mousemove", mouseMove);
         canvasMain.addEventListener("mouseup", mouseUp);
     }
     function update() {
@@ -288,16 +288,15 @@ var zauberbild;
     function mouseUp(_event) {
         if (dragDrop == true) {
             dragDrop = false;
-            /*  symbols.push(objectDragDrop); */
+            symbols.push(objectDragDrop);
         }
     }
-    /*  function mouseMove(_event: MouseEvent): void {
- 
-         if (dragDrop == true) {
-             objectDragDrop.position.x = _event.offsetX;
-             objectDragDrop.position.y = _event.offsetY;
-             console.log(objectDragDrop.position.x, objectDragDrop.position.y);
-         }
-     } */
+    function mouseMove(_event) {
+        if (dragDrop == true) {
+            objectDragDrop.position.x = _event.offsetX;
+            objectDragDrop.position.y = _event.offsetY;
+            console.log(objectDragDrop.position.x, objectDragDrop.position.y);
+        }
+    }
 })(zauberbild || (zauberbild = {}));
 //# sourceMappingURL=main.js.map
