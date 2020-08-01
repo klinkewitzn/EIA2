@@ -13,6 +13,8 @@ var zauberbild;
     let id;
     let dataPictures = [];
     let symbols = [];
+    let dragDrop = false;
+    let objectDragDrop;
     window.addEventListener("load", handleLoad);
     //handle Load Funktion
     async function handleLoad(_event) {
@@ -28,12 +30,19 @@ var zauberbild;
         canvasHeart = document.querySelector("#canvasHeart");
         canvasMoon = document.querySelector("#canvasMoon");
         canvasEllipse = document.querySelector("#canvasEllipse");
-        var domRect = canvasMain.getBoundingClientRect();
-        console.log(domRect);
-        let a = canvasMain.getBoundingClientRect().left;
-        console.log(a);
-        let b = canvasMain.getBoundingClientRect().top;
-        console.log(b);
+        /*
+                var domRect = canvasMain.getBoundingClientRect();
+                console.log(domRect);
+                let a = canvasMain.getBoundingClientRect().left;
+                console.log(a);
+                let b = canvasMain.getBoundingClientRect().top;
+                console.log(b); */
+        format.addEventListener("change", canvasSize);
+        0;
+        backgroundColor.addEventListener("change", chooseBackground);
+        /* canvasMain.addEventListener("mousedown", mouseDown);
+        canvasMain.addEventListener("mousemove", mouseMove);
+        canvasMain.addEventListener("mouseup", mouseUp); */
         canvasMain.addEventListener("click", drawSymbolOnMainCanvas);
         canvasStar.addEventListener("click", getID);
         canvasHeart.addEventListener("click", getID);
@@ -50,9 +59,7 @@ var zauberbild;
         canvasMain = document.getElementById("mainCanvasDraw");
         zauberbild.crc2 = canvasMain.getContext("2d");
         backgroundImage = zauberbild.crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
-        format.addEventListener("change", canvasSize);
-        0;
-        backgroundColor.addEventListener("change", chooseBackground);
+        setInterval(update, 50);
         console.log(symbols);
     }
     /*  function deleteSymbol();
@@ -261,7 +268,6 @@ var zauberbild;
                 break;
         }
         console.log(symbols);
-        update();
     }
     function update() {
         console.log("Funktion update wird durchgeführt");
@@ -270,5 +276,46 @@ var zauberbild;
             symbol.move(1 / 30);
         }
     }
+    /*  function mouseDown(_event: MouseEvent): void {
+ 
+         console.log(symbols + "while mousedown");
+         let mousePosX: number = _event.offsetX;
+         let mousePosY: number = _event.offsetY;
+ 
+ 
+         console.log(mousePosX, mousePosY);
+ 
+         for (let symbol of symbols) {
+ 
+             if (symbol.position.x - symbol.radius.x < mousePosX &&
+                 symbol.position.x + symbol.radius.x > mousePosY &&
+                 symbol.position.y - symbol.radius.y < mousePosY && symbol.position.y + symbol.radius.y > mousePosY) {
+                 console.log(symbol);
+                 dragDrop = true;
+                 let index: number = symbols.indexOf(symbol);
+                 symbols.splice(index, 1);
+                 objectDragDrop = symbol;
+                 return;
+             }
+         }
+     } */
+    /*  function mouseMove(_event: MouseEvent): void {
+ 
+ 
+         if (dragDrop == true) {
+             objectDragDrop.position.x = _event.clientX - canvasMain.getBoundingClientRect().left;
+             objectDragDrop.position.y = _event.clientY - canvasMain.getBoundingClientRect().top;
+             console.log(objectDragDrop.position.x, objectDragDrop.position.y);
+         }
+     } */
+    /*  function mouseUp(_event: MouseEvent): void {
+         if (dragDrop == true) {
+             dragDrop = false;
+ 
+             symbols.push(objectDragDrop);
+ 
+         }
+ 
+     } */
 })(zauberbild || (zauberbild = {}));
 //# sourceMappingURL=main.js.map

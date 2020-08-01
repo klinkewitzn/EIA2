@@ -6,6 +6,7 @@ namespace zauberbild {
         velocity: Vector;
         position: Vector;
         active: boolean;
+        radius: Vector;
 
         constructor(_position?: Vector) {
             if (_position)
