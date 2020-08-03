@@ -88,8 +88,8 @@ namespace zauberbild {
         colorbutton.addEventListener("click", changeColor);
         //rotatebutton.addEventListener("click", changeRotation);
 
-        canvasMain.addEventListener("mousedown", pickSymbol);
-        canvasMain.addEventListener("mouseup", placeSymbol);
+        canvasMain.addEventListener("mousedown", clickSymbol);
+        canvasMain.addEventListener("mouseup", dropSymbol);
         canvasMain.addEventListener("mousemove", dragSymbol);
 
     }
@@ -357,7 +357,7 @@ namespace zauberbild {
         }
     }
 
-    function placeSymbol(_event: MouseEvent): void {
+    function dropSymbol(_event: MouseEvent): void {
 
         console.log("MouseUp");
 
@@ -367,7 +367,7 @@ namespace zauberbild {
         }
 
     }
-    function pickSymbol(_event: MouseEvent): void {
+    function clickSymbol(_event: MouseEvent): void {
         console.log("Mousedown");
 
         dragDrop = true;
@@ -379,16 +379,16 @@ namespace zauberbild {
         let offsetX: number = mousePosX - canvasRect.left;
         let offsetY: number = mousePosY - canvasRect.top;
 
-        for (let figur of symbols) {
+        for (let symbol of symbols) {
 
-            if (figur.position.x - 25 < offsetX &&
-                figur.position.x + 25 > offsetX &&
-                figur.position.y - 25 < offsetY &&
-                figur.position.y + 25 > offsetY) {
-                console.log(figur);
-                let index: number = symbols.indexOf(figur);
+            if (symbol.position.x - 25 < offsetX &&
+                symbol.position.x + 25 > offsetX &&
+                symbol.position.y - 25 < offsetY &&
+                symbol.position.y + 25 > offsetY) {
+                console.log(symbol);
+                let index: number = symbols.indexOf(symbol);
                 symbols.splice(index, 1);
-                objectDragDrop = figur;
+                objectDragDrop = symbol;
             }
         }
     }
