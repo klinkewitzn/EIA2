@@ -185,7 +185,7 @@ namespace zauberbild {
         backgroundImage = crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
         crc2.putImageData(backgroundImage, 0, 0);
     }
-    async function sendData(_event: Event): Promise<void> {
+ /*    async function sendData(_event: Event): Promise<void> {
         console.log("funktion sendData verbunden");
         let nameOfPicture: string | null = prompt("Benenne dein Zauberbild: ");
         if (nameOfPicture != null) {
@@ -201,53 +201,51 @@ namespace zauberbild {
         let responseText: string = await response.text();
         console.log(responseText);
         alert(responseText);
-    }
+    } */
 
- /*    async function saveImage(_event: MouseEvent): Promise<void> {
-
-        let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
+   async function sendData(_event: MouseEvent): Promise<void> {
+        console.log("funktion sendData verbunden");
+        let nameOfPicture: string | null = prompt("Benenne dein Zauberbild: ");
         if (nameOfPicture == null || nameOfPicture == "") {
             alert("Du musst deinem Bild einen Namen geben, damit es gespeichert werden kann");
-            prompt("Bennene dein Zauberbild: ");
+            prompt("Benenne dein Zauberbild: ");
         } else
 
             if (nameOfPicture != null) {
 
-                //safeMagicImage.push(nameOfPicture); 
-                safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
-                safeMagicImage.push(backgroundColorSafe);
+                //dataPictures.push(nameOfPicture); 
+                dataPictures.push(canvasMain.width.toString(), canvasMain.height.toString());
+                dataPictures.push(imgColor);
 
-                for (let figur of figures) {
-                    safeMagicImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
-                    safeMagicImage.push(figur.color);
+                for (let figur of symbols) {
+                    dataPictures.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
+                    dataPictures.push(figur.color);
 
-                    if (figur instanceof Triangle) {
-                        safeMagicImage.push("triangle");
+                    if (figur instanceof Moon) {
+                        dataPictures.push("moon");
                     }
 
                     if (figur instanceof Star) {
-                        safeMagicImage.push("star");
+                        dataPictures.push("star");
                     }
 
-                    if (figur instanceof Circle) {
-                        safeMagicImage.push("circle");
+                    if (figur instanceof Ellipse) {
+                        dataPictures.push("ellipse");
                     }
 
                     if (figur instanceof Heart) {
-                        safeMagicImage.push("heart");
+                        dataPictures.push("heart");
                     }
                 }
-
             }
-
-        let dataServer: string = JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann 
+        let dataServer: string = JSON.stringify(dataPictures); //wandelt Array um, damit der Server es lesen kann 
         let query: URLSearchParams = new URLSearchParams(dataServer);
-        let response: Response = await fetch(url + "?safeImage&name=" + nameOfPicture + "&" + query.toString());
-        let texte: string = await response.text();
-        console.log(texte);
+        let response: Response = await fetch(url + "?savePicture&name=" + nameOfPicture + "&" + query.toString());
+        let responseText: string = await response.text();
+        console.log(responseText);
         alert("Bild wurde gespeichert");
         //let data: Data = JSON.parse(texte); 
-    } */
+    } 
 
 
 
@@ -539,12 +537,12 @@ namespace zauberbild {
     /* function setAnimation(_event: MouseEvent): void {
         let target: HTMLElement = <HTMLElement>_event.target;
         let id: string = target.id;
-        for (let figure of symbols) {
-            if (figure.active == true) {
+        for (let symbol of symbols) {
+            if (symbol.active == true) {
                 switch (id) {
                     
                     case "rotate":
-                        figure.moveType = FORM_MOVE.ROTATE;
+                        symbol.moveType = FORM_MOVE.ROTATE;
                         break;
                 }
             }

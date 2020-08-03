@@ -176,34 +176,34 @@ var zauberbild;
    
                if (nameOfPicture != null) {
    
-                   //safeMagicImage.push(nameOfPicture);
-                   safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
-                   safeMagicImage.push(backgroundColorSafe);
+                   //dataPictures.push(nameOfPicture);
+                   dataPictures.push(mainCanvas.width.toString(), mainCanvas.height.toString());
+                   dataPictures.push(backgroundColorSafe);
    
-                   for (let figur of figures) {
-                       safeMagicImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
-                       safeMagicImage.push(figur.color);
+                   for (let figur of symbols) {
+                       dataPictures.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
+                       dataPictures.push(figur.color);
    
                        if (figur instanceof Triangle) {
-                           safeMagicImage.push("triangle");
+                           dataPictures.push("triangle");
                        }
    
                        if (figur instanceof Star) {
-                           safeMagicImage.push("star");
+                           dataPictures.push("star");
                        }
    
                        if (figur instanceof Circle) {
-                           safeMagicImage.push("circle");
+                           dataPictures.push("circle");
                        }
    
                        if (figur instanceof Heart) {
-                           safeMagicImage.push("heart");
+                           dataPictures.push("heart");
                        }
                    }
    
                }
    
-           let dataServer: string = JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann
+           let dataServer: string = JSON.stringify(dataPictures); //wandelt Arraxy um, damit der Server es lesen kann
            let query: URLSearchParams = new URLSearchParams(dataServer);
            let response: Response = await fetch(url + "?safeImage&name=" + nameOfPicture + "&" + query.toString());
            let texte: string = await response.text();
@@ -476,12 +476,12 @@ var zauberbild;
 /* function setAnimation(_event: MouseEvent): void {
     let target: HTMLElement = <HTMLElement>_event.target;
     let id: string = target.id;
-    for (let figure of symbols) {
-        if (figure.active == true) {
+    for (let symbol of symbols) {
+        if (symbol.active == true) {
             switch (id) {
                 
                 case "rotate":
-                    figure.moveType = FORM_MOVE.ROTATE;
+                    symbol.moveType = FORM_MOVE.ROTATE;
                     break;
             }
         }

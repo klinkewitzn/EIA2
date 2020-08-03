@@ -21,8 +21,8 @@
     let triangleDiv: HTMLDivElement;
     let heartDiv: HTMLDivElement;  */
 /*     let backgroundColorSafe: string; */
-/*   let figures: Form[] = [];
-  let safeMagicImage: string[] = [];   */
+/*   let symbols: Form[] = [];
+  let dataPictures: string[] = [];   */
 /*  window.addEventListener("load", handleLoad);
 
  async function handleLoad(_event: Event): Promise<void> {
@@ -75,42 +75,42 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
 
     let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
 
-    safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
-    safeMagicImage.push(backgroundColorSafe);
+    dataPictures.push(mainCanvas.width.toString(), mainCanvas.height.toString());
+    dataPictures.push(backgroundColorSafe);
 
     if (nameOfPicture != null) {
 
-        safeMagicImage.push(nameOfPicture);
+        dataPictures.push(nameOfPicture);
     }
     
 
-    for (let figur of figures) {
-        safeMagicImage.push(figur.position.x.toString(), figur.position.y.toString());
+    for (let figur of symbols) {
+        dataPictures.push(figur.position.x.toString(), figur.position.y.toString());
 
         if (figur instanceof Triangle) {
-            safeMagicImage.push("triangle");
+            dataPictures.push("triangle");
 
         }
 
         if (figur instanceof Star) {
-            safeMagicImage.push("star");
+            dataPictures.push("star");
 
         }
 
         if (figur instanceof Circle) {
-            safeMagicImage.push("circle");
+            dataPictures.push("circle");
 
         }
 
         if (figur instanceof Heart) {
-            safeMagicImage.push("heart");
+            dataPictures.push("heart");
 
         }
 
     }
 
-    JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann
-    let response: Response = await fetch(url + "?" + safeMagicImage);
+    JSON.stringify(dataPictures); //wandelt Arraxy um, damit der Server es lesen kann
+    let response: Response = await fetch(url + "?" + dataPictures);
     let texte: string = await response.text();
     console.log(texte);
     //let data: Data = JSON.parse(texte);
@@ -147,7 +147,7 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
 
       console.log("choose color");
 */
-/*        console.log(figures);  */
+/*        console.log(symbols);  */
 /*  let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
  let value: string = target.value;
 
@@ -211,7 +211,7 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
 
      let star: Star = new Star(position);
      star.draw(crc4);
-     //figures.push(star);
+     //symbols.push(star);
 
      //Circle
      for (let i: number = 0; i < symbol; i++) {
@@ -220,7 +220,7 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
      let position: Vector = new Vector(x, y);
      let circle:  Circle = new Circle(position);
      circle.draw(crc3);
-     //figures.push(circle);
+     //symbols.push(circle);
      }
 
      //Dreieck
@@ -230,7 +230,7 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
          let position: Vector = new Vector(x, y);
          let triangle:  Triangle = new Triangle(position);
          triangle.draw(crc5);
-         //figures.push(triangle);
+         //symbols.push(triangle);
          }
  
  
@@ -241,7 +241,7 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
          let position: Vector = new Vector(x, y);
          let heart:  Heart = new Heart (position);
          heart.draw(crc6);
-         //figures.push(heart);
+         //symbols.push(heart);
          }
 
  }
@@ -272,7 +272,7 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
              let star:  Star = new Star(positionStar);
              
              star.draw(crc2);
-             figures.push(star);
+             symbols.push(star);
                      
 
              break;
@@ -282,7 +282,7 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
              let positionCircle: Vector = new Vector(x, y);
              let circle:  Circle = new Circle(positionCircle);
              circle.draw(crc2);
-             figures.push(circle);
+             symbols.push(circle);
              
            
              
@@ -293,7 +293,7 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
              let positionHeart: Vector = new Vector(x, y);
              let heart:  Heart = new Heart(positionHeart);
              heart.draw(crc2);
-             figures.push(heart);
+             symbols.push(heart);
              
             
              
@@ -303,7 +303,7 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
              let position: Vector = new Vector(x, y);
              let triangle:  Triangle = new Triangle(position);
              triangle.draw(crc2);
-             figures.push(triangle);
+             symbols.push(triangle);
              break;
 
      }
@@ -315,7 +315,7 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
         
         crc2.putImageData(backgroundImage, 0, 0);
 
-        for (let symbol of figures) {
+        for (let symbol of symbols) {
             if (symbol instanceof Heart)
             symbol.move(1 / 20);
             else if (symbol instanceof Triangle)
@@ -359,15 +359,15 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
 
      console.log(offsetX, offsetY);
 
-     for (let figur of figures) {
+     for (let figur of symbols) {
 
          if (figur.position.x - figur.radius < offsetX &&
              figur.position.x + figur.radius > offsetX &&
              figur.position.y - figur.radius < offsetY &&
              figur.position.y + figur.radius > offsetY) {
 
-             let index: number = figures.indexOf(figur);
-             figures.splice(index, 1);
+             let index: number = symbols.indexOf(figur);
+             symbols.splice(index, 1);
 
              objectDragDrop = figur;
 
@@ -394,7 +394,7 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
      if (dragDrop == true) {
 
          dragDrop = false;
-         figures.push(objectDragDrop);
+         symbols.push(objectDragDrop);
 
      }
      
@@ -413,15 +413,15 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
 
      console.log(offsetX, offsetY);
 
-     for (let figur of figures) {
+     for (let figur of symbols) {
 
          if (figur.position.x - figur.radius < offsetX &&
              figur.position.x + figur.radius > offsetX &&
              figur.position.y - figur.radius < offsetY &&
              figur.position.y + figur.radius > offsetY) {
 
-             let index: number = figures.indexOf(figur);
-             figures.splice(index, 1);
+             let index: number = symbols.indexOf(figur);
+             symbols.splice(index, 1);
 
              console.log("Es funktioniert");
 
@@ -440,7 +440,7 @@ saveButton = <HTMLButtonElement>document.getElementById("buttonSafe");  */
  function clearCanvas(): void {
 
     crc2.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-    figures = [];
+    symbols = [];
     crc2.save();
     
     crc2.fillStyle = "white";
