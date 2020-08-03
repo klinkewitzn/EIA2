@@ -14,6 +14,9 @@ var zauberbild;
     let dataPictures = [];
     let symbols = [];
     let trash = false;
+    let rotates = false;
+    let dragDrop = false;
+    let objectDragDrop;
     let colors = ["#FFC0CB", "#FF1493", "#E6E6FA", "#9370DB", "#4B0082", "#FA8072", "#DC143C", "#FF0000", "#FFA500", "#FFD700", "#FFFF00",
         "#FFE4B5", "#32CD32", "#90EE90", "#008000", "#66CDAA", "#48D1CC", "#B0C4DE", "#87CEFA", "#0000FF", "#DCDCDC", "#FFFAFA", "#F5F5DC"];
     let coloring;
@@ -54,12 +57,20 @@ var zauberbild;
         canvasMain = document.getElementById("mainCanvasDraw");
         zauberbild.crc2 = canvasMain.getContext("2d");
         backgroundImage = zauberbild.crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
+        //document.getElementById("mainCanvasDraw")?.addEventListener("click", function (): void {  setInterval(rotateform, 50);(<MouseEvent>event, rotates); });
+        //document.addEventListener("keydown", function (): void { rotatemode(<KeyboardEvent>event); });
+        // rotatebutton.
+        /*  setInterval(rotateform, 50); */
         setInterval(update, 50);
         document.getElementById("mainCanvasDraw")?.addEventListener("click", function () { deleteform(event, trash); });
         document.addEventListener("keydown", function () { deletemode(event); });
         console.log(symbols);
         colorbutton.addEventListener("click", changeColor);
-        rotatebutton.addEventListener("click", changeRotation);
+        //rotatebutton.addEventListener("click", changeRotation);
+        /*
+                canvasMain.addEventListener("mousedown", clickSymbol);
+                canvasMain.addEventListener("mouseup", dropSymbol);
+                canvasMain.addEventListener("mousemove", dragSymbol); */
     }
     function clearCanvas() {
         symbols = [];
@@ -93,7 +104,7 @@ var zauberbild;
             case "big":
                 zauberbild.crc2.save();
                 zauberbild.crc2.canvas.width = 600;
-                zauberbild.crc2.canvas.height = 800;
+                zauberbild.crc2.canvas.height = 600;
                 zauberbild.crc2.restore();
                 break;
         }
@@ -155,6 +166,51 @@ var zauberbild;
         console.log(responseText);
         alert(responseText);
     }
+    /*    async function saveImage(_event: MouseEvent): Promise<void> {
+   
+           let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
+           if (nameOfPicture == null || nameOfPicture == "") {
+               alert("Du musst deinem Bild einen Namen geben, damit es gespeichert werden kann");
+               prompt("Bennene dein Zauberbild: ");
+           } else
+   
+               if (nameOfPicture != null) {
+   
+                   //safeMagicImage.push(nameOfPicture);
+                   safeMagicImage.push(mainCanvas.width.toString(), mainCanvas.height.toString());
+                   safeMagicImage.push(backgroundColorSafe);
+   
+                   for (let figur of figures) {
+                       safeMagicImage.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
+                       safeMagicImage.push(figur.color);
+   
+                       if (figur instanceof Triangle) {
+                           safeMagicImage.push("triangle");
+                       }
+   
+                       if (figur instanceof Star) {
+                           safeMagicImage.push("star");
+                       }
+   
+                       if (figur instanceof Circle) {
+                           safeMagicImage.push("circle");
+                       }
+   
+                       if (figur instanceof Heart) {
+                           safeMagicImage.push("heart");
+                       }
+                   }
+   
+               }
+   
+           let dataServer: string = JSON.stringify(safeMagicImage); //wandelt Arraxy um, damit der Server es lesen kann
+           let query: URLSearchParams = new URLSearchParams(dataServer);
+           let response: Response = await fetch(url + "?safeImage&name=" + nameOfPicture + "&" + query.toString());
+           let texte: string = await response.text();
+           console.log(texte);
+           alert("Bild wurde gespeichert");
+           //let data: Data = JSON.parse(texte);
+       } */
     //Abspeichern der ID der Symbole
     function getID(_event) {
         let target = _event.target;
@@ -165,7 +221,9 @@ var zauberbild;
     function createSymbols() {
         let positionstar = new zauberbild.Vector(0, 0);
         let star = new zauberbild.Star(positionstar);
-        zauberbild.crcStar.translate(150, 70);
+        zauberbild.crcStar.scale(2, 1);
+        zauberbild.crcStar.translate(70, 70);
+        zauberbild.crcStar.rotate(30 * Math.PI / 150);
         star.draw(zauberbild.crcStar);
         let positionellipse = new zauberbild.Vector(0, 0);
         let ellipse = new zauberbild.Ellipse(positionellipse);
@@ -178,15 +236,16 @@ var zauberbild;
         heart.draw(zauberbild.crcHeart);
         let positionmoon = new zauberbild.Vector(0, 0);
         let moon = new zauberbild.Moon(positionmoon);
-        zauberbild.crcMoon.translate(150, 70);
+        zauberbild.crcMoon.scale(2, 1);
+        zauberbild.crcMoon.translate(70, 70);
         moon.draw(zauberbild.crcMoon);
     }
     //Symbole auf Canvas zeichnen
     function drawSymbolOnMainCanvas(_event) {
         console.log("Symbole werden auf Main Canvas gezeichnet");
-        for (let symbol of symbols) {
-            symbol.active = false;
-        }
+        /* for (let symbol of symbols) {
+            //symbol.active = false;
+        } */
         switch (id) {
             case "canvasStar":
                 console.log(_event);
@@ -236,11 +295,11 @@ var zauberbild;
     function update() {
         console.log("Funktion update wird durchgeführt");
         zauberbild.crc2.putImageData(backgroundImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder aktualisierung auf den canvas "gelegt"
-        /* for (let symbol of symbols) {   //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
-
-            symbol.move(1 / 30);
-            symbol.draw(crc2);
-        } */
+        //drag and drop
+        if (dragDrop == true) {
+            objectDragDrop.draw(zauberbild.crc2);
+        }
+        //straigt movement
         for (let symbol of symbols) {
             if (symbol instanceof zauberbild.Heart)
                 symbol.move(1 / 35);
@@ -296,37 +355,136 @@ var zauberbild;
             symbol.draw(zauberbild.crc2);
         }
     }
-    function changeRotation(_event) {
-        for (let symbol of symbols) {
-            if (symbol instanceof zauberbild.Heart)
-                symbol.rotate(3);
-            else if (symbol instanceof zauberbild.Ellipse)
-                symbol.rotate(3);
-            else if (symbol instanceof zauberbild.Moon)
-                symbol.rotate(3);
-            symbol.draw(zauberbild.crc2);
+    function rotatemode(_event) {
+        if (_event.key == "r") {
+            rotates = true;
+            console.log("function deletemode,rotates is now" + rotates);
         }
     }
-    /* function rotateSymbols(): void {
-        console.log("Funktion rotateSymbols wird durchgeführt");
+    /* function rotateform(_event: MouseEvent, _trash: boolean): void {
+        rotatemode;
+        if (rotates == true) {
+            console.log("function deleteform, rotates is now" + rotates);
+            let poisitonx: number = _event.clientX;
+            let positiony: number = _event.clientY;
+            let canvasRect: ClientRect | DOMRect = canvasMain.getBoundingClientRect();
+            let offsetX: number = poisitonx - canvasRect.left;
+            let offsetY: number = positiony - canvasRect.top;
+            for (let symbol of symbols) {
+                if (symbol.position.x - 25 < offsetX &&
+                    symbol.position.x + 25 > offsetX &&
+                    symbol.position.y - 25 < offsetY &&
+                    symbol.position.y + 25 > offsetY) {
+                    if (symbol instanceof Heart)
+                        symbol.rotate(10);
+                    else if (symbol instanceof Ellipse)
+                        symbol.rotate(10);
+                    else if (symbol instanceof Moon)
+                        symbol.rotate(10);
+                    symbol.draw(crc2);
+                }
+            }
+        }
+    } */
+    // if(updateSymbolPos){
+    //     updateSymbol();
+    // }else{
+    //     detectSymbol();
+    // }
+    // console.log("updateSymbolPos: "+updateSymbolPos)
+})(zauberbild || (zauberbild = {}));
+// function test(_event: MouseEvent):void{
+//     let target: HTMLElement = <HTMLElement>_event.target;
+//     //console.log(target.id);
+// }
+/*     function dropSymbol(_event: MouseEvent): void {
 
+        console.log("MouseUp");
 
-        for (let symbol of symbols) {
-            if (symbol instanceof Heart)
-                symbol.rotate(1 / 35);
-            else if (symbol instanceof Moon)
-                symbol.rotate(1 / 80);
-            else if (symbol instanceof Ellipse)
-                symbol.rotate(1 / 50);
-            else if (symbol instanceof Star)
-                symbol.rotate(1 / 40);
-
-            symbol.draw(crc2);
+        if (dragDrop == true) {
+            dragDrop = false;
+            symbols.push(objectDragDrop);
         }
 
-        //if (dragDrop == true) {
-         //    objectDragDrop.draw(crc2);
-         //}
+    }
+    function clickSymbol(_event: MouseEvent): void {
+        console.log("Mousedown");
+
+        dragDrop = true;
+
+        let mousePosY: number = _event.clientY;
+        let mousePosX: number = _event.clientX;
+        let canvasRect: ClientRect | DOMRect = canvasMain.getBoundingClientRect();
+
+        let offsetX: number = mousePosX - canvasRect.left;
+        let offsetY: number = mousePosY - canvasRect.top;
+
+        for (let symbol of symbols) {
+
+            if (symbol.position.x - 25 < offsetX &&
+                symbol.position.x + 25 > offsetX &&
+                symbol.position.y - 25 < offsetY &&
+                symbol.position.y + 25 > offsetY) {
+                console.log(symbol);
+                let index: number = symbols.indexOf(symbol);
+                symbols.splice(index, 1);
+                objectDragDrop = symbol;
+            }
+        }
+    }
+    function dragSymbol(_event: MouseEvent): void {
+
+        //let position: Vector = new Vector(_event.clientX - crc2.canvas.offsetLeft, _event.clientY - crc2.canvas.offsetTop);
+        if (dragDrop == true) {
+            objectDragDrop.position.x = _event.clientX - canvasMain.getBoundingClientRect().left;
+            objectDragDrop.position.y = _event.clientY - canvasMain.getBoundingClientRect().top;
+        }
+
     } */
-})(zauberbild || (zauberbild = {}));
+/*  function changeRotation(_event: MouseEvent): void {
+     for (let symbol of symbols) {
+         if (symbol instanceof Heart)
+             symbol.rotate(3);
+         else if (symbol instanceof Ellipse)
+             symbol.rotate(3);
+         else if (symbol instanceof Moon)
+             symbol.rotate(3);
+         symbol.draw(crc2);
+     }
+ } */
+/* function rotateSymbols(): void {
+    console.log("Funktion rotateSymbols wird durchgeführt");
+
+
+    for (let symbol of symbols) {
+        if (symbol instanceof Heart)
+            symbol.rotate(1 / 35);
+        else if (symbol instanceof Moon)
+            symbol.rotate(1 / 80);
+        else if (symbol instanceof Ellipse)
+            symbol.rotate(1 / 50);
+        else if (symbol instanceof Star)
+            symbol.rotate(1 / 40);
+
+        symbol.draw(crc2);
+    }
+
+    //if (dragDrop == true) {
+     //    objectDragDrop.draw(crc2);
+     //}
+} */
+/* function setAnimation(_event: MouseEvent): void {
+    let target: HTMLElement = <HTMLElement>_event.target;
+    let id: string = target.id;
+    for (let figure of symbols) {
+        if (figure.active == true) {
+            switch (id) {
+                
+                case "rotate":
+                    figure.moveType = FORM_MOVE.ROTATE;
+                    break;
+            }
+        }
+    }
+} */
 //# sourceMappingURL=main.js.map

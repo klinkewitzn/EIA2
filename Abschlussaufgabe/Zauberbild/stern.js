@@ -4,20 +4,28 @@ var zauberbild;
     class Star extends zauberbild.Symbol {
         constructor(_position) {
             super(_position);
-            this.size = 40;
+            //this.size = 40;
             this.rotation = 0;
             this.color = "HSL(0,53%,58%)";
         }
         draw(crcStar) {
             crcStar.save();
             crcStar.beginPath();
+            //crcStar.rotate(30 * Math.PI / 150)
             crcStar.translate(this.position.x, this.position.y);
             crcStar.rotate(this.rotation * Math.PI / 150);
-            crcStar.scale(0.4, 0.6);
+            // crcStar.scale(0.6, 0.6)
             crcStar.beginPath();
-            crcStar.moveTo(0, -50);
+            crcStar.moveTo(0, -20);
+            for (let i = 0; i < 5; i++) {
+                crcStar.rotate(Math.PI / 5);
+                crcStar.lineTo(0, -20 * 2);
+                crcStar.rotate(Math.PI / 5);
+                crcStar.lineTo(0, -20);
+            }
+            /* crcStar.moveTo(0, -50);
             crcStar.lineTo(100, 50);
-            crcStar.lineTo(-100, 50);
+            crcStar.lineTo(-100, 50); */
             crcStar.closePath();
             crcStar.fillStyle = this.color; //"HSL(0,53%,58%)"
             crcStar.fill();

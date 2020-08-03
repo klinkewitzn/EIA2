@@ -1,8 +1,8 @@
 namespace zauberbild {
     export class Heart extends Symbol {
-        position: Vector;
-        size: number;
-        rotation: number;
+        //position: Vector;
+        //size: number;
+        //rotation: number;
         currentcolor: string;
         i: number;
         colors: Array<string> = ["HSL(0,53%,58%)", "HSL(209, 100%, 72%)", "HSL(209, 70%, 72%)", "HSL(209, 80%, 72%)", "HSL(209, 60%, 72%)", "HSL(0,23%,58%)"/*,  "#FFDF00", "#DFFF00", "#BFFF00" */,
@@ -10,16 +10,16 @@ namespace zauberbild {
 
         constructor(_position: Vector) {
             super(_position);
-            this.size = 40;
+            //this.size = 40;
             this.currentcolor = this.colors[0];
             this.i = 0;
-            this.rotation += 4;
-            this.radius = 25;
-            if (_position)
+            //this.rotation += 0;
+            //this.radius = 25;
+            /* if (_position)
             this.position = _position.copy();
             else 
-            this.velocity = new Vector(0, 0);
-            this.size = 25;
+            this.velocity = new Vector(0, 0); */
+            //this.size = 25;
         }
 
         draw(crcHeart: CanvasRenderingContext2D): void {
@@ -27,7 +27,7 @@ namespace zauberbild {
             //crcHeart.scale(0.4, 0.2);
             crcHeart.translate(this.position.x, this.position.y);
             //zum Drehen bei Klick
-            crc2.rotate(this.rotation * Math.PI / 180); 
+            //crc2.rotate(this.rotation * Math.PI / 180); 
          
             crcHeart.beginPath();
             crcHeart.moveTo(30, -30);

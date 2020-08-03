@@ -1,22 +1,23 @@
 namespace zauberbild {
     export class Ellipse extends Symbol {
-        position: Vector;
+        //position: Vector;
         size: number;
-        rotation: number;
+        //rotation: number;
 
         constructor(_position: Vector) {
             super(_position);
-            this.size = 80;
+            this.size = 10;
             this.color = "HSL(0,53%,58%)";
-            this.rotation = 0;
+            // this.rotation = 0;
         }
 
         draw(crcEllipse: CanvasRenderingContext2D): void {
             crcEllipse.save();
             crcEllipse.beginPath();
             crcEllipse.translate(this.position.x, this.position.y);
-            crcEllipse.scale(0.2, 0.2)
-            crcEllipse.arc(0, 0, this.size, 0, Math.PI * 2, true);
+            //crcEllipse.scale(0.2, 0.2)
+            crcEllipse.ellipse(0, 0, this.size, 20, Math.PI / 4, 0, 2 * Math.PI);
+            //crcEllipse.arc(0, 0, this.size, 0, Math.PI * 2, true);
             crcEllipse.closePath();
             crcEllipse.fillStyle = this.color;
             //crcEllipse.rotate(this.rotation);
@@ -38,11 +39,11 @@ namespace zauberbild {
             if (this.position.y > crc2.canvas.height)
                 this.position.y -= crc2.canvas.height;
             //color-code von Jule Heinzmann 
-            if (this.size <= 90) {
-                this.size += 0.6;    
+            if (this.size <= 30) {
+                this.size += 0.6;
             }
             else {
-                this.size = 50;
+                this.size = 10;
             }
         }
     }

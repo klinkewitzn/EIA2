@@ -2,6 +2,7 @@
 var zauberbild;
 (function (zauberbild) {
     class Vector {
+        //public draggable: true; 
         constructor(_x, _y) {
             this.x = _x;
             this.y = _y;
@@ -22,6 +23,9 @@ var zauberbild;
             let direction = Math.random() * 2 * Math.PI;
             this.set(Math.cos(direction), Math.sin(direction));
             this.scale(length);
+        }
+        get length() {
+            return Math.hypot(this.x, this.y);
         }
         add(_addend) {
             this.x += _addend.x;

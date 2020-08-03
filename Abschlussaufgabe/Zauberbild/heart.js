@@ -6,15 +6,22 @@ var zauberbild;
             super(_position);
             this.colors = ["HSL(0,53%,58%)", "HSL(209, 100%, 72%)", "HSL(209, 70%, 72%)", "HSL(209, 80%, 72%)", "HSL(209, 60%, 72%)", "HSL(0,23%,58%)" /*,  "#FFDF00", "#DFFF00", "#BFFF00" */,
                 "HSL(209, 650%, 72%)", "HSL(209, 30%, 72%)", "HSL(209, 20%, 72%)", "HSL(209, 45%, 72%)"];
-            this.size = 40;
+            //this.size = 40;
             this.currentcolor = this.colors[0];
             this.i = 0;
-            this.rotation += 4;
+            //this.rotation += 0;
+            //this.radius = 25;
+            if (_position)
+                this.position = _position.copy();
+            else
+                this.velocity = new zauberbild.Vector(0, 0);
+            //this.size = 25;
         }
         draw(crcHeart) {
             crcHeart.save();
             //crcHeart.scale(0.4, 0.2);
             crcHeart.translate(this.position.x, this.position.y);
+            //zum Drehen bei Klick
             //crc2.rotate(this.rotation * Math.PI / 180); 
             crcHeart.beginPath();
             crcHeart.moveTo(30, -30);
