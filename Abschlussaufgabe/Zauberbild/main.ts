@@ -105,7 +105,7 @@ namespace zauberbild {
         deletebutton.addEventListener("click", clearCanvas);
         savebutton.addEventListener("click", sendData);
         getTitles();
-        inputTitle.addEventListener("change", chosenTitle);
+        inputTitle.addEventListener("click", chosenTitle);
     }
     function clearCanvas() {
         symbols = []
