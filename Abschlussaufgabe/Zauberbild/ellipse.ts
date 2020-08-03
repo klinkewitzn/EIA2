@@ -4,7 +4,7 @@ namespace zauberbild {
         size: number;
         //rotation: number;
 
-        constructor(_position: Vector) {
+        constructor(_position: Vector,_color?: string) {
             super(_position);
             this.size = 10;
             this.color = "HSL(0,53%,58%)";

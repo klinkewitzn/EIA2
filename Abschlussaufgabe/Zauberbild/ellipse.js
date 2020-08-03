@@ -3,7 +3,7 @@ var zauberbild;
 (function (zauberbild) {
     class Ellipse extends zauberbild.Symbol {
         //rotation: number;
-        constructor(_position) {
+        constructor(_position, _color) {
             super(_position);
             this.size = 10;
             this.color = "HSL(0,53%,58%)";

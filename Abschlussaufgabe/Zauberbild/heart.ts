@@ -8,7 +8,7 @@ namespace zauberbild {
         colors: Array<string> = ["HSL(0,53%,58%)", "HSL(209, 100%, 72%)", "HSL(209, 70%, 72%)", "HSL(209, 80%, 72%)", "HSL(209, 60%, 72%)", "HSL(0,23%,58%)"/*,  "#FFDF00", "#DFFF00", "#BFFF00" */,
         "HSL(209, 650%, 72%)", "HSL(209, 30%, 72%)", "HSL(209, 20%, 72%)", "HSL(209, 45%, 72%)"];
 
-        constructor(_position: Vector) {
+        constructor(_position: Vector,_color?: string) {
             super(_position);
             //this.size = 40;
             this.currentcolor = this.colors[0];

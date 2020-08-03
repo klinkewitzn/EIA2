@@ -2,7 +2,7 @@
 var zauberbild;
 (function (zauberbild) {
     class Star extends zauberbild.Symbol {
-        constructor(_position) {
+        constructor(_position, _color) {
             super(_position);
             //this.size = 40;
             this.rotation = 0;

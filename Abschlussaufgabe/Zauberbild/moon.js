@@ -5,7 +5,7 @@ var zauberbild;
         //position: Vector;
         //size: number;
         //rotation: number;
-        constructor(_position) {
+        constructor(_position, _color) {
             super(_position);
             //this.size = 40;
             this.color = "HSL(268, 100%, 4%)";

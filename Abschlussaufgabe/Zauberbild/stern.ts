@@ -5,7 +5,7 @@ namespace zauberbild {
         rotation: number;
         
 
-        constructor(_position: Vector) {
+        constructor(_position: Vector,_color?: string) {
             super(_position);
             //this.size = 40;
             this.rotation = 0;

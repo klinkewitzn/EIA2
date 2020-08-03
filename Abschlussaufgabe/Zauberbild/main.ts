@@ -33,6 +33,9 @@ namespace zauberbild {
     export let xpos: number;
     export let ypos: number;
     export let index: number;
+    //for get Images back
+    let list: HTMLDataListElement;
+    let inputTitle: HTMLInputElement;
 
     window.addEventListener("load", handleLoad);
     //handle Load Funktion
@@ -44,9 +47,11 @@ namespace zauberbild {
         let deletebutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button[type=reset]");
         /* let rotatebutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#rotateSymbol"); */
         let colorbutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#colorSymbol");
-        deletebutton.addEventListener("click", clearCanvas);
-        savebutton.addEventListener("click", sendData);
+       
 
+        list = <HTMLDataListElement>document.querySelector("datalist#titles");
+        inputTitle = <HTMLInputElement>document.querySelector("#namePic");
+      
         let format: HTMLDivElement = <HTMLDivElement>document.querySelector("div#chooseSize");
         backgroundColor = <HTMLSelectElement>document.querySelector("#chooseColor");
 
@@ -57,7 +62,10 @@ namespace zauberbild {
         canvasEllipse = <HTMLCanvasElement>document.querySelector("#canvasEllipse");
 
         format.addEventListener("change", canvasSize); 0
-        backgroundColor.addEventListener("change", chooseBackground);
+        //backgroundColor.addEventListener("change", chooseBackground);
+        backgroundColor.addEventListener("change", function (): void {
+            chooseBackground();
+        });
 
         canvasMain.addEventListener("click", drawSymbolOnMainCanvas);
         canvasStar.addEventListener("click", getID);
@@ -92,7 +100,11 @@ namespace zauberbild {
                 canvasMain.addEventListener("mousedown", clickSymbol);
                 canvasMain.addEventListener("mouseup", dropSymbol);
                 canvasMain.addEventListener("mousemove", dragSymbol); */
-
+        
+        getTitles();
+        deletebutton.addEventListener("click", clearCanvas);
+        savebutton.addEventListener("click", sendData);
+        inputTitle.addEventListener("change", chosenTitle);
     }
     function clearCanvas() {
         symbols = []
@@ -136,13 +148,16 @@ namespace zauberbild {
         crc2.putImageData(backgroundImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder Aktualisierung auf den canvas "gelegt"
     }
 
-    function chooseBackground(_event: Event): void {
+    function chooseBackground(_color?: string): void {
 
         console.log("choose color");
-        let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
-        let value: string = target.value;
+        //let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
+        //let value: string = target.value;
 
-        switch (value) {
+        let colors: HTMLInputElement = <HTMLInputElement>document.querySelector("select#chooseColor");
+        let color: string = colors.value;
+
+        switch (color) {
 
             case "lilac":
                 crc2.fillStyle = "HSL(249, 100%, 88%)";
@@ -247,7 +262,91 @@ namespace zauberbild {
         //let data: Data = JSON.parse(texte); 
     } 
 
+    async function showTitles(_response: string): Promise<void> { //bildtitel in HTML (datalist) darstellen 
+        let databaseContent: HTMLInputElement = <HTMLInputElement>document.querySelector("#namePic");
+        let replace: string = _response.replace(/\\|\[|Object|object|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
+        let prettyArray: string[] = replace.split(","); //server antwort aufteilen 
+        databaseContent.innerHTML = "";
+        while (list.firstChild) {
+            list.removeChild(list.firstChild);
 
+        }
+        for (let title of prettyArray) {
+            if (title == "") {
+                //databaseContent.innerHTML += "<br>"  + title;
+
+            }
+            else {
+                let option: HTMLOptionElement = document.createElement("option");
+                option.setAttribute("name", title);
+                option.value = title;
+                list.appendChild(option);
+            }
+        }
+    }
+
+    async function getTitles(): Promise<void> { //holt titel aus Datenbank -> in handleload
+        let response: Response = await fetch(url + "?getTitles&");
+        let texte: string = await response.text();
+        console.log(texte);
+        showTitles(texte);
+    }
+
+    async function getImage(_pictureTitle: String): Promise<void> { //holt Bilddaten aus Datenbank 
+        let response: Response = await fetch(url + "?getImage&" + _pictureTitle);
+        let texte: string = await response.text();
+        let replace: string = texte.replace(/\\|\[|{|}|"|name|:|]/g, "");
+        let prettyArray: string[] = replace.split(",");
+        console.log(prettyArray);
+        crc2.canvas.width = parseInt(prettyArray[3]);
+        crc2.canvas.height = parseInt(prettyArray[4]);
+        imgColor = prettyArray[5];
+        chooseBackground(prettyArray[5]);
+        let info: string[] = [];
+        prettyArray.splice(0, 6);
+
+        for (let i: number = 0; i < prettyArray.length; i++) {
+
+            switch (prettyArray[i]) {
+                case "moon":
+                    let position: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
+                    let moon: Moon = new Moon(position, info[2]);
+                    moon.draw(crc2);
+                    symbols.push(moon);
+                    info = [];                   
+                    break;
+                case "ellipse":
+                    let positionCircle: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
+                    let ellipse: Ellipse = new  Ellipse(positionCircle, info[2]);
+                    ellipse.draw(crc2);
+                    symbols.push(ellipse);
+                    info = [];                   
+                    break;
+                case "heart":
+                    let positionHeart: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
+                    let heart: Heart = new Heart(positionHeart, info[2]);
+                    heart.draw(crc2);
+                    symbols.push(heart);
+                    info = [];                   
+                    break;
+                case "star":
+                    let positionStar: Vector = new Vector(parseInt(info[0]), parseInt(info[1]));
+                    let star: Star = new Star (positionStar, info[2]);
+                    star.draw(crc2);
+                    symbols.push(star); 
+                    info = [];                   
+                    break;
+                default:
+                    info.push(prettyArray[i]);
+                    break;
+            }
+        }
+    }
+
+    function chosenTitle(_event: Event): void {
+        let value: string = inputTitle.value;
+        getImage(value);
+    }
 
     //Abspeichern der ID der Symbole
     function getID(_event: MouseEvent): void {

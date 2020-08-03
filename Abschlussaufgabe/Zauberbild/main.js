@@ -22,6 +22,9 @@ var zauberbild;
     let coloring;
     let coloring2;
     let coloring3;
+    //for get Images back
+    let list;
+    let inputTitle;
     window.addEventListener("load", handleLoad);
     //handle Load Funktion
     async function handleLoad(_event) {
@@ -30,8 +33,8 @@ var zauberbild;
         let deletebutton = document.querySelector("button[type=reset]");
         /* let rotatebutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#rotateSymbol"); */
         let colorbutton = document.querySelector("#colorSymbol");
-        deletebutton.addEventListener("click", clearCanvas);
-        savebutton.addEventListener("click", sendData);
+        list = document.querySelector("datalist#titles");
+        inputTitle = document.querySelector("#namePic");
         let format = document.querySelector("div#chooseSize");
         backgroundColor = document.querySelector("#chooseColor");
         canvasMain = document.getElementById("mainCanvasDraw");
@@ -41,7 +44,10 @@ var zauberbild;
         canvasEllipse = document.querySelector("#canvasEllipse");
         format.addEventListener("change", canvasSize);
         0;
-        backgroundColor.addEventListener("change", chooseBackground);
+        //backgroundColor.addEventListener("change", chooseBackground);
+        backgroundColor.addEventListener("change", function () {
+            chooseBackground();
+        });
         canvasMain.addEventListener("click", drawSymbolOnMainCanvas);
         canvasStar.addEventListener("click", getID);
         canvasHeart.addEventListener("click", getID);
@@ -71,6 +77,10 @@ var zauberbild;
                 canvasMain.addEventListener("mousedown", clickSymbol);
                 canvasMain.addEventListener("mouseup", dropSymbol);
                 canvasMain.addEventListener("mousemove", dragSymbol); */
+        getTitles();
+        deletebutton.addEventListener("click", clearCanvas);
+        savebutton.addEventListener("click", sendData);
+        inputTitle.addEventListener("change", chosenTitle);
     }
     function clearCanvas() {
         symbols = [];
@@ -111,11 +121,13 @@ var zauberbild;
         backgroundImage = zauberbild.crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
         zauberbild.crc2.putImageData(backgroundImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder Aktualisierung auf den canvas "gelegt"
     }
-    function chooseBackground(_event) {
+    function chooseBackground(_color) {
         console.log("choose color");
-        let target = _event.target;
-        let value = target.value;
-        switch (value) {
+        //let target: HTMLSelectElement = <HTMLSelectElement>_event.target;
+        //let value: string = target.value;
+        let colors = document.querySelector("select#chooseColor");
+        let color = colors.value;
+        switch (color) {
             case "lilac":
                 zauberbild.crc2.fillStyle = "HSL(249, 100%, 88%)";
                 zauberbild.crc2.fill();
@@ -202,6 +214,84 @@ var zauberbild;
         console.log(responseText);
         alert("Bild wurde gespeichert");
         //let data: Data = JSON.parse(texte); 
+    }
+    async function showTitles(_response) {
+        let databaseContent = document.querySelector("#namePic");
+        let replace = _response.replace(/\\|\[|Object|object|{|}|"|name|:|]/g, ""); //g-> sonderzeichen von allen Elemten im string entfernt, nicht nur das erste
+        let prettyArray = replace.split(","); //server antwort aufteilen 
+        databaseContent.innerHTML = "";
+        while (list.firstChild) {
+            list.removeChild(list.firstChild);
+        }
+        for (let title of prettyArray) {
+            if (title == "") {
+                //databaseContent.innerHTML += "<br>"  + title;
+            }
+            else {
+                let option = document.createElement("option");
+                option.setAttribute("name", title);
+                option.value = title;
+                list.appendChild(option);
+            }
+        }
+    }
+    async function getTitles() {
+        let response = await fetch(url + "?getTitles&");
+        let texte = await response.text();
+        console.log(texte);
+        showTitles(texte);
+    }
+    async function getImage(_pictureTitle) {
+        let response = await fetch(url + "?getImage&" + _pictureTitle);
+        let texte = await response.text();
+        let replace = texte.replace(/\\|\[|{|}|"|name|:|]/g, "");
+        let prettyArray = replace.split(",");
+        console.log(prettyArray);
+        zauberbild.crc2.canvas.width = parseInt(prettyArray[3]);
+        zauberbild.crc2.canvas.height = parseInt(prettyArray[4]);
+        imgColor = prettyArray[5];
+        chooseBackground(prettyArray[5]);
+        let info = [];
+        prettyArray.splice(0, 6);
+        for (let i = 0; i < prettyArray.length; i++) {
+            switch (prettyArray[i]) {
+                case "moon":
+                    let position = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
+                    let moon = new zauberbild.Moon(position, info[2]);
+                    moon.draw(zauberbild.crc2);
+                    symbols.push(moon);
+                    info = [];
+                    break;
+                case "ellipse":
+                    let positionCircle = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
+                    let ellipse = new zauberbild.Ellipse(positionCircle, info[2]);
+                    ellipse.draw(zauberbild.crc2);
+                    symbols.push(ellipse);
+                    info = [];
+                    break;
+                case "heart":
+                    let positionHeart = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
+                    let heart = new zauberbild.Heart(positionHeart, info[2]);
+                    heart.draw(zauberbild.crc2);
+                    symbols.push(heart);
+                    info = [];
+                    break;
+                case "star":
+                    let positionStar = new zauberbild.Vector(parseInt(info[0]), parseInt(info[1]));
+                    let star = new zauberbild.Star(positionStar, info[2]);
+                    star.draw(zauberbild.crc2);
+                    symbols.push(star);
+                    info = [];
+                    break;
+                default:
+                    info.push(prettyArray[i]);
+                    break;
+            }
+        }
+    }
+    function chosenTitle(_event) {
+        let value = inputTitle.value;
+        getImage(value);
     }
     //Abspeichern der ID der Symbole
     function getID(_event) {

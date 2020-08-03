@@ -8,7 +8,7 @@ export namespace zauberbild {
         [type: string]: string | string[] | undefined;
     } */
     let pictures: Mongo.Collection;
-
+    let allPictures: string[] = [];
     let port: number | string | undefined = process.env.PORT;
     if (port == undefined)
         port = 5001;
@@ -52,15 +52,42 @@ export namespace zauberbild {
             let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true); //dann url übersetzen lassen mit parser und aufrufen --> parser 
             //--> true: macht aus url gut lesbares assoziatives array
             console.log(url.query);
-            let splitURL = _request.url.split('&');
-            console.log("SPLIT URL" + splitURL[0]);
+            let spliturl: string[] = _request.url.split('&');
+            console.log("SPLIT URL" + spliturl[0]);
 
             //Bild wird in MongoDB Collection gespeichert
-            if (splitURL[0] == "/?savePicture") {
+            /* if (splitURL[0] == "/?savePicture") {//ausgewählter Titel mit Titel in Datenbank abgleichen und die richtigen
+                //Bilddaten anfordern, raussuchen
                 (await pictures).insertOne(url.query);
                 _response.write("Dein Bild wurde gespeichert!");
  
-             }
+             } */
+
+             if (spliturl[0] == "/?savePicture") {
+                pictures = mongoClient.db("Zauberbild").collection("Bilder"); //Daten der collection zuordnen
+                (await pictures).insertOne(url.query);
+                _response.write("Dein Bild wurde gespeichert!");
+                allPictures = [];
+            }
+            if (spliturl[0] == "/?getImage") {//ausgewählter Titel mit Titel in Datenbank abgleichen und die richtigen
+                //Bilddaten anfordern, raussuchen
+                let picture: Mongo.Cursor<any> = pictures.find({name: spliturl[1]});
+                await picture.forEach(showOrders); 
+                let jsonString: String = JSON.stringify(allPictures);
+                jsonString.toString();
+                _response.write(jsonString);
+                allPictures = [];
+            }
+            if (spliturl[0] == "/?getTitles") {//alle Titel aus Datenbank raussuchen
+                let names: Mongo.Cursor<any> = pictures.find({}, { projection: { _id: 0, name: true }});
+                await names.forEach(showOrders); 
+                let jsonString: String = JSON.stringify(allPictures);
+                jsonString.toString();
+                _response.write(jsonString); 
+                _response.write(names.toString()); 
+                allPictures = [];
+                console.log(names);
+            }
             /* //Daten aus Datenbank zurückholen
              if (_request.url == "/?getPicture=yes") {
                 let options: Mongo.MongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
@@ -84,7 +111,10 @@ export namespace zauberbild {
         _response.end();
     }
 
-
+    function showOrders(_item: Object): void {
+        let jsonString: string = JSON.stringify(_item);
+        allPictures.push(jsonString);
+    }
     /* function storeOrder(_order: Order): void {//siehe Interface Order
         orders.insert(_order);
     }
