@@ -11,11 +11,30 @@ background: rgb(232, 240, 241);
     left: 10%;
     top: 80px;
 }
+#savedPics{
+    float: right;
+    height: 270px;
+    width: 270px;
+   top: 390px;
+    position: relative;
+    right: -15%;
+   /*  top: 70px; */
+   /*  right: -400%; */
+   /*  display: inline-grid;  */
+   border: 2px;  
+    border-style: solid;
+    border-color: brown; 
+    padding: 5px;
+}
+#textSavePic{
+    float: left;
+}
 #mainCanvasDraw{
   
     height: auto;
     position: relative;
     top: 50px;
+    left: 11%;
 }
 #canvasSymbols{
     float: right;
@@ -24,7 +43,7 @@ background: rgb(232, 240, 241);
     background-color: black;
     position: relative;
     top: 56px;
-    right: 10%;
+    right: 3%;
     display: inline-grid; 
 }
 #canvasStar{

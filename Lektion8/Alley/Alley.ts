@@ -1,4 +1,4 @@
-namespace L08_Canvas_Alley {
+/* namespace L08_Canvas_Alley {
     interface Vector {
         x: number;
         y: number;
@@ -93,7 +93,7 @@ namespace L08_Canvas_Alley {
             crc2.restore();
         }
     */
-    function drawBackground(): void {
+ /*    function drawBackground(): void {
         console.log("Background");
 
         let gradient: CanvasGradient = crc2.createLinearGradient(0, 0, 0, crc2.canvas.height);
@@ -166,7 +166,7 @@ namespace L08_Canvas_Alley {
 
         crc2.fillStyle = gradient;
         crc2.fill();
-    }
+    } */
     /*
         function drawMountains(_position: Vector, _min: number, _max: number, _colorLow: string, _colorHigh: string): void {
             console.log("Mountains", _position, _min, _max);
@@ -200,4 +200,3 @@ namespace L08_Canvas_Alley {
     
             crc2.restore();
         }   */
-}

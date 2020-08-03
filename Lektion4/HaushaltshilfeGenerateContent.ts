@@ -46,18 +46,18 @@ namespace A04_Haushaltshilfe {
     function createRadio(_items: Item[], _category: string): HTMLElement | null {
         let group: HTMLDivElement = document.createElement("div");
         for (let item of _items) {
-            let radio: HTMLInputElement = document.createElement("radio");
+           /*  let radio: HTMLInputElement = document.createElement("radio");
             radio.type = "checkbox";
             radio.setAttribute("price", "");
             radio.value = item.name;
             radio.name = _category;
-            radio.id = item.name;
+            radio.id = item.name; */
 
             let label: HTMLLabelElement = document.createElement("label");
             label.textContent = item.name;
             label.htmlFor = item.name;
 
-            group.appendChild(radio);
+         /*    group.appendChild(radio); */
             group.appendChild(label);
         }
         return group;

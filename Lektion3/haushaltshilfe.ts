@@ -3,11 +3,11 @@ namespace A03_Haushaltshilfe {
 
     function handleLoad(_event: Event): void {
         console.log("Start");
-        let addGrocery: HTMLElement = <HTMLFieldSetElement>document.querySelector("button#addGrocery");
+        /* let addGrocery: HTMLElement = <HTMLFieldSetElement>document.querySelector("button#addGrocery"); */
         let chores: HTMLElement = <HTMLFieldSetElement>document.querySelector("div#chores");
         let banking: HTMLElement = <HTMLFieldSetElement>document.querySelector("input#banking");
         let submit: HTMLElement = <HTMLFieldSetElement>document.querySelector("button#submit");
-        addGrocery.addEventListener("click", handleChangeGrocery);
+       /*  addGrocery.addEventListener("click", handleChangeGrocery); */
         chores.addEventListener("change", handleChangeChores);
         banking.addEventListener("input", handleChangeBanking);
         submit.addEventListener("click", submitOrder);
@@ -40,7 +40,7 @@ namespace A03_Haushaltshilfe {
                
             }
         }
-        //Versuch eines löschen spans in displayChores
+/*         //Versuch eines löschen spans in displayChores
         var span: HTMLElement = document.createElement("span");
         var txt: string = document.createTextNode("\u00D7");
         span.className = "closing";
@@ -70,7 +70,7 @@ namespace A03_Haushaltshilfe {
     fd.append("Shop", shop.value);
     //console.log(Array.from(fd));  */
 }
-function handleChangeGrocery(_event: Event): void {
+/* function handleChangeGrocery(_event: Event): void {
     console.log("handleChangeGrocery");
     let article: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#article");
     let unit: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#unit");
@@ -92,3 +92,4 @@ function handleChangeGrocery(_event: Event): void {
         displayGroceries.innerHTML += article.value + ", " + amount + " " + unit.value + ",  " + shop.value + ",  " + price + "€" + "<br>";
     }
 }
+*/ }

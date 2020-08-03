@@ -2,6 +2,7 @@ namespace zauberbild {
     export class Vector {
         x: number;
         y: number;
+        public draggable: true; 
 
         constructor(_x: number, _y: number) {
             this.x = _x;
@@ -28,6 +29,11 @@ namespace zauberbild {
 
             this.set(Math.cos(direction), Math.sin(direction));
             this.scale(length);
+            return vector;
+        }
+
+        public get length(): number {
+            return Math.hypot(this.x, this.y);
         }
         
         add(_addend: Vector): void {

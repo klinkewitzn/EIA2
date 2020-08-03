@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +15,10 @@
 
     <!-- <script src="server2.js"></script> -->
     <link rel="stylesheet" href="zauberbild.css">
-    
+
     <title>Magic picture</title>
 </head>
+
 <body>
 
     <p>Abschlussarbeit von Nadine Klinkewitz</p>
@@ -26,47 +28,63 @@
         <div id="chooseBackground">
             <h3>Choose a background color</h3>
             <select name="colors" id="chooseColor">
-            <option value="lilac">Lilac</option>
-            <option value="green">Green</option>
-            <option value="blush">Blush</option>
-            <option value="skyblue">Sky blue</option>
-            <option value="butterCream">Butter Cream</option>
-            </select>   
+                <option value="lilac">Lilac</option>
+                <option value="green">Green</option>
+                <option value="blush">Blush</option>
+                <option value="skyblue">Sky blue</option>
+                <option value="butterCream">Butter Cream</option>
+            </select>
         </div>
 
-           <div id="chooseSize">
-        <h3>Choose a picture size</h3>
-        <input type="radio" name="Radiogroup" value="radio1" id="small" />
-        <label for="small">small</label> <br>
-        <input type="radio" name="Radiogroup" value="radio2" id="middle" />
-        <label for="middle">middle</label> <br>
-        <input type="radio" name="Radiogroup" value="radio3" id="big" />
-        <label for="big">big</label> <br>
-<br>
-        <h3>Click on a symbol, then click on the canvas.</h3>
+        <div id="chooseSize">
+            <h3>Choose a picture size</h3>
+            <input type="radio" name="Radiogroup" value="radio1" id="small" />
+            <label for="small">small</label> <br>
+            <input type="radio" name="Radiogroup" value="radio2" id="middle" />
+            <label for="middle">middle</label> <br>
+            <input type="radio" name="Radiogroup" value="radio3" id="big" />
+            <label for="big">big</label> <br>
+            <br>
+            <h3>Click on a symbol, then click on the canvas.</h3> <br>
+            <h3>Press d, then click on a symbol in order to delete it.</h3>
+        </div>
+
+        <br>
+        <button type="reset" id="delete">clear Canvas</Canvas></button>
+        <button type="submit" id="save">save</button><br>
+        <br>
+        Individualize symbols:
+        <br>
+        <button id="colorSymbol">change color</button>
+        <button id="rotateSymbol">rotate symbol</button>
     </div>
-    <br>
-    <button type="reset" id="delete">delete</button>
-    <button type="submit" id="save">save</button><br>
-    <br>
-    Individualize symbols:
-    <br>
-    <button>change color</button>
-    <button>rotate symbol</button>
-    </div>
- 
+
     <div id="canvasSymbols">
-        
+
         <div id="divStar"><canvas id="canvasStar"></canvas></div>
         <div id="divHeart"><canvas id="canvasHeart" width="180px"></canvas></div>
         <div id="divMoon"><canvas id="canvasMoon"></canvas></div>
         <div id="divEllipse"><canvas id="canvasEllipse"></canvas></div>
     </div>
- 
+    
+    <div id="savedPics">
 
-    <div id="mainCanvas">
-        <canvas id="mainCanvasDraw"></canvas>     
+        <h3 id="textSavePic">Choose a saved picture</h3>
+
+        <input list="titles" placeholder="Suche Titel" id="namePic">
+        <datalist id="titles">
+            <option> 
+                title
+                
+            </option>
+        </datalist>
     </div>
-   
+    
+    <div id="mainCanvas">
+        <canvas id="mainCanvasDraw"></canvas>
+    </div>
+
+
 </body>
+
 </html>

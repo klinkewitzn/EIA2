@@ -1,4 +1,4 @@
-namespace L09_Corona {
+/* namespace L09_Corona {
   window.addEventListener("load", handleLoad);
 
   export let canvas: HTMLCanvasElement;
@@ -88,4 +88,4 @@ namespace L09_Corona {
   export function getCoronaViren(): Corona[] {
     return coronaViren;
   }
-}
+} */

@@ -4,41 +4,40 @@ var zauberbild;
     class Star extends zauberbild.Symbol {
         constructor(_position) {
             super(_position);
+            this.size = 40;
+            this.rotation = 0;
+            this.color = "HSL(0,53%,58%)";
         }
         draw(crcStar) {
             crcStar.save();
             crcStar.beginPath();
             crcStar.translate(this.position.x, this.position.y);
+            crcStar.rotate(this.rotation * Math.PI / 150);
             crcStar.scale(0.4, 0.6);
             crcStar.beginPath();
             crcStar.moveTo(0, -50);
             crcStar.lineTo(100, 50);
             crcStar.lineTo(-100, 50);
             crcStar.closePath();
-            crcStar.fillStyle = "HSL(0,53%,58%)";
+            crcStar.fillStyle = this.color; //"HSL(0,53%,58%)"
             crcStar.fill();
             crcStar.restore();
-            /*   crcStar.beginPath();
-              crcStar.save();
-              crcStar.translate(this.position.y, this.position.y);
-             
-              crcStar.scale(1.2, 0.6);
-              //cxt.scale(0.4, 0.4);
-              crcStar.moveTo(108, 0.0);
-              crcStar.lineTo(141, 70);
-              crcStar.lineTo(218, 78.3);
-              crcStar.lineTo(162, 131);
-              crcStar.lineTo(175, 205);
-              crcStar.lineTo(108, 170);
-              crcStar.lineTo(41.2, 205);
-              crcStar.lineTo(55, 131);
-              crcStar.lineTo(1, 78);
-              crcStar.lineTo(75, 68);
-              crcStar.lineTo(108, 0);
-              crcStar.closePath();
-              crcStar.fillStyle = "HSL(0,53%,58%)";
-              crcStar.fill();
-              crcStar.restore(); */
+        }
+        move(_timeslice) {
+            //crcStar.rotate(this.rotation * Math.PI / 150);
+            let offset = new zauberbild.Vector(this.velocity.x, this.velocity.y);
+            offset.scale(_timeslice);
+            this.position.add(offset);
+            if (this.position.x < 0)
+                this.position.x += zauberbild.crc2.canvas.width;
+            if (this.position.y < 0)
+                this.position.y += zauberbild.crc2.canvas.height;
+            if (this.position.x > zauberbild.crc2.canvas.width)
+                this.position.x -= zauberbild.crc2.canvas.width;
+            if (this.position.y > zauberbild.crc2.canvas.height)
+                this.position.y -= zauberbild.crc2.canvas.height;
+            this.rotation += 1;
+            //if (this.isHit = true) this.size +=30;
         }
     }
     zauberbild.Star = Star;

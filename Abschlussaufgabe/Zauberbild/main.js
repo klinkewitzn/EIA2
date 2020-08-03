@@ -13,15 +13,21 @@ var zauberbild;
     let id;
     let dataPictures = [];
     let symbols = [];
-    let dragDrop = false;
-    let objectDragDrop;
+    let trash = false;
+    let colors = ["#FFC0CB", "#FF1493", "#E6E6FA", "#9370DB", "#4B0082", "#FA8072", "#DC143C", "#FF0000", "#FFA500", "#FFD700", "#FFFF00",
+        "#FFE4B5", "#32CD32", "#90EE90", "#008000", "#66CDAA", "#48D1CC", "#B0C4DE", "#87CEFA", "#0000FF", "#DCDCDC", "#FFFAFA", "#F5F5DC"];
+    let coloring;
+    let coloring2;
+    let coloring3;
     window.addEventListener("load", handleLoad);
     //handle Load Funktion
     async function handleLoad(_event) {
         console.log("Funktion Handle Load wird ausgeführt");
         let savebutton = document.querySelector("button[type=submit]");
         let deletebutton = document.querySelector("button[type=reset]");
-        /* deletebutton.addEventListener("click", deleteData); */
+        let rotatebutton = document.querySelector("#rotateSymbol");
+        let colorbutton = document.querySelector("#colorSymbol");
+        deletebutton.addEventListener("click", clearCanvas);
         savebutton.addEventListener("click", sendData);
         let format = document.querySelector("div#chooseSize");
         backgroundColor = document.querySelector("#chooseColor");
@@ -30,13 +36,6 @@ var zauberbild;
         canvasHeart = document.querySelector("#canvasHeart");
         canvasMoon = document.querySelector("#canvasMoon");
         canvasEllipse = document.querySelector("#canvasEllipse");
-        /*
-                var domRect = canvasMain.getBoundingClientRect();
-                console.log(domRect);
-                let a = canvasMain.getBoundingClientRect().left;
-                console.log(a);
-                let b = canvasMain.getBoundingClientRect().top;
-                console.log(b); */
         format.addEventListener("change", canvasSize);
         0;
         backgroundColor.addEventListener("change", chooseBackground);
@@ -45,7 +44,6 @@ var zauberbild;
         canvasHeart.addEventListener("click", getID);
         canvasMoon.addEventListener("click", getID);
         canvasEllipse.addEventListener("click", getID);
-        /*  canvasMain.addEventListener("click", deleteSymbol); */
         zauberbild.crc2 = canvasMain.getContext("2d");
         zauberbild.crcStar = canvasStar.getContext("2d");
         zauberbild.crcHeart = canvasHeart.getContext("2d");
@@ -57,14 +55,15 @@ var zauberbild;
         zauberbild.crc2 = canvasMain.getContext("2d");
         backgroundImage = zauberbild.crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
         setInterval(update, 50);
+        document.getElementById("mainCanvasDraw")?.addEventListener("click", function () { deleteform(event, trash); });
+        document.addEventListener("keydown", function () { deletemode(event); });
         console.log(symbols);
+        colorbutton.addEventListener("click", changeColor);
+        rotatebutton.addEventListener("click", changeRotation);
     }
-    /*  function deleteSymbol();
-     function deleteData(): void {
- 
-         let order: HTMLDivElement = <HTMLDivElement>document.querySelector("div#order");
-         order.innerHTML = "";
-     } */
+    function clearCanvas() {
+        symbols = [];
+    }
     function drawDefaultCanvas() {
         zauberbild.crc2.save();
         zauberbild.crc2.canvas.width = 400;
@@ -93,7 +92,7 @@ var zauberbild;
                 break;
             case "big":
                 zauberbild.crc2.save();
-                zauberbild.crc2.canvas.width = 700;
+                zauberbild.crc2.canvas.width = 600;
                 zauberbild.crc2.canvas.height = 800;
                 zauberbild.crc2.restore();
                 break;
@@ -233,70 +232,101 @@ var zauberbild;
             console.log(symbol.position);
         }
         console.log(symbols);
-        canvasMain.addEventListener("mousedown", mouseDown);
-        canvasMain.addEventListener("mousemove", mouseMove);
-        canvasMain.addEventListener("mouseup", mouseUp);
     }
     function update() {
         console.log("Funktion update wird durchgeführt");
         zauberbild.crc2.putImageData(backgroundImage, 0, 0); //putImageData -->die gespeicherten Hintergrunddaten werden bei jeder aktualisierung auf den canvas "gelegt"
-        for (let symbol of symbols) { //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
+        /* for (let symbol of symbols) {   //mittels "if instance of corona/antibody/humancell/part." wäre auch möglich verschiedene Geschwindigkeiten anzugeben
+
             symbol.move(1 / 30);
+            symbol.draw(crc2);
+        } */
+        for (let symbol of symbols) {
+            if (symbol instanceof zauberbild.Heart)
+                symbol.move(1 / 35);
+            else if (symbol instanceof zauberbild.Moon)
+                symbol.move(1 / 80);
+            else if (symbol instanceof zauberbild.Ellipse)
+                symbol.move(1 / 50);
+            else if (symbol instanceof zauberbild.Star)
+                symbol.move(1 / 40);
             symbol.draw(zauberbild.crc2);
         }
     }
-    /*      symbols.push({ x:75-15,y:50-15, width:30,height:30,fill:"#444444",isDragging:false});  */
-    function mouseDown(_event) {
-        let mousePosY = _event.clientY;
-        let mousePosX = _event.clientX;
-        let canvasRect = canvasMain.getBoundingClientRect();
-        let offsetX = mousePosX - canvasRect.left;
-        let offsetY = mousePosY - canvasRect.top;
-        console.log(offsetX, offsetY);
-        for (let symbol of symbols) {
-            if (symbol.position.x - symbol.radius.x < offsetX &&
-                symbol.position.x + symbol.radius.x > offsetX &&
-                symbol.position.y - symbol.radius.y < offsetY &&
-                symbol.position.y + symbol.radius.y > offsetY) {
-                console.log(symbol);
-                dragDrop = true;
-                let index = symbols.indexOf(symbol);
-                symbols.splice(index, 1);
-                objectDragDrop = symbol;
-                return;
-                /* console.log("array symbols" + symbols + "while mousedown");
-                let mousePosX: number = _event.offsetX;
-                let mousePosY: number = _event.offsetY;
-        
-                console.log(mousePosX, mousePosY);
-        
-                for (let symbol of symbols) {
-        
-                    if (symbol.position.x - symbol.radius.x < mousePosX &&
-                        symbol.position.x + symbol.radius.x > mousePosX &&
-                        symbol.position.y - symbol.radius.y < mousePosY &&
-                        symbol.position.y + symbol.radius.y > mousePosY) {
-                        console.log(symbol);
-                        dragDrop = true;
-                        let index: number = symbols.indexOf(symbol);
-                        symbols.splice(index, 1);
-                        objectDragDrop = symbol;
-                        return; */
+    function deletemode(_event) {
+        if (_event.key == "d") {
+            trash = true;
+            console.log("function deletemode,trash is now" + trash);
+        }
+    }
+    function deleteform(_event, _trash) {
+        if (trash == true) {
+            console.log("function deleteform, trash is now" + trash);
+            let poisitonx = _event.clientX;
+            let positiony = _event.clientY;
+            let canvasRect = canvasMain.getBoundingClientRect();
+            let offsetX = poisitonx - canvasRect.left;
+            let offsetY = positiony - canvasRect.top;
+            for (let symbol of symbols) {
+                if (symbol.position.x - 25 < offsetX &&
+                    symbol.position.x + 25 > offsetX &&
+                    symbol.position.y - 25 < offsetY &&
+                    symbol.position.y + 25 > offsetY) {
+                    let index = symbols.indexOf(symbol);
+                    symbols.splice(index, 1);
+                    trash = false;
+                }
             }
         }
     }
-    function mouseUp(_event) {
-        if (dragDrop == true) {
-            dragDrop = false;
-            symbols.push(objectDragDrop);
+    function randomColor() {
+        coloring = colors[Math.floor(Math.random() * colors.length)];
+        coloring2 = colors[Math.floor(Math.random() * 0.5 * colors.length)];
+        coloring3 = colors[Math.floor(Math.random() * 0.7 * colors.length)];
+    }
+    function changeColor(_event) {
+        randomColor();
+        for (let symbol of symbols) {
+            if (symbol instanceof zauberbild.Star)
+                symbol.color = coloring;
+            else if (symbol instanceof zauberbild.Ellipse)
+                symbol.color = coloring2;
+            else if (symbol instanceof zauberbild.Moon)
+                symbol.color = coloring3;
+            symbol.draw(zauberbild.crc2);
         }
     }
-    function mouseMove(_event) {
-        if (dragDrop == true) {
-            objectDragDrop.position.x = _event.offsetX;
-            objectDragDrop.position.y = _event.offsetY;
-            console.log(objectDragDrop.position.x, objectDragDrop.position.y);
+    function changeRotation(_event) {
+        for (let symbol of symbols) {
+            if (symbol instanceof zauberbild.Heart)
+                symbol.rotate(3);
+            else if (symbol instanceof zauberbild.Ellipse)
+                symbol.rotate(3);
+            else if (symbol instanceof zauberbild.Moon)
+                symbol.rotate(3);
+            symbol.draw(zauberbild.crc2);
         }
     }
+    /* function rotateSymbols(): void {
+        console.log("Funktion rotateSymbols wird durchgeführt");
+
+
+        for (let symbol of symbols) {
+            if (symbol instanceof Heart)
+                symbol.rotate(1 / 35);
+            else if (symbol instanceof Moon)
+                symbol.rotate(1 / 80);
+            else if (symbol instanceof Ellipse)
+                symbol.rotate(1 / 50);
+            else if (symbol instanceof Star)
+                symbol.rotate(1 / 40);
+
+            symbol.draw(crc2);
+        }
+
+        //if (dragDrop == true) {
+         //    objectDragDrop.draw(crc2);
+         //}
+    } */
 })(zauberbild || (zauberbild = {}));
 //# sourceMappingURL=main.js.map

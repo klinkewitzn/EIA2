@@ -4,6 +4,9 @@ var zauberbild;
     class Moon extends zauberbild.Symbol {
         constructor(_position) {
             super(_position);
+            this.size = 40;
+            this.color = "HSL(268, 100%, 4%)";
+            this.rotation = 1;
         }
         draw(crcMoon) {
             crcMoon.save();
@@ -17,7 +20,7 @@ var zauberbild;
             crcMoon.bezierCurveTo(-61, 60, -61, -60, 40, -60);
             crcMoon.lineWidth = 3;
             /* crcMoon.closePath(); */
-            crcMoon.strokeStyle = "HSL(268, 100%, 4%)";
+            crcMoon.strokeStyle = this.color;
             crcMoon.stroke();
             /*  crcMoon.fillStyle = "HSL(0,53%,58%)"
              crcMoon.fill(); */

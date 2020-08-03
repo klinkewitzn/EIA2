@@ -1,5 +1,5 @@
 namespace Sequenzmemorie {
-    window.addEventListener("load", function (): void {
+   /*  window.addEventListener("load", function (): void {
         let selectedWrd: HTMLSelectElement = <HTMLSelectElement>document.querySelector("#selectWord");
         let writtenWrd: HTMLInputElement = <HTMLInputElement>document.querySelector("#yourWord");
         let gametime: HTMLInputElement = <HTMLInputElement>document.querySelector("#gametime");
@@ -49,7 +49,7 @@ namespace Sequenzmemorie {
 }
 
 
-
+ */
 /*
 
 namespace L02_Sequenzmemory {
@@ -103,5 +103,4 @@ namespace L02_Sequenzmemory {
         if (target.name == "Color") {
             let ouput: HTMLOutputElement = <HTMLOutputElement>document.querySelector("output");
             ouput.value = target.value;
-        }
-    } */
+        } */}

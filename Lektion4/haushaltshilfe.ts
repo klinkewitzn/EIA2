@@ -1,5 +1,5 @@
 namespace A04_Haushaltshilfe {
-    window.addEventListener("load", handleLoad);
+/*     window.addEventListener("load", handleLoad);
 
     function handleLoad(_event: Event): void {
         console.log("Start");
@@ -38,10 +38,10 @@ namespace A04_Haushaltshilfe {
 
                 displayChores.innerHTML += "<br>" + inputs[i].value + " " /*+ price */;
 
-            }
-        }
+      /*       }
+        } */
         //Versuch eines löschen spans in displayChores
-        var span: HTMLElement = document.createElement("span");
+     /*    var span: HTMLElement = document.createElement("span");
         var txt: string = document.createTextNode("\u00D7");
         span.className = "closing";
         span.appendChild(txt);
@@ -50,7 +50,7 @@ namespace A04_Haushaltshilfe {
 
 
     }
-}
+} */
 
 //var checks = document.querySelectorAll("input[type=checkbox]");
 //console.log(checks.values);
@@ -70,7 +70,7 @@ fd.append("Unit", unit.value);
 fd.append("Shop", shop.value);
 //console.log(Array.from(fd));  */
 
-function handleChangeGrocery(_event: Event): void {
+/* function handleChangeGrocery(_event: Event): void {
     console.log("handleChangeGrocery");
     let article: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#article");
     let unit: HTMLSelectElement = <HTMLSelectElement>document.querySelector("select#unit");
@@ -92,3 +92,4 @@ function handleChangeGrocery(_event: Event): void {
         displayGroceries.innerHTML += article.value + ", " + amount + " " + unit.value + ",  " + shop.value + ",  " + price + "€" + "<br>";
     }
 }
+*/ }
