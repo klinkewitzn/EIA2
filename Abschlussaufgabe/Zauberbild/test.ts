@@ -99,25 +99,25 @@
         }
         
 
-        for (let figur of symbols) {
-            dataPictures.push(figur.position.x.toString(), figur.position.y.toString()); 
+        for (let symbol of symbols) {
+            dataPictures.push(symbol.position.x.toString(), symbol.position.y.toString()); 
 
-            if (figur instanceof Triangle) {
+            if (symbol instanceof Triangle) {
                 dataPictures.push("triangle"); 
 
             }
 
-            if (figur instanceof Star) {
+            if (symbol instanceof Star) {
                 dataPictures.push("star"); 
 
             }
 
-            if (figur instanceof Circle) {
+            if (symbol instanceof Circle) {
                 dataPictures.push("circle"); 
 
             }
 
-            if (figur instanceof Heart) {
+            if (symbol instanceof Heart) {
                 dataPictures.push("heart"); 
 
             }
@@ -382,17 +382,17 @@
  
          console.log(offsetX, offsetY); 
  
-         for (let figur of symbols) {
+         for (let symbol of symbols) {
  
-             if (figur.position.x - figur.radius < offsetX && 
-                 figur.position.x + figur.radius > offsetX &&
-                 figur.position.y - figur.radius < offsetY &&
-                 figur.position.y + figur.radius > offsetY) {
+             if (symbol.position.x - symbol.radius < offsetX && 
+                 symbol.position.x + symbol.radius > offsetX &&
+                 symbol.position.y - symbol.radius < offsetY &&
+                 symbol.position.y + symbol.radius > offsetY) {
  
-                 let index: number = symbols.indexOf(figur); 
+                 let index: number = symbols.indexOf(symbol); 
                  symbols.splice(index, 1);
  
-                 objectDragDrop = figur; 
+                 objectDragDrop = symbol; 
  
                  
  
@@ -436,14 +436,14 @@
  
          console.log(offsetX, offsetY); 
  
-         for (let figur of symbols) {
+         for (let symbol of symbols) {
  
-             if (figur.position.x - figur.radius < offsetX && 
-                 figur.position.x + figur.radius > offsetX &&
-                 figur.position.y - figur.radius < offsetY &&
-                 figur.position.y + figur.radius > offsetY) {
+             if (symbol.position.x - symbol.radius < offsetX && 
+                 symbol.position.x + symbol.radius > offsetX &&
+                 symbol.position.y - symbol.radius < offsetY &&
+                 symbol.position.y + symbol.radius > offsetY) {
  
-                 let index: number = symbols.indexOf(figur); 
+                 let index: number = symbols.indexOf(symbol); 
                  symbols.splice(index, 1);
  
                  console.log("Es funktioniert"); 

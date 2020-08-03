@@ -217,23 +217,23 @@ namespace zauberbild {
                 dataPictures.push(canvasMain.width.toString(), canvasMain.height.toString());
                 dataPictures.push(imgColor);
 
-                for (let figur of symbols) {
-                    dataPictures.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
-                    dataPictures.push(figur.color);
+                for (let symbol of symbols) {
+                    dataPictures.push(Math.floor(symbol.position.x).toString(), Math.floor(symbol.position.y).toString());
+                    dataPictures.push(symbol.color);
 
-                    if (figur instanceof Moon) {
+                    if (symbol instanceof Moon) {
                         dataPictures.push("moon");
                     }
 
-                    if (figur instanceof Star) {
+                    if (symbol instanceof Star) {
                         dataPictures.push("star");
                     }
 
-                    if (figur instanceof Ellipse) {
+                    if (symbol instanceof Ellipse) {
                         dataPictures.push("ellipse");
                     }
 
-                    if (figur instanceof Heart) {
+                    if (symbol instanceof Heart) {
                         dataPictures.push("heart");
                     }
                 }

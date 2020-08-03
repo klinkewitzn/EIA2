@@ -14,7 +14,7 @@ var zauberbild;
     let dataPictures = [];
     let symbols = [];
     let trash = false;
-    let rotates = false;
+    //let rotates: boolean = false;
     let dragDrop = false;
     let objectDragDrop;
     let colors = ["#FFC0CB", "#FF1493", "#E6E6FA", "#9370DB", "#4B0082", "#FA8072", "#DC143C", "#FF0000", "#FFA500", "#FFD700", "#FFFF00",
@@ -28,7 +28,7 @@ var zauberbild;
         console.log("Funktion Handle Load wird ausgeführt");
         let savebutton = document.querySelector("button[type=submit]");
         let deletebutton = document.querySelector("button[type=reset]");
-        let rotatebutton = document.querySelector("#rotateSymbol");
+        /* let rotatebutton: HTMLButtonElement = <HTMLButtonElement>document.querySelector("#rotateSymbol"); */
         let colorbutton = document.querySelector("#colorSymbol");
         deletebutton.addEventListener("click", clearCanvas);
         savebutton.addEventListener("click", sendData);
@@ -150,67 +150,59 @@ var zauberbild;
         backgroundImage = zauberbild.crc2.getImageData(0, 0, canvasMain.width, canvasMain.height);
         zauberbild.crc2.putImageData(backgroundImage, 0, 0);
     }
+    /*    async function sendData(_event: Event): Promise<void> {
+           console.log("funktion sendData verbunden");
+           let nameOfPicture: string | null = prompt("Benenne dein Zauberbild: ");
+           if (nameOfPicture != null) {
+   
+               dataPictures.push(nameOfPicture);
+               dataPictures.push(canvasMain.width.toString(), canvasMain.height.toString());
+               dataPictures.push(imgColor);
+               console.log(dataPictures);
+           }
+           let dataServer: string = JSON.stringify(dataPictures); //wandelt Array um, damit der Server es lesen kann
+           let query: URLSearchParams = new URLSearchParams(dataServer);
+           let response: Response = await fetch(url + "?savePicture&name=" + nameOfPicture + "&" + query.toString());
+           let responseText: string = await response.text();
+           console.log(responseText);
+           alert(responseText);
+       } */
     async function sendData(_event) {
         console.log("funktion sendData verbunden");
         let nameOfPicture = prompt("Benenne dein Zauberbild: ");
-        if (nameOfPicture != null) {
-            dataPictures.push(nameOfPicture);
+        if (nameOfPicture == null || nameOfPicture == "") {
+            alert("Du musst deinem Bild einen Namen geben, damit es gespeichert werden kann");
+            prompt("Benenne dein Zauberbild: ");
+        }
+        else if (nameOfPicture != null) {
+            //dataPictures.push(nameOfPicture); 
             dataPictures.push(canvasMain.width.toString(), canvasMain.height.toString());
             dataPictures.push(imgColor);
-            console.log(dataPictures);
+            for (let symbol of symbols) {
+                dataPictures.push(Math.floor(symbol.position.x).toString(), Math.floor(symbol.position.y).toString());
+                dataPictures.push(symbol.color);
+                if (symbol instanceof zauberbild.Moon) {
+                    dataPictures.push("moon");
+                }
+                if (symbol instanceof zauberbild.Star) {
+                    dataPictures.push("star");
+                }
+                if (symbol instanceof zauberbild.Ellipse) {
+                    dataPictures.push("ellipse");
+                }
+                if (symbol instanceof zauberbild.Heart) {
+                    dataPictures.push("heart");
+                }
+            }
         }
         let dataServer = JSON.stringify(dataPictures); //wandelt Array um, damit der Server es lesen kann 
         let query = new URLSearchParams(dataServer);
         let response = await fetch(url + "?savePicture&name=" + nameOfPicture + "&" + query.toString());
         let responseText = await response.text();
         console.log(responseText);
-        alert(responseText);
+        alert("Bild wurde gespeichert");
+        //let data: Data = JSON.parse(texte); 
     }
-    /*    async function saveImage(_event: MouseEvent): Promise<void> {
-   
-           let nameOfPicture: string | null = prompt("Bennene dein Zauberbild: ");
-           if (nameOfPicture == null || nameOfPicture == "") {
-               alert("Du musst deinem Bild einen Namen geben, damit es gespeichert werden kann");
-               prompt("Bennene dein Zauberbild: ");
-           } else
-   
-               if (nameOfPicture != null) {
-   
-                   //dataPictures.push(nameOfPicture);
-                   dataPictures.push(mainCanvas.width.toString(), mainCanvas.height.toString());
-                   dataPictures.push(backgroundColorSafe);
-   
-                   for (let figur of symbols) {
-                       dataPictures.push(Math.floor(figur.position.x).toString(), Math.floor(figur.position.y).toString());
-                       dataPictures.push(figur.color);
-   
-                       if (figur instanceof Triangle) {
-                           dataPictures.push("triangle");
-                       }
-   
-                       if (figur instanceof Star) {
-                           dataPictures.push("star");
-                       }
-   
-                       if (figur instanceof Circle) {
-                           dataPictures.push("circle");
-                       }
-   
-                       if (figur instanceof Heart) {
-                           dataPictures.push("heart");
-                       }
-                   }
-   
-               }
-   
-           let dataServer: string = JSON.stringify(dataPictures); //wandelt Arraxy um, damit der Server es lesen kann
-           let query: URLSearchParams = new URLSearchParams(dataServer);
-           let response: Response = await fetch(url + "?safeImage&name=" + nameOfPicture + "&" + query.toString());
-           let texte: string = await response.text();
-           console.log(texte);
-           alert("Bild wurde gespeichert");
-           //let data: Data = JSON.parse(texte);
-       } */
     //Abspeichern der ID der Symbole
     function getID(_event) {
         let target = _event.target;
@@ -355,12 +347,12 @@ var zauberbild;
             symbol.draw(zauberbild.crc2);
         }
     }
-    function rotatemode(_event) {
+    /* function rotatemode(_event: KeyboardEvent): void {
         if (_event.key == "r") {
             rotates = true;
             console.log("function deletemode,rotates is now" + rotates);
         }
-    }
+    } */
     /* function rotateform(_event: MouseEvent, _trash: boolean): void {
         rotatemode;
         if (rotates == true) {

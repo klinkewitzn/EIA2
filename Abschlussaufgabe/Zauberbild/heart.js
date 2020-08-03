@@ -11,10 +11,10 @@ var zauberbild;
             this.i = 0;
             //this.rotation += 0;
             //this.radius = 25;
-            if (_position)
-                this.position = _position.copy();
+            /* if (_position)
+            this.position = _position.copy();
             else
-                this.velocity = new zauberbild.Vector(0, 0);
+            this.velocity = new Vector(0, 0); */
             //this.size = 25;
         }
         draw(crcHeart) {
