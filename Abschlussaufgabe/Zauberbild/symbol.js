@@ -18,13 +18,6 @@ var zauberbild;
             //this.radius = 25;
             //this.size = 27;
         }
-        /* changeColor(_color: string): void {
-            this.color = _color;
-        } */
-        /* rotate(_factor: number): void {
-            this.rotation += _factor;
-            crc2.rotate(0);
-        } */
         move(_timeslice) {
             let offset = new zauberbild.Vector(this.velocity.x, this.velocity.y);
             offset.scale(_timeslice);

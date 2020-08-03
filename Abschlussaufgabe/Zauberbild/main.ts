@@ -101,9 +101,10 @@ namespace zauberbild {
                 canvasMain.addEventListener("mouseup", dropSymbol);
                 canvasMain.addEventListener("mousemove", dragSymbol); */
         
-        getTitles();
+        
         deletebutton.addEventListener("click", clearCanvas);
         savebutton.addEventListener("click", sendData);
+        getTitles();
         inputTitle.addEventListener("change", chosenTitle);
     }
     function clearCanvas() {

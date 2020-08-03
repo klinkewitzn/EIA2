@@ -5,12 +5,10 @@ namespace zauberbild {
         velocity: Vector;
         position: Vector;
         //rotation: number;
-
         //active: boolean;
         //radius: number;
         //size: number;
         //color: string;
-
 
         constructor(_position?: Vector) {
             if (_position)
@@ -24,16 +22,7 @@ namespace zauberbild {
             //this.size = 27;
         }
 
-        abstract draw(crc: CanvasRenderingContext2D): void;
-
-        /* changeColor(_color: string): void {
-            this.color = _color;
-        } */
-
-        /* rotate(_factor: number): void {
-            this.rotation += _factor;
-            crc2.rotate(0);
-        } */
+        abstract draw(crc2: CanvasRenderingContext2D): void;
 
         move(_timeslice: number): void {
             let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
@@ -49,14 +38,5 @@ namespace zauberbild {
             if (this.position.y > crc2.canvas.height)
                 this.position.y -= crc2.canvas.height;
         }
-
-
-        /* isHit(_hotspot: Vector): boolean {
-            let hitsize: number = 50 * this.size;
-            let difference: Vector = new Vector(_hotspot.x - this.position.x, _hotspot.y - this.position.y);
-            return (Math.abs(difference.x) < hitsize && Math.abs(difference.y) < hitsize);
-        } */
     }
-
-
 }

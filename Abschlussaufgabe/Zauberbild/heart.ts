@@ -10,7 +10,6 @@ namespace zauberbild {
 
         constructor(_position: Vector,_color?: string) {
             super(_position);
-            //this.size = 40;
             this.currentcolor = this.colors[0];
             this.i = 0;
             //this.rotation += 0;
@@ -19,7 +18,7 @@ namespace zauberbild {
             this.position = _position.copy();
             else 
             this.velocity = new Vector(0, 0); */
-            //this.size = 25;
+            //this.size = 25;//this.size = 40;
         }
 
         draw(crcHeart: CanvasRenderingContext2D): void {
