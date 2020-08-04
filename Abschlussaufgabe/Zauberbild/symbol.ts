@@ -4,22 +4,13 @@ namespace zauberbild {
         color: string;
         velocity: Vector;
         position: Vector;
-        //rotation: number;
-        //active: boolean;
-        //radius: number;
-        //size: number;
-        //color: string;
+
 
         constructor(_position?: Vector) {
             if (_position)
                 this.position = _position.copy();
             this.velocity = new Vector(0, 0);
             this.velocity.random(50, 100);
-            //this.active = false;
-            // this.color = "green";
-            // this.rotation =1;
-            //this.radius = 25;
-            //this.size = 27;
         }
 
         abstract draw(crc2: CanvasRenderingContext2D): void;
